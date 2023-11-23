@@ -46,6 +46,11 @@ import GoogleSignInPlugin from "vue3-google-signin"
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+
+// https://vue-tel-input.iamstevendao.com/guide/getting-started.html
+import VueTelInput from 'vue-tel-input';
+import 'vue-tel-input/vue-tel-input.css';
+
 const app = createApp(App)
 
 app.component("infinite-loading", InfiniteLoading);
@@ -56,6 +61,7 @@ app.use(Vue3ProgressPlugin);
 app.use(VueSweetalert2);
 app.use(VueWriter);
 app.use(GoogleSignInPlugin, { clientId: ' GOOGLE API CONSOLE ID', });
+app.use(VueTelInput);
 app.use(router)
 
 app.mount('#app')

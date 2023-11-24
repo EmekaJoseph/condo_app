@@ -16,18 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-
-// Route::get("deceased/search/{string}", [DeceasedController::class, "search"]);
-
+// OPEN ROUTES ##############################################################
 Route::controller(DeceasedController::class)->group(function () {
     Route::prefix('deceased')->group(function () {
         Route::get('/search/{string}', 'search');
         Route::get('/details/{id}', 'details');
-        Route::delete('/deleteRecord/{id}', 'deleteRecord');
     });
 });
 
@@ -35,5 +29,27 @@ Route::controller(AdminController::class)->group(function () {
     Route::prefix('admin')->group(function () {
         Route::post('/register', 'register');
         Route::post('/login', 'login');
+    });
+});
+
+
+
+
+// PROTECTED ROUTES ##############################################################
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::controller(DeceasedController::class)->group(function () {
+        Route::prefix('deceased')->group(function () {
+            Route::post('/store', 'store');
+            Route::post('/update/{id}', 'update');
+            Route::delete('/deleteRecord/{id}', 'deleteRecord');
+        });
+    });
+
+    Route::controller(AdminController::class)->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::post('/changePassword', 'changePassword');
+            Route::post('/logout', 'logout');
+        });
     });
 });

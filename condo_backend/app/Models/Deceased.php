@@ -27,4 +27,9 @@ class Deceased extends Model
     {
         return $this->hasMany(Condolence::class);
     }
+
+    public function survivedBys()
+    {
+        return $this->hasMany(SurvivedBy::class);
+    }
 }

@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 
 class DeceasedController extends Controller
 {
-
-
-    public function store(Request $request): JsonResponse
-    {
-        /*
+    /*
     admin_id,
     deceased,
     birth_date,
@@ -22,6 +18,15 @@ class DeceasedController extends Controller
     biography,
     life_history?,
     */
+
+
+    public function store(Request $request): JsonResponse
+    {
+        return response()->json(0);
+    }
+
+    public function update($id): JsonResponse
+    {
         return response()->json(0);
     }
 
@@ -40,7 +45,7 @@ class DeceasedController extends Controller
 
     public function details($id): JsonResponse
     {
-        $query = Deceased::with('photos')->where('id', $id)->get();
+        $query = Deceased::with('photos', 'survivedBys')->where('id', $id)->get();
         return response()->json($query, 200);
     }
 
@@ -49,6 +54,7 @@ class DeceasedController extends Controller
         $deceased = Deceased::find($id);
         $deceased->photos()->delete();
         $deceased->condolences()->delete();
+        $deceased->survivedBys()->delete();
         $deceased->delete();
         return response()->json('Record deleted successfully', 200);
     }

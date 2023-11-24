@@ -17,4 +17,14 @@ class Deceased extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
+    public function condolences()
+    {
+        return $this->hasMany(Condolence::class);
+    }
 }

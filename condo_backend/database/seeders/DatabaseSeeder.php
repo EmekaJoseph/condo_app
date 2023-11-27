@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             DeceasedSeeder::class,
             CondolenceSeeder::class,
-            PhotoSeeder::class,
+            GallerySeeder::class,
             SurvivedBySeeder::class,
         ]);
     }

@@ -55,6 +55,13 @@ class AuthController extends Controller
     }
 
 
+    public function profile()
+    {
+        $admin = Admin::find(Auth::id());
+        return response()->json($admin, 200);
+    }
+
+
     public function changePassword(Request $request)
     {
         $request->validate([

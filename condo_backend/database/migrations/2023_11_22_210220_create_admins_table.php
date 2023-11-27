@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -22,6 +23,8 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('status')->nullable();
             $table->integer('level')->default(2);
+            $table->integer('deceased_uploads')->default(0);
+            // $table->integer('deceased_uploads')->virtualAs("DB::raw('SELECT COUNT(*) FROM deceaseds WHERE admin_id = admins.id')");
             $table->timestamps();
         });
     }

@@ -18,9 +18,9 @@ class Deceased extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function photos()
+    public function gallery()
     {
-        return $this->hasMany(Photo::class);
+        return $this->hasMany(Gallery::class);
     }
 
     public function condolences()

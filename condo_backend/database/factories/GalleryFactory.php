@@ -6,9 +6,9 @@ use App\Models\Deceased;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gallery>
  */
-class PhotoFactory extends Factory
+class GalleryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +20,8 @@ class PhotoFactory extends Factory
         return [
             'id' => uniqid(),
             'deceased_id' => Deceased::inRandomOrder()->first()->id,
-            'photo' => 'default_photo',
-            'photo_name' =>  $this->faker->name(),
+            'gallery' => 'default_photo',
+            'gallery_name' =>  $this->faker->name(),
         ];
     }
 }

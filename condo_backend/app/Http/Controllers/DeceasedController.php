@@ -52,8 +52,6 @@ class DeceasedController extends Controller
             );
         }
 
-        // Deceased::where('id', $id)->update($dataToUpdate);
-
         $deceased->update($dataToUpdate);
 
         $deceased->survivedBys()->delete();

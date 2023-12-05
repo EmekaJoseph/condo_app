@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condolence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CondolenceController extends Controller
@@ -12,7 +13,12 @@ class CondolenceController extends Controller
         $condos = Condolence::select('id', 'condolence', 'condo_name', 'relationship', 'created_at')
             ->where("deceased_id", $deceased_id)
             ->orderBy("created_at", "DESC")
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->created = Carbon::parse($item->created_at)->diffForHumans();
+                unset($item->created_at);
+                return $item;
+            });
 
         return response()->json($condos);
     }
@@ -23,8 +29,8 @@ class CondolenceController extends Controller
         $data = [
             "deceased_id" => $request->deceased_id,
             "condolence" => $request->condolence,
-            "condo_name" => $request->condo_name,
-            "relationship" => $request->relationship
+            "condo_name" => $request->input("condo_name", null),
+            "relationship" => $request->input("relationship", null),
         ];
 
         Condolence::firstOrCreate([$data, $data]);

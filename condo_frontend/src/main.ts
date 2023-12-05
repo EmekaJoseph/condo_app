@@ -14,7 +14,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 // custom css
-import './assets/main.css'
+import './assets/styles/main.css'
 
 // https://vue3-infinite-loading.netlify.app/
 import InfiniteLoading from "v3-infinite-loading";

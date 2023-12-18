@@ -1,12 +1,30 @@
 @import './base.css';
 
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.vue-tel-input,
+.page-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #dee2e6 !important;
+}
 
 .everything-center {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.theme-color {
+    color: var(--theme-color);
 }
 
 @media (min-width: 1024px) {}

@@ -20,7 +20,7 @@ class GalleryFactory extends Factory
         return [
             'id' => uniqid(),
             'deceased_id' => Deceased::inRandomOrder()->first()->id,
-            'gallery' => 'default_photo',
+            'gallery' => 'default_photo.png',
             'gallery_name' =>  $this->faker->name(),
         ];
     }

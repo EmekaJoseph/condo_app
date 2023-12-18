@@ -27,8 +27,8 @@ class DeceasedFactory extends Factory
             'life_history' => $this->faker->paragraph(5),
             'birth_date' => Carbon::now()->subYears(rand(10, 100)),
             'death_date' => Carbon::now()->addYears(rand(-10, 0)),
-            'display_photo' => 'default_photo',
-            'background_song' => 'default_song',
+            'display_photo' => 'default_photo.png',
+            'background_song' => 'default_song.mp3',
         ];
     }
 }

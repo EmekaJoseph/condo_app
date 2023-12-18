@@ -7,21 +7,23 @@ use App\Models\Admin;
 use App\Models\Deceased;
 use App\Models\SurvivedBy;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Intervention\Image\Facades\Image;
+
 class DeceasedController extends Controller
 {
-    private $dp_folder = 'deceased_dps';
+    private $dp_folder_name = 'deceased_dps';
 
 
     public function saveNew(DeceasedRequest $request): JsonResponse
     {
         $validatedData = $request->validated();
         $adminId = Auth::id();
-        $displayPhoto = $request->hasFile("display_photo")
-            ? HelperUploadImage($this->dp_folder, $request->file("display_photo"), 100, 100, 'dp-')
-            : null;
+        $displayPhoto = null;
+
+        if ($request->hasFile("display_photo")) {
+            $image = $request->file("display_photo");
+            $displayPhoto = HelperUploadImage($this->dp_folder_name, $image, 100, 100, 'dp-');
+        }
 
         $deceased = Deceased::create(array_merge($validatedData, [
             "admin_id" => $adminId,
@@ -44,11 +46,11 @@ class DeceasedController extends Controller
         $dataToUpdate = $request->validated();
 
         if ($request->hasFile("display_photo")) {
-            HelperUnlinkFile($this->dp_folder, $deceased->display_photo);
+            HelperUnlinkFile($this->dp_folder_name, $deceased->display_photo);
 
             $dataToUpdate = array_merge(
                 $request->validated(),
-                ['display_photo' =>  HelperUploadImage($this->dp_folder, $request->file("display_photo"), 100, 100, 'dp-')]
+                ['display_photo' =>  HelperUploadImage($this->dp_folder_name, $request->file("display_photo"), 100, 100, 'dp-')]
             );
         }
 
@@ -98,7 +100,7 @@ class DeceasedController extends Controller
         $deceased->gallery()->delete();
         $deceased->condolences()->delete();
         $deceased->survivedBys()->delete();
-        HelperUnlinkFile($this->dp_folder, $deceased->display_photo);
+        HelperUnlinkFile($this->dp_folder_name, $deceased->display_photo);
         $deceased->delete();
 
         return response()->json('Record deleted successfully', 200);

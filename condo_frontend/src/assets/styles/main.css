@@ -27,4 +27,17 @@ button:focus,
     color: var(--theme-color);
 }
 
+.theme-btn {
+    background-color: var(--theme-btn-color);
+    color: #fff !important;
+}
+
+.theme-btn:disabled {
+    background-color: var(--theme-btn-color);
+}
+
+.theme-btn:hover {
+    background-color: var(--theme-btn-color-hover);
+}
+
 @media (min-width: 1024px) {}

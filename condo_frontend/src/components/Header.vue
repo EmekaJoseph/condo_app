@@ -16,17 +16,21 @@
                         <router-link class="nav-link" to="/about">About</router-link>
                     </li>
                 </ul>
-                <div class="cursor-pointer d-none d-lg-block">
+                <div @click="appVar.toggleSearchModal" class="cursor-pointer d-none d-md-block">
                     <i class="bi bi-search "></i> search
                 </div>
             </div>
         </div>
     </nav>
+    <SearchModal />
 </template>
 
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import SearchModal from './SearchModal.vue';
+import { useAppVariables } from '@/stores/appVariables';
+const appVar = useAppVariables()
 
 const { y } = useWindowScroll()
 

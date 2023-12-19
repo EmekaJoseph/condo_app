@@ -90,7 +90,7 @@ class DeceasedController extends Controller
 
     public function details($id): JsonResponse
     {
-        $query = Deceased::with('gallery', 'survivedBys')->where('id', $id)->get();
+        $query = Deceased::with('gallery', 'survivedBys')->find($id);
         return response()->json($query, 200);
     }
 

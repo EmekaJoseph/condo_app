@@ -8,6 +8,7 @@ const apiURL = `${hostURL}/api/`;
 
 
 // create instances #######################################################
+
 const $instance = axios.create({
     baseURL: apiURL,
     headers: {
@@ -16,6 +17,15 @@ const $instance = axios.create({
         'Content-Type': 'application/json',
     }
 })
+
+const $instanceUnderground = axios.create({
+    baseURL: apiURL,
+    headers: {
+        Accept: 'application/json',
+        withCredentials: true,
+        'Content-Type': 'application/json',
+    }
+});
 
 const $instanceForm = axios.create({
     baseURL: apiURL,
@@ -59,5 +69,5 @@ $instanceForm.interceptors.response.use(finishProgressAndReturnResponse, error =
 });
 
 export {
-    $instance, $instanceForm
+    $instance, $instanceForm, $instanceUnderground
 }

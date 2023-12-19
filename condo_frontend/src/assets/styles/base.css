@@ -12,7 +12,9 @@
 
   --color-text: #2c3e50;
 
-  --theme-color: #055160
+  --theme-color: #055160;
+  --theme-btn-color: #044754;
+  --theme-btn-color-hover: #04404d;
 }
 
 

@@ -19,15 +19,13 @@ import { onMounted } from 'vue';
 import HeaderVue from '@/components/Header.vue';
 import api from '@/stores/Helpers/axios'
 
-
 onMounted(() => {
   getRecents()
 })
 
 async function getRecents() {
   let resp = await api.recents()
-  console.log(resp);
-
+  // console.log(resp);
 }
 
 const title = {

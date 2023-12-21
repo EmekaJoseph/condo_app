@@ -23,21 +23,25 @@ button:focus,
     cursor: pointer;
 }
 
-.theme-color {
+.color-theme {
     color: var(--theme-color);
 }
 
-.theme-btn {
+.btn-theme {
     background-color: var(--theme-btn-color);
     color: #fff !important;
 }
 
-.theme-btn:disabled {
+.btn-theme:disabled {
     background-color: var(--theme-btn-color);
 }
 
-.theme-btn:hover {
+.btn-theme:hover {
     background-color: var(--theme-btn-color-hover);
+}
+
+.bg-theme {
+    background-color: var(--theme-color);
 }
 
 @media (min-width: 1024px) {}

@@ -25,7 +25,7 @@ const router = createRouter({
     },
 
     {
-      path: '/deceased/:id/:name',
+      path: '/condo/:id/:name',
       name: 'Deceased',
       component: () => import('../views/General/DeceasedView.vue')
     }

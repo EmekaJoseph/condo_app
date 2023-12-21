@@ -1,16 +1,12 @@
 <template>
-    <!-- <HeaderVue /> -->
-    <div class="everything-center containet">
-        <div v-if="isLoading" class="d-flex justify-content-center align-items-center">
-            <div style="width: 100px; height: 100px;" class="spinner-border theme-color spinner-border-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
+    <div v-if="isLoading" class="everything-center">
+        <LoadingComponent />
+    </div>
+    <div v-else>
+        <PictureHeader :details="details" />
+        <div class="mt-5 container">
+            {{ details }}
         </div>
-
-        <h1 v-else>
-            {{ details.deceased }}
-        </h1>
-
     </div>
 </template>
   
@@ -19,6 +15,7 @@
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router'
+import PictureHeader from '@/components/DeceasedView/PictureHeader.vue'
 
 const route = useRoute()
 
@@ -30,7 +27,6 @@ watchEffect(async () => {
     await getDetails()
     getCondolences()
 })
-
 
 async function getDetails() {
     try {
@@ -47,14 +43,11 @@ async function getDetails() {
 
 async function getCondolences() {
     try {
-        isLoading.value = true
         let { data } = await api.condolences(route.params.id)
         condolences.value = data
         console.log(data);
-        isLoading.value = false
 
     } catch (error) {
-        isLoading.value = false
     }
 
 }

@@ -6,56 +6,45 @@
 
         <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <!-- <h5 class="modal-title">Search by name</h5> -->
+                    <div class="modal-heade p-3  bg-theme border-0">
+                        <h5 class="modal-title text-white fw-bold text-center">Condonote.</h5>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body rounded-0">
 
-                        <!-- <div class="input-group mb-3 border-5">
-                            <input type="text" class="form-control form-control-lg border-end-0" placeholder=""
+                        <div class="input-group mb-3 border-5">
+                            <label class="input-group-text bg-transparent text-muted border-end-0 pe-0 "><i
+                                    class="bi bi-search"></i></label>
+
+                            <input @input="onInputFunction" v-model="form.searchStr" type="text"
+                                class="form-control form-control-lg border-start-0" placeholder="search by name.."
                                 aria-label="Button" aria-describedby="" />
-                            <button class="btn btn-outline-secondary border-start-0 bg-transparent" type="button" id="">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div> -->
+                        </div>
 
-
-                        <form @submit.prevent="search" class="row g-3 justify-content-center">
-                            <div class="col-12">
-                                <input v-model="form.searchStr" type="text" class="form-control form-control-lg"
-                                    placeholder="enter name">
-                            </div>
-                            <div class="col-12">
-                                <button v-if="!form.isSearching" type="submit" class="btn theme-btn w-100 btn-lg">
-                                    Search by name <i class="bi bi-search"></i>
-                                </button>
-                                <button v-else disabled class="btn theme-btn w-100 btn-lg">
-                                    Searching..
-                                </button>
-                            </div>
-
-                            <div v-if="form.isSearched" class="col-12">
-                                <div class="card">
-                                    <div class="card-body bg-light-subtle results-card">
+                        <div v-if="form.searchStr" class="col-12">
+                            <div class="card bg-light-subtle">
+                                <div class="card-body  results-card">
+                                    <div v-if="!form.isSearching">
                                         <ul v-if="form.searchResults.length" class="list-group list-group-flush">
                                             <li v-for="(item, index) in form.searchResults" @click="gotToDeceasedPage(item)"
                                                 class="list-group-item ps-0 text-capitalize cursor-pointer">
-                                                <span class="fw-bold theme-color me-2">{{ item.deceased }}</span>
-                                                ({{ new Date(item.birth_date).getFullYear() }} - {{ new
-                                                    Date(item.death_date).getFullYear() }})
+                                                <span class="fw-bold color-theme me-2">{{ item.deceased }}</span>
+                                                ({{ new Date(item.birth_date).getFullYear() }} -
+                                                {{ new Date(item.death_date).getFullYear() }})
                                             </li>
                                         </ul>
                                         <div v-else class="text-muted text-center pt-4">
-                                            0 search results
+                                            No results found.
                                         </div>
-
+                                    </div>
+                                    <div v-else>
+                                        <LoadingComponent />
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
 
                     </div>
                     <div class="modal-footer border-0">
@@ -74,32 +63,30 @@ import { reactive, ref, watch } from 'vue';
 import { useAppVariables } from '@/stores/appVariables';
 import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import api from "@/stores/Helpers/axios"
+import useFxn from '@/stores/Helpers/useFunctions';
 
 const appVar = useAppVariables()
 const router = useRouter()
 const openModal = ref<any>(null)
 const closeModal = ref<any>(null)
 
-
 const form = reactive<any>({
     searchStr: '',
-    isSearching: false,
-    isSearched: false,
-    searchResults: []
+    isSearching: true,
+    searchResults: [],
 })
+
+const onInputFunction = useFxn.debounce(search, 300);
 
 async function search() {
     if (form.searchStr) {
-        form.isSearching = true
         try {
+            form.isSearching = true
             let resp = await api.search(form.searchStr)
             form.searchResults = resp.data
-            form.isSearched = true
             form.isSearching = false
-
         } catch (error) {
             form.isSearching = false
-
         }
     }
 }
@@ -108,7 +95,7 @@ function gotToDeceasedPage(item: any) {
     const name = item.deceased.split(' ').join('-')
     closeModal.value.click()
     router.push({
-        path: `/deceased/${item.id}/${name}`,
+        path: `/condo/${item.id}/${name}`,
     })
 }
 
@@ -128,7 +115,7 @@ onBeforeRouteLeave(() => {
 }
 
 .results-card {
-    height: 200px;
+    height: 300px;
     overflow-y: auto;
 }
 </style>

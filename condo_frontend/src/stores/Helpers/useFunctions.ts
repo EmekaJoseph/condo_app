@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2'
 //@ts-ignore
-import validator from 'validator';
+// import validator from 'validator';
 import { useDateFormat, useOnline } from '@vueuse/core';
 
 type DebounceFunction<T extends (...args: any[]) => any> = (...args: Parameters<T>) => void;
 
 export default {
-    isEmail: (email: string) => {
-        return validator.isEmail(email)
-    },
+    // isEmail: (email: string) => {
+    //     return validator.isEmail(email)
+    // },
 
     isExtension: (fileName: string, requiredFormats: string[]) => {
         const regex = new RegExp('[^.]+$');

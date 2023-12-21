@@ -3,7 +3,7 @@
   <div class="hero-main min-vh-100">
     <div class="everything-center overlay-light">
       <div class="container">
-        <VueWriter class="theme-color title-condo text-center my-0 py-0" :array="title.condo" :iterations='1' />
+        <VueWriter class="title-condo text-center my-0 py-0" :array="title.condo" :iterations='1' />
         <VueWriter class="text-secondary text-center my-0 py-0 title-text" :array="title.text" :start="2000"
           :typeSpeed="50" :iterations='1' />
       </div>
@@ -38,6 +38,7 @@ const title = {
 <style scoped>
 .title-condo {
   line-height: 1 !important;
+  color: var(--theme-color);
 }
 
 .hero-main {

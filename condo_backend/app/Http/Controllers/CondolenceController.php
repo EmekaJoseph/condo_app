@@ -14,11 +14,13 @@ class CondolenceController extends Controller
             ->where("deceased_id", $deceased_id)
             ->orderBy("created_at", "DESC")
             ->get()
+            // ->paginate(5);
             ->map(function ($item) {
                 $item->created = Carbon::parse($item->created_at)->diffForHumans();
                 unset($item->created_at);
                 return $item;
             });
+
 
         return response()->json($condos);
     }

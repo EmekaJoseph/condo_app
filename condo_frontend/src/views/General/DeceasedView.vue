@@ -4,8 +4,54 @@
     </div>
     <div v-else>
         <PictureHeader :details="details" />
-        <div class="mt-5 container">
-            {{ details }}
+        <div class=" container" style="margin-top: 70px;">
+
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button @click="switchTab('info')" class="nav-link active" id="info-tab" data-bs-toggle="tab"
+                                data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">
+                                <i class="bi bi-info-circle"></i> Info
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button @click="switchTab('condo')" class="nav-link" id="condo-tab" data-bs-toggle="tab"
+                                data-bs-target="#condo" type="button" role="tab" aria-controls="condo"
+                                aria-selected="false">
+                                <i class="bi bi-pen"></i> Condolences
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button @click="switchTab('gal')" class="nav-link" id="gallery-tab" data-bs-toggle="tab"
+                                data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
+                                aria-selected="false">
+                                <i class="bi bi-images"></i> Gallery
+                            </button>
+                        </li>
+
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content pt-4">
+                        <div class="tab-pane active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                            <InfoPanel :details="details" />
+                        </div>
+
+                        <div class="tab-pane" id="condo" role="tabpanel" aria-labelledby="condo-tab">
+                            <CondolencesPanel :condolences="condolences" />
+                        </div>
+
+                        <div class="tab-pane" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+                            profile
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+
         </div>
     </div>
 </template>
@@ -17,11 +63,16 @@ import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router'
 import PictureHeader from '@/components/DeceasedView/PictureHeader.vue'
 
+import useFxn from "@/stores/Helpers/useFunctions";
+import InfoPanel from "@/components/DeceasedView/InfoPanel.vue";
+import CondolencesPanel from "@/components/DeceasedView/CondolencesPanel.vue";
+
 const route = useRoute()
 
 const details = ref<any>(null)
 const condolences = ref<any>(null)
 const isLoading = ref(true)
+
 
 watchEffect(async () => {
     await getDetails()
@@ -49,9 +100,35 @@ async function getCondolences() {
 
     } catch (error) {
     }
+}
+
+function switchTab(str: string) {
+    const isCondo = str == 'condo' ?? false
+    console.log(isCondo);
 
 }
 </script>
   
-<style></style>
+<style scoped>
+/* .nav-tabs .nav-item.show .nav-link, */
+.nav-tabs .nav-link.active {
+    color: var(--theme-color);
+    border-bottom: 2px solid var(--theme-color) !important;
+
+}
+
+.nav-link {
+    color: var(--bs-gray-500);
+    border: 0 !important;
+    background-color: transparent !important;
+    /* padding-inline: 50px; */
+    /* font-size: 20px; */
+}
+
+@media (max-width: 767px) {
+    .nav-link {
+        font-size: 14px;
+    }
+}
+</style>
   

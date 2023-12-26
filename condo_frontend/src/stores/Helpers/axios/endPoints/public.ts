@@ -6,7 +6,7 @@ export default {
     },
 
     search(str: string) {
-        return $instance.get(`deceased/search/${str}`)
+        return $instanceUnderground.get(`deceased/search/${str}`)
     },
 
     details(id: any) {

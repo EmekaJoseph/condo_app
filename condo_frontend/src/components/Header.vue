@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar navbar-expand-sm navbar-light  fixed-top" :class="customClass">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" :class="customClass">
         <div class="container">
-            <router-link class="navbar-brand" to="/" style="font-weight: 700;">Condonote.</router-link>
+            <router-link class="navbar-brand" to="/" style="font-weight: 700;">Condonote. </router-link>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -26,18 +26,15 @@
 </template>
 
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core'
 import { computed } from 'vue';
-import SearchModal from './SearchModal.vue';
+import SearchModal from './modals/SearchModal.vue';
 import { useAppVariables } from '@/stores/appVariables';
+
 const appVar = useAppVariables()
 
-const { y } = useWindowScroll()
-
 const customClass = computed(() => ({
-    'animate__animated animate__slideInDown animate__faster': y.value > 50,
-    'bg-white': y.value > 50,
-    'shadow-sm': y.value > 50
+    'animate__animated animate__slideInDown animate__faster': appVar.y_axis > 50,
+    'bg-white shadow-sm': appVar.y_axis > 50,
 }))
 
 </script>

@@ -5,7 +5,6 @@
     <div v-else>
         <PictureHeader :details="details" />
         <div class=" container" style="margin-top: 70px;">
-
             <div class="row g-3">
                 <div class="col-md-8">
                     <!-- Nav tabs -->
@@ -20,17 +19,16 @@
                             <button @click="switchTab('condo')" class="nav-link" id="condo-tab" data-bs-toggle="tab"
                                 data-bs-target="#condo" type="button" role="tab" aria-controls="condo"
                                 aria-selected="false">
-                                <i class="bi bi-pen"></i> Condolences
+                                <i class="bi bi-pencil"></i> Condolences
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li v-if="details.gallery.length" class="nav-item" role="presentation">
                             <button @click="switchTab('gal')" class="nav-link" id="gallery-tab" data-bs-toggle="tab"
                                 data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
                                 aria-selected="false">
-                                <i class="bi bi-images"></i> Gallery
+                                <i class="bi bi-vignette"></i> Gallery
                             </button>
                         </li>
-
                     </ul>
 
                     <!-- Tab panes -->
@@ -44,35 +42,37 @@
                         </div>
 
                         <div class="tab-pane" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-                            profile
+                            <GalleryPanel :gallery="details.gallery" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>
-
-
         </div>
     </div>
+    <condoBtn v-if="condoIsClicked" />
+    <condoModal />
 </template>
   
 <script setup lang="ts">
-// import HeaderVue from '@/components/Header.vue';
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router'
 import PictureHeader from '@/components/DeceasedView/PictureHeader.vue'
 
-import useFxn from "@/stores/Helpers/useFunctions";
 import InfoPanel from "@/components/DeceasedView/InfoPanel.vue";
 import CondolencesPanel from "@/components/DeceasedView/CondolencesPanel.vue";
+import GalleryPanel from "@/components/DeceasedView/GalleryPanel.vue";
+
+import condoBtn from "@/components/condoBtn.vue";
+import condoModal from "@/components/modals/condoModal.vue";
 
 const route = useRoute()
 
 const details = ref<any>(null)
 const condolences = ref<any>(null)
 const isLoading = ref(true)
-
+const condoIsClicked = ref(false)
 
 watchEffect(async () => {
     await getDetails()
@@ -84,7 +84,6 @@ async function getDetails() {
         isLoading.value = true
         let { data } = await api.details(route.params.id)
         details.value = data
-        console.log(data);
         isLoading.value = false
 
     } catch (error) {
@@ -96,17 +95,12 @@ async function getCondolences() {
     try {
         let { data } = await api.condolences(route.params.id)
         condolences.value = data
-        console.log(data);
-
     } catch (error) {
     }
 }
 
-function switchTab(str: string) {
-    const isCondo = str == 'condo' ?? false
-    console.log(isCondo);
+const switchTab = (str: string) => condoIsClicked.value = str == 'condo' ?? false
 
-}
 </script>
   
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
     <div class="col-12 sticky-top">
         <div class="card border-0 position-relative">
-            <div class="cover-photo">
+            <div class="cover-photo ">
                 <div class="transparent-layer">
                     <div class="float-end">
                         <h3 class="m-3 mb-0 text-white text-capitalize fw-bold">{{ details.deceased }}</h3>
@@ -12,14 +12,15 @@
                     </div>
                 </div>
             </div>
-            <img src="@/assets/images/dp_temp.png" alt="Profile Picture"
-                class="profile-picture mx-auto ms-5 d-block bg-light">
+            <img v-if="appVar.y_axis < 100" src="@/assets/images/dp_temp.png" alt="Profile Picture"
+                class="profile-picture mx-auto ms-5 d-block bg-light animate__animated animate__slideInLeft animate__faster">
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-
+import { useAppVariables } from '@/stores/appVariables';
+const appVar = useAppVariables()
 defineProps(['details'])
 </script>
 
@@ -34,6 +35,8 @@ defineProps(['details'])
     background-repeat: no-repeat;
     border-bottom: 4px solid var(--theme-color);
 }
+
+
 
 .transparent-layer {
     background-color: #000000a5;

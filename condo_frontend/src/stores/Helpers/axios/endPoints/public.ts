@@ -16,4 +16,8 @@ export default {
     condolences(id: any) {
         return $instanceUnderground.get(`condolences/${id}`)
     },
+
+    postCondolence(obj: any) {
+        return $instance.post(`condolence`, JSON.stringify(obj))
+    },
 }

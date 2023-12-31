@@ -17,15 +17,6 @@
   --theme-btn-color-hover: #04404d;
 }
 
-
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-} */
-
 body {
   min-height: 100vh !important;
   color: var(--color-text);

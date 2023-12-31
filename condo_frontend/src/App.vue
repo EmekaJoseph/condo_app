@@ -1,10 +1,12 @@
 <template>
   <vue3-progress-bar></vue3-progress-bar>
-  <div class="pb-5">
+  <div style="padding-bottom: 170px;">
     <RouterView />
   </div>
-  <Footer />
+  <SearchModal />
+  <PageFooter />
 </template>
 <script setup lang="ts">
-import Footer from './components/Footer.vue';
+import SearchModal from '@/components/modals/SearchModal.vue';
+import PageFooter from './components/Footer.vue';
 </script>

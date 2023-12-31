@@ -22,7 +22,7 @@ class DeceasedController extends Controller
 
         if ($request->hasFile("display_photo")) {
             $image = $request->file("display_photo");
-            $displayPhoto = HelperUploadImage($this->dp_folder_name, $image, 100, 100, 'dp-');
+            $displayPhoto = HelperUploadImage($this->dp_folder_name, $image, 130, 130, 'dp-');
         }
 
         $deceased = Deceased::create(array_merge($validatedData, [
@@ -50,7 +50,7 @@ class DeceasedController extends Controller
 
             $dataToUpdate = array_merge(
                 $request->validated(),
-                ['display_photo' =>  HelperUploadImage($this->dp_folder_name, $request->file("display_photo"), 100, 100, 'dp-')]
+                ['display_photo' =>  HelperUploadImage($this->dp_folder_name, $request->file("display_photo"), 130, 130, 'dp-')]
             );
         }
 

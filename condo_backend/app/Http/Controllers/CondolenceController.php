@@ -31,13 +31,13 @@ class CondolenceController extends Controller
         $data = [
             "deceased_id" => $request->deceased_id,
             "condolence" => $request->condolence,
-            "condo_name" => $request->input("condo_name", null),
-            "relationship" => $request->input("relationship", null),
+            "condo_name" => $request->input("condo_name"),
+            "relationship" => $request->input("relationship"),
         ];
 
-        Condolence::firstOrCreate([$data, $data]);
+        Condolence::firstOrCreate($data);
 
-        return response()->json("saved", 201);
+        return response()->json($data, 201);
     }
 
     public function removeCondolence($condolence_id)

@@ -7,11 +7,12 @@
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
 import { useAppVariables } from '@/stores/appVariables';
-
 const appVar = useAppVariables()
 </script>
+
 <style scoped>
 .fixed-bottom-btn {
     position: fixed;
@@ -31,7 +32,6 @@ const appVar = useAppVariables()
     font-size: 11px;
 }
 
-
 .btnCard {
     width: 55px;
     height: 55px;
@@ -43,5 +43,11 @@ const appVar = useAppVariables()
     color: #fff;
     background-color: var(--theme-color);
     cursor: pointer;
+}
+
+@media (min-width: 979px) {
+    .floatPanel {
+        margin-bottom: 250px;
+    }
 }
 </style>

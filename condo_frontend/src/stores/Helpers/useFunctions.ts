@@ -16,8 +16,7 @@ export default {
         // get the extension
         const fileExtension = ext[0].toLowerCase()
         //make sure the file is a valid  format
-        if (!(requiredFormats.some(x => x == fileExtension.toLowerCase()))) return false
-        else return true
+        return !(requiredFormats.some(x => x == fileExtension.toLowerCase())) ? false : true
     },
 
     truncateStr(str: string, num: number) {
@@ -28,13 +27,15 @@ export default {
         }
     },
 
-    toast: (text: string, icon: any) => {
+    toast: (text: string, icon = '') => {
         // @ts-expect-error
         Swal.fire({
             toast: true,
             icon: `${icon}`,
+            iconColor: icon == 'error' ? '#dc3545' : (icon == 'success' ? '#198754 ' : '#ffc107'),
             text: `${text}`,
             position: 'top-right',
+            background: icon == 'error' ? '#f8d7da' : (icon == 'success' ? '#d1e7dd' : '#fff3cd'),
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: false,
@@ -43,28 +44,16 @@ export default {
         })
     },
 
-    toastShort: (text: string) => {
-        Swal.fire({
-            toast: true,
-            text: `${text}`,
-            position: 'top-right',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: false,
-            padding: 10,
-        })
-    },
-
     confirm: (text: string, btnText: string) => {
         return Swal.fire({
             // title: `${title}`,
             text: `${text}`,
             icon: 'question',
-            iconColor: '#873A70',
+            iconColor: '#055160',
             showCancelButton: true,
             confirmButtonText: `${btnText}`,
             cancelButtonText: 'cancel',
-            confirmButtonColor: '#873A70',
+            confirmButtonColor: '#055160',
             reverseButtons: true,
             width: '300px',
         })
@@ -132,5 +121,11 @@ export default {
         }
         const dd = useDateFormat(date, 'MMM D, YYYY')
         return dd.value
+    },
+
+    resolvePhotoSrc: (picture: string, folder_name: string) => {
+        const hostURL = import.meta.env.VITE_API_URL;
+        const folder = `${hostURL}/${folder_name}`
+        return `${folder}/${picture ?? 'default_photo.png'}`
     }
 }

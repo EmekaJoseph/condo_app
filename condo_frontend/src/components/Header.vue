@@ -17,17 +17,15 @@
                     </li>
                 </ul>
                 <div @click="appVar.toggleSearchModal" class="cursor-pointer d-none d-md-block">
-                    <i class="bi bi-search "></i> search
+                    <i class="bi bi-search fs-5"></i>
                 </div>
             </div>
         </div>
     </nav>
-    <SearchModal />
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import SearchModal from './modals/SearchModal.vue';
 import { useAppVariables } from '@/stores/appVariables';
 
 const appVar = useAppVariables()

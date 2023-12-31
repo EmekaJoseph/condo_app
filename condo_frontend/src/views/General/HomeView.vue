@@ -30,7 +30,10 @@ async function getRecents() {
 
 const title = {
   condo: ['condonote.'],
-  text: ['Online Condolence Register for those we miss.']
+  text: [
+    'Online Condolence Register for those we miss.',
+    'Share memories, photos and videos and create a beautiful and lasting tribute to celebrate the life of your lost loved ones.'
+  ]
 }
 
 </script>

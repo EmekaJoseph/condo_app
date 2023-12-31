@@ -1,7 +1,8 @@
 <template>
+    <!-- https://mdbootstrap.com/docs/standard/navigation/footer/ -->
     <footer class="bg-dark text-center text-light text-lg-start">
         <!-- Grid container -->
-        <div class="container text-light p-lg-5">
+        <div class="container text-light p-lg-5 pt-5">
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->

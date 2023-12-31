@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Modal trigger button -->
-        <button ref="openModal" class="btn d-none" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <button ref="openModal_search" class="btn d-none" data-bs-toggle="modal" data-bs-target="#searchModal">
         </button>
 
         <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -9,7 +9,7 @@
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-heade p-3  bg-theme border-0">
-                        <h5 class="modal-title text-white fw-bold text-center">Condonote.</h5>
+                        <h5 class="modal-title text-white fw-bold text-center">{{ appVar.appName }}.</h5>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body rounded-0">
@@ -48,7 +48,7 @@
 
                     </div>
                     <div class="modal-footer border-0">
-                        <button ref="closeModal" type="button" class="btn" data-bs-dismiss="modal">
+                        <button ref="closeModal_search" type="button" class="btn" data-bs-dismiss="modal">
                             Cancel
                         </button>
                     </div>
@@ -67,8 +67,8 @@ import useFxn from '@/stores/Helpers/useFunctions';
 
 const appVar = useAppVariables()
 const router = useRouter()
-const openModal = ref<any>(null)
-const closeModal = ref<any>(null)
+const openModal_search = ref<any>(null)
+const closeModal_search = ref<any>(null)
 
 const form = reactive<any>({
     searchStr: '',
@@ -93,7 +93,7 @@ async function search() {
 
 function gotToDeceasedPage(item: any) {
     const name = item.deceased.split(' ').join('-')
-    closeModal.value.click()
+    closeModal_search.value.click()
     router.push({
         path: `/condo/${item.id}/${name}`,
     })
@@ -101,19 +101,15 @@ function gotToDeceasedPage(item: any) {
 
 
 watch(() => appVar.searchModal, () => {
-    openModal.value.click()
+    openModal_search.value.click()
 });
 
 onBeforeRouteLeave(() => {
-    closeModal.value.click()
+    closeModal_search.value.click()
 });
 </script>
 
 <style  scoped>
-.modal-content {
-    border-bottom: 5px solid var(--theme-color);
-}
-
 .results-card {
     height: 300px;
     overflow-y: auto;

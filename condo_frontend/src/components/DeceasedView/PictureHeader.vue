@@ -4,29 +4,55 @@
             <div class="cover-photo ">
                 <div class="transparent-layer">
                     <div class="float-end">
-                        <h3 class="m-3 mb-0 text-white text-capitalize fw-bold">{{ details.deceased }}</h3>
-                        <span class="float-end m-0 me-3 text-white">
-                            ({{ new Date(details.birth_date).getFullYear() }} -
-                            {{ new Date(details.death_date).getFullYear() }})
-                        </span>
+                        <div class="m-3 mb-0 text-white    text-end">
+                            <div class="h3 fw-bold text-capitalize">{{ details.deceased }}</div>
+                            <div style="line-height: 0;">
+                                ({{ new Date(details.birth_date).getFullYear() }} -
+                                {{ new Date(details.death_date).getFullYear() }})
+                            </div>
+                            <div class="mt-5">
+                                <span @click="shareLink" class="badge rounded-pill text-bg-warning cursor-pointer">
+                                    <i class="bi bi-share-fill"></i> Share link
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <img v-if="appVar.y_axis < 100" src="@/assets/images/dp_temp.png" alt="Profile Picture"
-                class="profile-picture mx-auto ms-5 d-block bg-light animate__animated animate__slideInLeft animate__faster">
+            <img :class="slideLeftClass" :src="useFxn.resolvePhotoSrc(details.display_photo, 'deceased_dps')"
+                alt="Profile Picture" class="profile-picture mx-auto ms-5 d-block bg-light ">
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { useAppVariables } from '@/stores/appVariables';
+import { useShare } from '@vueuse/core'
+import { computed, reactive } from 'vue';
+import { useRoute } from 'vue-router';
+import useFxn from '@/stores/Helpers/useFunctions';
+
+const { share } = useShare()
 const appVar = useAppVariables()
 defineProps(['details'])
+const route = useRoute()
+
+function shareLink() {
+    share({
+        title: `${route.params.name}`,
+        text: `Online condolence register for late: ${route.params.name}`,
+        url: location.href,
+    })
+}
+
+const slideLeftClass = computed(() => {
+    const classs = appVar.y_axis < 100 ? `animate__slideInLeft` : `animate__slideOutLeft`
+    return `animate__animated ${classs} animate__faster`
+})
+
 </script>
 
-
-
-<style lang="css" scoped>
+<style scoped>
 .cover-photo {
     height: 150px;
     background: url('@/assets/images/hero.jpg');

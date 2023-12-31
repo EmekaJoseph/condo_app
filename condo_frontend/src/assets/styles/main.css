@@ -32,13 +32,25 @@ button:focus,
     color: #fff !important;
 }
 
+.btn-theme:hover {
+    background-color: var(--theme-btn-color-hover);
+}
+
+
+.btn-theme-outline {
+    border-color: var(--theme-btn-color) !important;
+    color: var(--theme-btn-color);
+}
+
+.btn-theme-outline:hover {
+    background-color: var(--theme-btn-color);
+    color: #fff !important;
+}
+
 .btn-theme:disabled {
     background-color: var(--theme-btn-color);
 }
 
-.btn-theme:hover {
-    background-color: var(--theme-btn-color-hover);
-}
 
 .bg-theme {
     background-color: var(--theme-color);
@@ -47,6 +59,10 @@ button:focus,
 /* remove tiny mark at bottom left of textareas */
 textarea {
     resize: none;
+}
+
+.modal-content {
+    border-bottom: 5px solid var(--theme-color);
 }
 
 @media (min-width: 1024px) {}

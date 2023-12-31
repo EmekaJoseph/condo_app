@@ -3,7 +3,7 @@ import { type ProgressFinisher, useProgress } from '@marcoschulte/vue3-progress'
 
 const progresses = [] as ProgressFinisher[];
 
-const hostURL = 'http://127.0.0.1:8000';
+const hostURL = import.meta.env.VITE_API_URL;
 const apiURL = `${hostURL}/api/`;
 
 

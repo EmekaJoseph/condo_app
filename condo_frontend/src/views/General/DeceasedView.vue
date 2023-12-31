@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isLoading" class="everything-center">
+    <div v-if="isLoading && !details" class="everything-center">
         <LoadingComponent />
     </div>
     <div v-else>
@@ -19,7 +19,7 @@
                             <button @click="switchTab('condo')" class="nav-link" id="condo-tab" data-bs-toggle="tab"
                                 data-bs-target="#condo" type="button" role="tab" aria-controls="condo"
                                 aria-selected="false">
-                                <i class="bi bi-pencil"></i> Condolences
+                                <i class="bi bi-journal-text"></i> Condolences
                             </button>
                         </li>
                         <li v-if="details.gallery.length" class="nav-item" role="presentation">
@@ -45,16 +45,58 @@
                             <GalleryPanel :gallery="details.gallery" />
                         </div>
                     </div>
+
                 </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <hr class="d-lg-none">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                    <h5>Lost a loved one?</h5>
+                                    Share memories, photos and videos and create a beautiful and lasting tribute to
+                                    celebrate
+                                    the life of your lost loved ones.
+                                    </p>
+                                    <p>
+                                        <i class="bi bi-1-circle-fill"></i>
+                                        Fill out the personal details of your lost one and add a short description with
+                                        preffered background music.
+                                    </p>
+                                    <p>
+                                        <i class="bi bi-2-circle-fill"></i>
+                                        Select a nice photo and generate a unique web address for your page.
+                                    </p>
+                                    <p>
+                                        <i class="bi bi-3-circle-fill"></i>
+                                        Invite people to share memories and condolence messages.
+                                    </p>
+                                    <div class="card-footer border-0 bg-transparent px-0">
+                                        <button class="btn btn-theme w-100">
+                                            Create a memorial page <i class="bi bi-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button @click="appVar.toggleSearchModal()" class="w-100 btn btn-theme-outline">
+                                <i class="bi bi-search"></i> Search a deceased name
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <condoBtn v-if="condoIsClicked" />
-    <condoModal />
+    <condoModal @has-posted="getCondolences" />
 </template>
   
 <script setup lang="ts">
+import HeaderVue from '@/components/Header.vue';
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router'
@@ -66,18 +108,30 @@ import GalleryPanel from "@/components/DeceasedView/GalleryPanel.vue";
 
 import condoBtn from "@/components/condoBtn.vue";
 import condoModal from "@/components/modals/condoModal.vue";
+import { useAppVariables } from "@/stores/appVariables";
 
 const route = useRoute()
+const appVar = useAppVariables()
 
 const details = ref<any>(null)
 const condolences = ref<any>(null)
 const isLoading = ref(true)
 const condoIsClicked = ref(false)
+const audioIsPlaying = ref(false)
 
 watchEffect(async () => {
     await getDetails()
     getCondolences()
+    appVar.currentDeceasedId = route.params.id
 })
+
+function playAudio() {
+    const hostURL = import.meta.env.VITE_API_URL;
+    const audoFileURL = `${hostURL}/background_hymns/nearer-my-god-to-thee.mp3`
+    var audio = new Audio(audoFileURL);
+    audio.play()
+    audioIsPlaying.value = true
+}
 
 async function getDetails() {
     try {
@@ -87,7 +141,7 @@ async function getDetails() {
         isLoading.value = false
 
     } catch (error) {
-        isLoading.value = false
+        // isLoading.value = false
     }
 }
 
@@ -99,7 +153,12 @@ async function getCondolences() {
     }
 }
 
-const switchTab = (str: string) => condoIsClicked.value = str == 'condo' ?? false
+const switchTab = (str: string) => {
+    condoIsClicked.value = str == 'condo' ?? false
+    if (!audioIsPlaying.value) {
+        // playAudio()
+    }
+}
 
 </script>
   
@@ -108,6 +167,7 @@ const switchTab = (str: string) => condoIsClicked.value = str == 'condo' ?? fals
 .nav-tabs .nav-link.active {
     color: var(--theme-color);
     border-bottom: 2px solid var(--theme-color) !important;
+    font-size: 13px;
 
 }
 

@@ -1,10 +1,8 @@
 <template>
-    <div v-if="condolences" class="">
+    <div v-if="condolences && condolences.length" class="">
         <ul class="list-group list-group-flush">
             <li v-for="condo in condolences" :key="condo" class="list-group-item bg-transparent fst-italic">
-                <div>
-                    "{{ condo.condolence }}"
-                </div>
+                <div> "{{ condo.condolence }}" </div>
                 <div>
                     <i class="bi bi-dash"></i>
                     <span>
@@ -16,7 +14,9 @@
             </li>
         </ul>
     </div>
-    <div v-else class="fst-italic">No Condolences</div>
+    <div v-else class="fst-italic">
+        No Condolences, click on the <b>icon: </b> <i class="bi bi-pencil small"></i> to add yours.
+    </div>
 </template>
 
 <script setup lang="ts">

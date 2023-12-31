@@ -49,8 +49,12 @@ onBeforeRouteLeave(() => {
 </script>
 
 <style  scoped>
-.results-card {
-    height: 300px;
-    overflow-y: auto;
+.modal.fade .modal-dialog {
+    transform: scale(0.8);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
 }
 </style>

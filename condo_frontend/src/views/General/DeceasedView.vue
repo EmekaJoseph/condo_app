@@ -121,15 +121,15 @@ const audioIsPlaying = ref(false)
 
 watchEffect(async () => {
     await getDetails()
-    getCondolences()
+    await getCondolences()
     appVar.currentDeceasedId = route.params.id
 })
 
 function playAudio() {
     const hostURL = import.meta.env.VITE_API_URL;
-    const audoFileURL = `${hostURL}/background_hymns/nearer-my-god-to-thee.mp3`
-    var audio = new Audio(audoFileURL);
-    audio.play()
+    const audioFileURL = `${hostURL}/background_hymns/nearer-my-god-to-thee.mp3`
+    const audio = new Audio(audioFileURL);
+  audio.play()
     audioIsPlaying.value = true
 }
 

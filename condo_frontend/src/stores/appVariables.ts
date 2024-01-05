@@ -1,6 +1,6 @@
 import { ref, computed, type Ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useWindowScroll } from '@vueuse/core'
+import { useWindowScroll, useWindowSize } from '@vueuse/core'
 
 export const useAppVariables = defineStore('appVariables', () => {
 
@@ -11,6 +11,7 @@ export const useAppVariables = defineStore('appVariables', () => {
   const currentDeceasedId = ref<any>('')
   const currentImageToShow = ref<any>('')
   const { y: y_axis } = useWindowScroll()
+  const { width: screen_width, height } = useWindowSize()
 
   const toggleSearchModal = () => searchModal.value = !searchModal.value
   const toggleCondoModal = () => condoModal.value = !condoModal.value
@@ -22,6 +23,7 @@ export const useAppVariables = defineStore('appVariables', () => {
     condoModal,
     imageModal,
     y_axis,
+    screen_width,
     currentDeceasedId,
     currentImageToShow,
     toggleSearchModal,

@@ -1,6 +1,6 @@
 <template>
   <vue3-progress-bar></vue3-progress-bar>
-  <div style="padding-bottom: 170px;">
+  <div style="padding-bottom: 100px;">
     <RouterView />
   </div>
   <SearchModal />

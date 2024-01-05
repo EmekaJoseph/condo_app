@@ -7,24 +7,31 @@
             <div class="row">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Footer text</h5>
+                    <h5 class="text-uppercase">condonote.</h5>
 
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                        voluptatem veniam, est atque cumque eum delectus sint!
+                        Share memories, photos and videos and create a beautiful and lasting tribute to celebrate the life
+                        of your lost loved ones.
+                        <span class="fst-italic">
+                            A memorial page made completely free of charge.
+                        </span>
                     </p>
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Footer text</h5>
+                    <h5 class="text-uppercase">Built with love</h5>
 
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                        voluptatem veniam, est atque cumque eum delectus sint!
+                        Crafted with compassionate love for humanity, a labor of love aimed at
+                        bringing value to lives.
+                        I'd greatly appreciate your support in any form. Your input means a lot and helps me make this
+                        project even better.
+                        <br>
+
+                        <a class=" text-success text-decoration-none mt-5" href="https://wa.me/08139590011"> <i
+                                class="bi bi-whatsapp"></i> 08139590011 - proffictech</a>
                     </p>
                 </div>
                 <!--Grid column-->
@@ -34,9 +41,9 @@
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.119);">
             <i class="bi bi-c-circle"></i> {{ new Date().getFullYear() }} Copyright:
-            <a class="text-bod color-theme" href="https://condonoteng.com/">condonoteNG</a>
+            <router-link class="text-warning text-decoration-none fs-5" to="/">condonote</router-link>
         </div>
         <!-- Copyright -->
     </footer>

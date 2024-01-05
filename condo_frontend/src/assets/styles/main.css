@@ -65,4 +65,24 @@ textarea {
     border-bottom: 5px solid var(--theme-color);
 }
 
+
+.hover-tiltX {
+    transition: all ease-in-out 0.4s;
+}
+
+
+.hover-tiltX:hover {
+    transform: translateX(5px);
+}
+
+.hover-tiltY {
+    transition: all ease-in-out 0.4s;
+}
+
+
+.hover-tiltY:hover {
+    transform: translateY(-5px);
+}
+
+
 @media (min-width: 1024px) {}

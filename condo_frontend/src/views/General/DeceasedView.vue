@@ -73,9 +73,11 @@
                                         Invite people to share memories and condolence messages.
                                     </p>
                                     <div class="card-footer border-0 bg-transparent px-0">
-                                        <button class="btn btn-theme w-100">
+                                        <router-link class="btn btn-theme w-100" to="/login">
                                             Create a memorial page <i class="bi bi-chevron-right"></i>
-                                        </button>
+                                        </router-link>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -84,6 +86,25 @@
                             <button @click="appVar.toggleSearchModal()" class="w-100 btn btn-theme-outline">
                                 <i class="bi bi-search"></i> Search a deceased name
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-5">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <div class="card-text">
+                                As we mourn the physical departure, we also celebrate the enduring spirit that transcends
+                                the boundaries of time. For in every cherished memory, every shared laugh, and every lesson
+                                learned, the essence of the departed lives on. It resides in the stories told, the values
+                                instilled, and the love that continues to reverberate through the lives touched.
+
+                            </div>
+                            <div class="mt-3">
+                                <router-link class="btn btn-theme" to="/">
+                                    Go To Home Page <i class="bi bi-chevron-right"></i>
+                                </router-link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,7 +150,7 @@ function playAudio() {
     const hostURL = import.meta.env.VITE_API_URL;
     const audioFileURL = `${hostURL}/background_hymns/nearer-my-god-to-thee.mp3`
     const audio = new Audio(audioFileURL);
-  audio.play()
+    audio.play()
     audioIsPlaying.value = true
 }
 

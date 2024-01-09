@@ -14,8 +14,8 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
+            // 'firstname' => 'required|string',
+            // 'lastname' => 'required|string',
         ]);
 
         // Check if email already exists
@@ -26,9 +26,9 @@ class AuthController extends Controller
         // Create user if email doesn't exist
         $admin = Admin::create([
             'email' => $request->email,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->input('phone', null),
+            // 'firstname' => $request->firstname,
+            // 'lastname' => $request->lastname,
+            // 'phone' => $request->input('phone', null),
             'password' => Hash::make($request->input('password')),
         ]);
 
@@ -43,12 +43,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             // Authenticated user, generate API token
             $token = $request->user()->createToken('my-api-token');
+            $data = [
+                'token' =>  $token->plainTextToken,
+                'level' => $request->user()->level
+            ];
 
-            return response()->json(['access_token' => $token->plainTextToken], 200);
+            return response()->json($data, 200);
         } else {
             return response()->json(['message' => 'Invalid credentials.'], 401);
         }

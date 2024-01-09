@@ -56,8 +56,8 @@
           <!-- carousel -->
           <carousel class="px-4 px-lg-0" snapAlign="center" :items-to-show="appVar.screen_width > 767 ? 5 : 2"
             :autoplay="2000" :wrapAround="false">
-            <slide v-for="slide in recents" :key="slide">
-              <div @click="gotToDeceasedPage(slide)" class="card mx-2 h-100 shadow cursor-pointer hover-tiltY">
+            <slide class="pt-3" v-for="slide in recents" :key="slide">
+              <div @click="gotToDeceasedPage(slide)" class="card mx-2 h-100 shadow-sm cursor-pointer hover-tiltY">
                 <img class="card-img-top" :src="useFxn.resolvePhotoSrc(slide.display_photo, 'deceased_dps')"
                   alt="image" />
                 <div class="card-body">
@@ -83,7 +83,7 @@
     <section class="pt-5">
       <div class="container">
         <div @click="appVar.toggleSearchModal()" class="text-center color-theme fs-4 cursor-pointer hover-tiltX">
-          <i class="bi bi-search"></i> Click here to Search
+          Click here to search <i class="bi bi-search"></i>
         </div>
       </div>
     </section>
@@ -92,7 +92,6 @@
 
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
-import HeaderVue from '@/components/Header.vue';
 import api from '@/stores/Helpers/axios'
 import useFxn from '@/stores/Helpers/useFunctions';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'

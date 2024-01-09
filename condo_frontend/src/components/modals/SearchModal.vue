@@ -86,7 +86,7 @@ async function search() {
             form.searchResults = resp.data
             form.isSearching = false
         } catch (error) {
-            form.isSearching = false
+            // form.isSearching = false
         }
     }
 }

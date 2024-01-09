@@ -101,7 +101,7 @@
 
                             </div>
                             <div class="mt-3">
-                                <router-link class="btn btn-theme" to="/">
+                                <router-link class="btn btn-link color-theme text-decoration-none fw-bold fs-5" to="/">
                                     Go To Home Page <i class="bi bi-chevron-right"></i>
                                 </router-link>
                             </div>
@@ -117,7 +117,6 @@
 </template>
   
 <script setup lang="ts">
-import HeaderVue from '@/components/Header.vue';
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router'

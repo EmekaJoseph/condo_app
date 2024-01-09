@@ -33,6 +33,13 @@ export default [
     },
 
     {
+        path: '/register',
+        name: 'Register',
+        component: () => import('../views/Admin/Register.vue'),
+        // beforeEnter: initGuard
+    },
+
+    {
         path: '/:pathMatch(.*)*',
         name: '404',
         component: () => import('../views/General/PageNotFound.vue')

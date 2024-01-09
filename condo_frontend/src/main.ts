@@ -52,12 +52,14 @@ import VueTelInput from 'vue-tel-input';
 import 'vue-tel-input/vue-tel-input.css';
 
 import LoadingComponent from './components/LoadingComponent.vue'
+import HeaderVue from '@/components/Header.vue';
 
 const app = createApp(App)
 
 app.component("infinite-loading", InfiniteLoading);
 app.component('VueDatePicker', VueDatePicker);
 app.component('LoadingComponent', LoadingComponent);
+app.component('HeaderVue', HeaderVue);
 
 app.use(createPinia())
 app.use(Vue3ProgressPlugin);

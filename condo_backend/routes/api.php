@@ -53,8 +53,8 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    Route::prefix('account')->group(function () {
-        Route::controller(AuthController::class)->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::prefix('account')->group(function () {
             Route::get('/profile', 'profile');
             Route::post('/changePassword', 'changePassword');
             Route::post('/logout', 'logout');

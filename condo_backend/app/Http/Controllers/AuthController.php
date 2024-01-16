@@ -35,7 +35,12 @@ class AuthController extends Controller
         // Generate API token and return response
         $token = $admin->createToken('my-api-token');
 
-        return response()->json(['access_token' => $token->plainTextToken], 201);
+        $data = [
+            'token' =>  $token->plainTextToken,
+            'level' => $request->user()->level
+        ];
+
+        return response()->json($data, 201);
     }
 
 

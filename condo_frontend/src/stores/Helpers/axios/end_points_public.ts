@@ -1,4 +1,4 @@
-import { $instance, $instanceUnderground } from '../instances'
+import { $instance, $instanceUnderground } from './instances'
 
 export default {
     recents() {

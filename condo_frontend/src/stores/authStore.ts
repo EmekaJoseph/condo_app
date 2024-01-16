@@ -5,6 +5,8 @@ import { useStorage } from '@vueuse/core'
 export const useAuthStore = defineStore('authStore', () => {
   const token: any = useStorage('condonote:$authTkn', '', localStorage)
 
+  const isLoggedIn = computed(() => token.value ? true : false)
+
   function login(tokenStr: string) {
     token.value = tokenStr;
   }
@@ -13,5 +15,5 @@ export const useAuthStore = defineStore('authStore', () => {
     token.value = '';
   }
 
-  return { token, login, logout }
+  return { token, login, logout, isLoggedIn }
 })

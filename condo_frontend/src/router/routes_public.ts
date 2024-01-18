@@ -1,16 +1,16 @@
-// @ts-nocheck
 import HomeView from '../views/General/HomeView.vue'
-// import { useProfileStore } from '@/stores/profileStore';
+import { useAuthStore } from '@/stores/authStore'
 
-// const initGuard = (to, from, next) => {
-//     const profileStore = useProfileStore();
-//     if (profileStore.userType) {
-//         next({ path: `/${profileStore.userType}/dashboard` });
-//     }
-//     else {
-//         next()
-//     }
-// }
+// @ts-ignore
+const initGuard = (to, from, next) => {
+    const authStore = useAuthStore();
+    if (authStore.isLoggedIn) {
+        next({ name: `Dashboard` });
+    }
+    else {
+        next()
+    }
+}
 
 export default [
     {
@@ -29,14 +29,14 @@ export default [
         path: '/login',
         name: 'Login',
         component: () => import('../views/Admin/Login.vue'),
-        // beforeEnter: initGuard
+        beforeEnter: initGuard
     },
 
     {
         path: '/register',
         name: 'Register',
         component: () => import('../views/Admin/Register.vue'),
-        // beforeEnter: initGuard
+        beforeEnter: initGuard
     },
 
     {

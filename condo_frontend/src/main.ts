@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
@@ -38,6 +37,7 @@ import 'animate.css';
 import 'vue3-carousel/dist/carousel.css'
 
 // https://www.npmjs.com/package/vue3-dropzone
+// https://www.npmjs.com/package/js-cookie
 
 // https://vue3-google-signin.vercel.app/guide/
 import GoogleSignInPlugin from "vue3-google-signin"
@@ -53,6 +53,8 @@ import 'vue-tel-input/vue-tel-input.css';
 
 import LoadingComponent from './components/LoadingComponent.vue'
 import HeaderVue from '@/components/Header.vue';
+import PageFooter from './components/Footer.vue';
+import SearchDeceasedModal from '@/components/modals/SearchDeceasedModal.vue';
 
 const app = createApp(App)
 
@@ -60,6 +62,8 @@ app.component("infinite-loading", InfiniteLoading);
 app.component('VueDatePicker', VueDatePicker);
 app.component('LoadingComponent', LoadingComponent);
 app.component('HeaderVue', HeaderVue);
+app.component('PageFooter', PageFooter);
+app.component('SearchDeceasedModal', SearchDeceasedModal);
 
 app.use(createPinia())
 app.use(Vue3ProgressPlugin);

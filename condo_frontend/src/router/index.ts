@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import public_routes from './public_routes'
+import public_routes from './routes_public'
+import account_routes from './routes_account'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,7 @@ const router = createRouter({
   linkActiveClass: 'active',
   routes: [
     ...public_routes,
+    ...account_routes,
   ]
 })
 

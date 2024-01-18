@@ -12,9 +12,12 @@
 
   --color-text: #2c3e50;
 
-  --theme-color: #055160;
-  --theme-btn-color: #044754;
-  --theme-btn-color-hover: #04404d;
+  /* --theme-color: #055160;  */
+  --theme-color: #60148f;
+  --theme-color-light: #60148f94;
+  --theme-color-lighter: #60148f4a;
+  --theme-btn-color: #5e0c92;
+  --theme-btn-color-hover: #530981;
 }
 
 body {
@@ -26,7 +29,7 @@ body {
     background-color 0.5s;
   /* line-height: 1.6; */
   font-family: 'Dosis', 'Manrope', sans-serif;
-  font-size: 15px;
+  /* font-size: 15px; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

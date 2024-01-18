@@ -1,7 +1,7 @@
 <template>
     <div v-if="condolences && condolences.length" class="">
         <ul class="list-group list-group-flush">
-            <li v-for="condo in condolences" :key="condo" class="list-group-item bg-transparent fst-italic">
+            <li v-for="condo in condolences" :key="condo" class="list-group-item bg-transparent fst-italic pe-lg-5">
                 <div> "{{ condo.condolence }}" </div>
                 <div>
                     <i class="bi bi-dash"></i>

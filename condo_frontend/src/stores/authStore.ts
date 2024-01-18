@@ -1,19 +1,34 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
+// @ts-ignore
+import Cookies from 'js-cookie';
 
 export const useAuthStore = defineStore('authStore', () => {
-  const token: any = useStorage('condonote:$authTkn', '', localStorage)
+  const token = ref('')
 
-  const isLoggedIn = computed(() => token.value ? true : false)
+  // const isLoggedIn = computed(() => token.value || Cookies.get('_tokn'));
+  const isLoggedIn = computed(() => {
+    let xx = false;
+    if (token.value) {
+      xx = true;
+    }
+    else {
+      if (Cookies.get('_tokn')) {
+        xx = true;
+      }
+    }
+    return xx;
+  });
 
-  function login(tokenStr: string) {
+  const login = (tokenStr: string) => {
+    Cookies.set('_tokn', tokenStr, { expires: 7 });
     token.value = tokenStr;
   }
 
-  function logout() {
+  const logout = () => {
+    Cookies.remove('_tokn');
     token.value = '';
   }
 
-  return { token, login, logout, isLoggedIn }
+  return { login, logout, isLoggedIn }
 })

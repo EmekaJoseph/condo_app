@@ -22,11 +22,14 @@
             </div>
         </div>
     </nav>
+    <!-- search modal -->
+    <SearchDeceasedModal />
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useAppVariables } from '@/stores/appVariables';
+
 
 const appVar = useAppVariables()
 

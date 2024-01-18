@@ -1,11 +1,36 @@
-
-
 <template>
-    <router-view></router-view>
+    <div v-if="isLoading" class="everything-center">
+        <LoadingComponent />
+    </div>
+    <div v-else class="mb-5">
+        <headerAndMenu />
+        <router-view></router-view>
+    </div>
+    <PageFooter />
 </template>
 
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue';
+import { useAuthStore } from '@/stores/authStore';
+import api from "@/stores/Helpers/axios"
+import headerAndMenu from './Components/headerAndMenu.vue'
 
+
+const isLoading = ref(true)
+const authStore = useAuthStore()
+
+onMounted(() => {
+    getProfileDetails()
+})
+
+async function getProfileDetails() {
+    try {
+        const { data } = await api.userProfile()
+        authStore.profileData = data
+        isLoading.value = false
+    } catch (error) {
+
+    }
+}
 </script>
 
-<style lang="css" scoped></style>

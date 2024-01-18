@@ -8,6 +8,7 @@ export const useAppVariables = defineStore('appVariables', () => {
   const searchModal: Ref<boolean> = ref(false)
   const condoModal: Ref<boolean> = ref(false)
   const imageModal: Ref<boolean> = ref(false)
+  const adminMenu: Ref<boolean> = ref(false)
   const currentDeceasedId = ref<any>('')
   const currentImageToShow = ref<any>('')
   const { y: y_axis } = useWindowScroll()
@@ -16,12 +17,14 @@ export const useAppVariables = defineStore('appVariables', () => {
   const toggleSearchModal = () => searchModal.value = !searchModal.value
   const toggleCondoModal = () => condoModal.value = !condoModal.value
   const toggleImageModal = () => imageModal.value = !imageModal.value
+  const toggleAdminMenu = () => adminMenu.value = !adminMenu.value
 
   return {
     appName,
     searchModal,
     condoModal,
     imageModal,
+    adminMenu,
     y_axis,
     screen_width,
     currentDeceasedId,
@@ -29,5 +32,6 @@ export const useAppVariables = defineStore('appVariables', () => {
     toggleSearchModal,
     toggleCondoModal,
     toggleImageModal,
+    toggleAdminMenu,
   }
 })

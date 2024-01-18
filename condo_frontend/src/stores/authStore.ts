@@ -5,20 +5,9 @@ import Cookies from 'js-cookie';
 
 export const useAuthStore = defineStore('authStore', () => {
   const token = ref('')
+  const profileData = ref<any>('')
 
-  // const isLoggedIn = computed(() => token.value || Cookies.get('_tokn'));
-  const isLoggedIn = computed(() => {
-    let xx = false;
-    if (token.value) {
-      xx = true;
-    }
-    else {
-      if (Cookies.get('_tokn')) {
-        xx = true;
-      }
-    }
-    return xx;
-  });
+  const isLoggedIn = computed(() => token.value || Cookies.get('_tokn'));
 
   const login = (tokenStr: string) => {
     Cookies.set('_tokn', tokenStr, { expires: 7 });
@@ -30,5 +19,5 @@ export const useAuthStore = defineStore('authStore', () => {
     token.value = '';
   }
 
-  return { login, logout, isLoggedIn }
+  return { login, logout, isLoggedIn, profileData }
 })

@@ -9,6 +9,10 @@ export default {
         return $instance.post(`account/login`, JSON.stringify(data))
     },
 
+    userLogout() {
+        return $instance.post(`account/logout`)
+    },
+
     userProfile() {
         return $instance.get(`/account/profile`)
     },

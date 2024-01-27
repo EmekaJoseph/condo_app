@@ -3,9 +3,26 @@
         <div class="container">
             <div ref="offCanvasToggler" class="fs-5 cursor-pointer" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="bi bi-list"></i> Menu
+                <i class="bi bi-list"></i> &nbsp;
+                <span class="color-theme fw-bolder">{{ appVar.appName }}</span>
+                | {{ route.name }}
             </div>
-            <span class="navbar-brand color-theme fw-bold">{{ appVar.appName }}</span>
+            <div class="dropdown open d-none d-md-block">
+                <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="bi bi-person-circle fs-5"></i>
+                </span>
+                <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
+                    <div class="text-center small text-muted">
+                        {{ authStore.profileData.email ?? '' }}
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <span class="dropdown-item cursor-pointer" @click="logout">
+                        <i class="bi bi-box-arrow-left"></i> Logout
+                    </span>
+                </div>
+            </div>
+
         </div>
     </nav>
 
@@ -28,6 +45,10 @@
                     </router-link>
                 </li>
 
+                <div class="list-group-item mt-5 cursor-pointer" @click="logout">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </div>
+
             </ul>
 
         </div>
@@ -38,14 +59,26 @@
 import { ref, watch } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import api from '@/stores/Helpers/axios'
 
 const offCanvasToggler = ref<any>(null)
 
 const authStore = useAuthStore()
 const appVar = useAppVariables()
 const route = useRoute()
+const router = useRouter()
 
+
+async function logout() {
+    try {
+        await api.userLogout()
+    } catch (error) {
+
+    }
+    authStore.logout()
+    router.push({ name: 'Login' })
+}
 
 watch(() => route.path, () => {
     offCanvasToggler.value.click()

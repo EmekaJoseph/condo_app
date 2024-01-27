@@ -46,12 +46,16 @@ import GoogleSignInPlugin from "vue3-google-signin"
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+// https://www.npmjs.com/package/vue3-loading-skeleton
+import { SkeletonLoader } from "vue3-loading-skeleton";
+import "vue3-loading-skeleton/dist/style.css";
+
 
 // https://vue-tel-input.iamstevendao.com/guide/getting-started.html
 import VueTelInput from 'vue-tel-input';
 import 'vue-tel-input/vue-tel-input.css';
 
-import LoadingComponent from './components/LoadingComponent.vue'
+import PageLoadingComponent from './components/LoadingComponent.vue'
 import HeaderVue from '@/components/Header.vue';
 import PageFooter from './components/Footer.vue';
 import SearchDeceasedModal from '@/components/modals/SearchDeceasedModal.vue';
@@ -60,7 +64,8 @@ const app = createApp(App)
 
 app.component("infinite-loading", InfiniteLoading);
 app.component('VueDatePicker', VueDatePicker);
-app.component('LoadingComponent', LoadingComponent);
+app.component("SkeletonLoader", SkeletonLoader);
+app.component('PageLoadingComponent', PageLoadingComponent);
 app.component('HeaderVue', HeaderVue);
 app.component('PageFooter', PageFooter);
 app.component('SearchDeceasedModal', SearchDeceasedModal);

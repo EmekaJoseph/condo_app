@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div v-else>
-                                        <LoadingComponent />
+                                        <spinnerLoadingComponent />
                                     </div>
                                 </div>
                             </div>
@@ -64,6 +64,7 @@ import { useAppVariables } from '@/stores/appVariables';
 import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import api from "@/stores/Helpers/axios"
 import useFxn from '@/stores/Helpers/useFunctions';
+import spinnerLoadingComponent from '@/components/spinnerLoadingComponent.vue';
 
 const appVar = useAppVariables()
 const router = useRouter()

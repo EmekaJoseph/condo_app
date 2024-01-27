@@ -1,7 +1,7 @@
 <template>
     <div class="mb-5">
         <div v-if="isLoading && !details" class="everything-center">
-            <LoadingComponent />
+            <PageLoadingComponent />
         </div>
         <div v-else>
             <PictureHeader :details="details" />

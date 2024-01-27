@@ -1,12 +1,12 @@
 <template>
-    <div v-if="isLoading" class="everything-center">
-        <LoadingComponent />
+    <PageLoadingComponent v-if="isLoading" />
+    <div v-else>
+        <div class="mb-5">
+            <headerAndMenu />
+            <router-view></router-view>
+        </div>
+        <PageFooter />
     </div>
-    <div v-else class="mb-5">
-        <headerAndMenu />
-        <router-view></router-view>
-    </div>
-    <PageFooter />
 </template>
 
 <script lang="ts" setup>

@@ -43,9 +43,9 @@
                         </div>
                     </div>
 
-                    <!-- <div class="text-center mt-4">
-                        <router-link class="text-white " to="/">Go To Home</router-link>
-                    </div> -->
+                    <div class="text-center mt-4">
+                        <router-link class="text-white " to="/">Go to Home page</router-link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,8 +30,8 @@
                     Biography & History
                 </div>
                 <div class="card-body">
-                    <p>{{ details.biography }}</p>
-                    <p>{{ details.life_history }}</p>
+                    <p v-html="details.biography ?? ''"></p>
+                    <p v-html="details.life_history ?? ''"></p>
                 </div>
             </div>
         </div>

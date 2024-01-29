@@ -2,8 +2,8 @@
     <div class="row g-3">
         <div class="col-12">
             <div class="card shadow-sm">
-                <div class="card-header fw-bold color-theme border-0">
-                    Late {{ details.deceased }}
+                <div class="card-header border-0 text-capitalize">
+                    Late <span class="fw-bold">{{ details.deceased }}</span>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
@@ -17,7 +17,7 @@
                         </li>
                         <li class="list-group-item px-0">
                             <span class="fw-bold">Aged: </span>
-                            <span>{{ details.age }}</span>
+                            <span>{{ details.age }} years</span>
                         </li>
                     </ul>
 

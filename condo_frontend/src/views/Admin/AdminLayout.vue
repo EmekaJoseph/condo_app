@@ -1,7 +1,7 @@
 <template>
     <PageLoadingComponent v-if="isLoading" />
     <div v-else>
-        <div class="mb-5">
+        <div style="margin-bottom: 100px;">
             <headerAndMenu />
             <router-view></router-view>
         </div>

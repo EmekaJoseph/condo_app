@@ -48,11 +48,11 @@ export default {
             // title: `${title}`,
             text: `${text}`,
             icon: 'question',
-            iconColor: '#055160',
+            iconColor: '#60148f',
             showCancelButton: true,
             confirmButtonText: `${btnText}`,
             cancelButtonText: 'cancel',
-            confirmButtonColor: '#055160',
+            confirmButtonColor: '#60148f',
             reverseButtons: true,
             width: '300px',
         })

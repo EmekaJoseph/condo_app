@@ -25,6 +25,11 @@ export default [
                 component: () => import('../views/Admin/Dashboard.vue'),
             },
             {
+                path: '/upload-history',
+                name: 'History',
+                component: () => import('../views/Admin/UploadHistory.vue'),
+            },
+            {
                 path: '/profile',
                 name: 'Profile',
                 component: () => import('../views/Admin/Profile.vue'),

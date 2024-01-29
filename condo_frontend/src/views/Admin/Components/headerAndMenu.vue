@@ -36,12 +36,18 @@
             <ul class="list-group list-group-flush mt-5">
                 <li class="list-group-item">
                     <router-link to="/dashboard">
-                        <i class="bi bi-window-desktop"></i> Dashboard
+                        <i class="bi bi-window-desktop me-2"></i> Dashboard
                     </router-link>
                 </li>
                 <li class="list-group-item">
+                    <router-link to="/upload-history">
+                        <i class="bi bi-clock-history me-2"></i> Upload History
+                    </router-link>
+                </li>
+
+                <li class="list-group-item">
                     <router-link to="/profile">
-                        <i class="bi bi-person"></i> My Profile
+                        <i class="bi bi-person me-2"></i> My Profile
                     </router-link>
                 </li>
 

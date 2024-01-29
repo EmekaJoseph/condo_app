@@ -24,8 +24,8 @@ class DeceasedRequest extends FormRequest
         return [
             // 'deceased' => 'required|string|unique:deceaseds',
             'deceased' => 'required|string',
-            'birth_date' => 'required|date',
-            'death_date' => 'required|date',
+            // 'birth_date' => 'required|date',
+            // 'death_date' => 'required|date',
             'background_song' => 'nullable|string',
             'biography' => 'required|string',
             'life_history' => 'nullable|string',

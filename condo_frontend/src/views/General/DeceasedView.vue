@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-12">
                                 <button @click="appVar.toggleSearchModal()" class="w-100 btn btn-theme-outline">
-                                    <i class="bi bi-search"></i> Search a memorial page
+                                    <i class="bi bi-search"></i> Search memorial
                                 </button>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                     values
                                     instilled, and the love that continues to reverberate through the lives touched.
                                 </div>
-                                <p>
+                                <p class="mt-3">
                                     <router-link class="color-theme text-decoration-none fw-bold" to="/">
                                         Go To Home Page <i class="bi bi-chevron-right"></i>
                                     </router-link>

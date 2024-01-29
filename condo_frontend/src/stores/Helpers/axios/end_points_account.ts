@@ -26,4 +26,17 @@ export default {
         return $instanceForm.post(`${str}`, form)
     },
 
+    userUploadDeceased(form: FormData, id?: any) {
+        const str: string = id ? `/admin/deceased/${id}` : `/admin/deceased`
+        return $instanceForm.post(`${str}`, form)
+    },
+
+    userDeleteDeceased(id: any) {
+        return $instanceForm.delete(`admin/deceased/deleteRecord/${id}`)
+    },
+
+    userUploads(page = 1) {
+        return $instance.get(`/admin/deceased/uploads?page=${page}`)
+    },
+
 }

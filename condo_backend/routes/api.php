@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('admin')->group(function () {
             Route::post('/deceased', 'saveNew');
             Route::post('/deceased/{id}', 'update');
+            Route::get('/deceased/uploads', 'uploadsList');
             Route::delete('/deceased/deleteRecord/{id}', 'deleteRecord');
         });
     });

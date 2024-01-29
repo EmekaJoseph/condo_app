@@ -60,8 +60,12 @@
               <slide class="pt-3" v-for="slide in recents" :key="slide">
                 <div @click="gotToDeceasedPage(slide)"
                   class="card mx-2 h-100 shadow-sm cursor-pointer hover-tiltY recent-card">
-                  <img class="card-img-top" :src="useFxn.resolvePhotoSrc(slide.display_photo, 'deceased_dps')"
-                    alt="image" />
+                  <!-- <img class="card-img-top" :src="useFxn.resolvePhotoSrc(slide.display_photo, 'deceased_dps')"
+                    alt="image" /> -->
+                  <div class="card-img-top"
+                    :style="{ backgroundImage: `url(${useFxn.resolvePhotoSrc(slide.display_photo, 'deceased_dps')})` }"
+                    alt="image"> </div>
+                  <!-- :style="{ backgroundImage: `url(${form.photo_path})` }" -->
                   <div class="card-body">
                     <div class="card-title color-theme  fw-bolder text-truncate">{{ slide.deceased }} </div>
                     <p class="card-text">
@@ -155,6 +159,14 @@ function gotToDeceasedPage(slide: any) {
 
 .recent-card:hover {
   border: 1px solid var(--theme-color) !important;
+}
+
+.card-img-top {
+  height: 180px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 </style>
 

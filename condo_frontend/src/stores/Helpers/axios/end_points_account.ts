@@ -35,8 +35,8 @@ export default {
         return $instanceForm.delete(`admin/deceased/deleteRecord/${id}`)
     },
 
-    userUploads(page = 1) {
-        return $instance.get(`/admin/deceased/uploads?page=${page}`)
+    userUploads(searchString = '', page = 1) {
+        return $instance.get(`/admin/deceased/uploads?searchString=${searchString}&page=${page}`)
     },
 
 }

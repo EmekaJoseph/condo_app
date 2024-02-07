@@ -5,11 +5,10 @@
                 <div class="card">
                     <div class="card-header border-0 fw-bold">My Profile</div>
                     <div class="card-body">
-                        Profile
+                        {{ profile }}
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -17,6 +16,9 @@
 <script lang="ts" setup>
 import { reactive, watch } from 'vue';
 import useFxn from '@/stores/Helpers/useFunctions';
+import { useAuthStore } from '@/stores/authStore';
+
+const profile = useAuthStore()
 
 </script>
 

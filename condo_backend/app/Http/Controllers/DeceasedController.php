@@ -49,12 +49,21 @@ class DeceasedController extends Controller
         return response()->json($deceased, 201);
     }
 
-    public function uploadsList()
+    public function uploadsList(Request $request)
     {
         if (Auth::user()->level != 1)
-            $uploads = Deceased::with(['admin'])->where('admin_id', Auth::id())->sortByDesc('created_date')->paginate(15);
+            $uploads = Deceased::with(['admin'])->where('admin_id', Auth::id())->sortByDesc('created_date')
+                ->when($request->searchString, function ($query) use ($request) {
+                    $query->where('deceased', 'LIKE', "%{$request->searchString}%");
+                })
+
+                ->paginate(15);
         else
-            $uploads = Deceased::with(['admin'])->paginate(15);
+            $uploads = Deceased::with(['admin'])
+                ->when($request->searchString, function ($query) use ($request) {
+                    $query->where('deceased', 'LIKE', "%{$request->searchString}%");
+                })
+                ->paginate(15);
         return response()->json($uploads, 201);
     }
 

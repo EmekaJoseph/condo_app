@@ -1,12 +1,24 @@
 <template>
-    <PageLoadingComponent v-if="isLoading" />
     <div class="container mt-5 animate__animated animate__fadeIn">
         <div class="row justify-content-center min-vh-100 g-3">
+            <div class="col-12">
+                <div class="col-6 col-lg-3 float-lg-end ">
+                    <div class="input-group bg-white">
+                        <input @input="onInputFunction()" v-model="searchString" type="text" name="name" id="name"
+                            class="form-control border-end-0" placeholder="search here.." aria-describedby="suffixId" />
+                        <span class="input-group-text bg-white">
+                            <i class="bi bi-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
+                <PageLoadingComponent v-if="isLoading" />
                 <div class="card min-vh-100">
                     <div class="card-header border-0 fw-bold">History
-                        <span class="float-end small fw-light">
-                            showing page {{ paginate.currentPage }}/{{ paginate.totalPages }}
+                        <span class="float-end small fw-bold">
+                            <span class="fw-lighter">showing page</span> {{ paginate.currentPage }}/{{ paginate.totalPages
+                            }}
                         </span>
                     </div>
                     <div v-if="!list.length" class="card-body">
@@ -56,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -88,13 +99,13 @@ onMounted(() => {
 })
 
 async function loadHistory(page = 1) {
-    isLoading.value = true;
-    const resp = await api.userUploads(page)
+    // isLoading.value = true;
+    const resp = await api.userUploads(searchString.value, page)
+    list.value = resp.data.data
     paginate.currentPage = resp.data.current_page;
     paginate.totalPages = resp.data.last_page;
     paginate.perPage = resp.data.per_page;
     paginate.totalRecords = resp.data.total
-    list.value = resp.data.data
     isLoading.value = false;
 }
 
@@ -112,6 +123,14 @@ function deleteRecord(id: string | number) {
             }
         })
 }
+
+// searching
+const searchString = ref('')
+const onInputFunction = useFxn.debounce(loadHistory, 300);
+
+
+
+
 </script>
 
 <style lang="css" scoped>

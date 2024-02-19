@@ -109,7 +109,7 @@
                                 <hr>
                                 <div class="col-12 ">
                                     <div class="col-md-4 float-md-end">
-                                        <button v-if="!form.isSaving" @click="saveForm"
+                                        <button :disabled="!authStore.emailVerified" v-if="!form.isSaving" @click="saveForm"
                                             class="btn btn-theme w-100">Save</button>
                                         <button v-else class="btn btn-theme w-100" type="button" disabled>
                                             <span class="spinner-border spinner-border-sm" role="status"
@@ -118,22 +118,11 @@
                                         </button>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header border-0 fw-bold">My History</div>
-                    <div class="card-body">
-                        xx
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -146,6 +135,10 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useDropzone } from "vue3-dropzone";
 import api from '@/stores/Helpers/axios'
+
+import { useAuthStore } from '@/stores/authStore';
+
+const authStore = useAuthStore()
 
 
 const form = reactive({
@@ -165,7 +158,6 @@ watch(() => form.birth_date, () => {
         form.death_date = new Date(form.birth_date)
     }
 })
-
 
 function addNewSurvivedByField() {
     form.survivedBys.push({

@@ -3,6 +3,19 @@
     <div v-else>
         <div style="margin-bottom: 100px;">
             <headerAndMenu />
+            <div class="container mt-4">
+                <div v-if="authStore.emailVerified" class="alert alert-success border-0 fw-bold">
+                    {{ authStore.profileData.email }}
+                    <div class="float-end fw-lighter small ms-4 lh-1 ">verified
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                </div>
+                <div v-else class="alert alert-warning border-0 fw-bold">
+                    <div><i class="bi bi-exclamation-circle-fill"></i> {{ authStore.profileData.email }}
+                        <div class="float-end"><button class="btn btn-warning btn-sm px-4 rounded-5">verify</button> </div>
+                    </div>
+                </div>
+            </div>
             <router-view></router-view>
         </div>
         <PageFooter />

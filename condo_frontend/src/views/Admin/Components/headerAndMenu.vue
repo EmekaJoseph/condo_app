@@ -39,11 +39,6 @@
                         <i class="bi bi-window-desktop me-2"></i> Dashboard
                     </router-link>
                 </li>
-                <li class="list-group-item">
-                    <router-link to="/upload-history">
-                        <i class="bi bi-clock-history me-2"></i> Upload History
-                    </router-link>
-                </li>
 
                 <li class="list-group-item">
                     <router-link to="/profile">

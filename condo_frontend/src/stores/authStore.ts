@@ -9,6 +9,10 @@ export const useAuthStore = defineStore('authStore', () => {
 
   const isLoggedIn = computed(() => token.value || Cookies.get('_tokn'));
 
+  const emailVerified = computed(() => {
+    return profileData.value?.email_verified_at
+  })
+
   const login = (tokenStr: string) => {
     Cookies.set('_tokn', tokenStr, { expires: 7 });
     token.value = tokenStr;
@@ -19,5 +23,5 @@ export const useAuthStore = defineStore('authStore', () => {
     token.value = '';
   }
 
-  return { login, logout, isLoggedIn, profileData }
+  return { login, logout, isLoggedIn, profileData, emailVerified }
 })

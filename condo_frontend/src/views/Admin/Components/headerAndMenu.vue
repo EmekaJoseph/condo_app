@@ -1,8 +1,8 @@
 <template>
     <nav class="navbar  navbar-light bg-light shadow-sm">
         <div class="container">
-            <div ref="offCanvasToggler" class="fs-5 cursor-pointer" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <div class="fs-5 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
                 <i class="bi bi-list"></i> &nbsp;
                 <span class="color-theme fw-bolder">{{ appVar.appName }}</span>
                 | {{ route.name }}
@@ -30,7 +30,8 @@
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header bg-light">
             <h5 class="offcanvas-title text-muted " id="offcanvasExampleLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button ref="offCanvasToggler" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="list-group list-group-flush mt-5">
@@ -78,7 +79,7 @@ async function logout() {
 
     }
     authStore.logout()
-    router.push({ name: 'Login' })
+    router.replace({ name: 'Login' })
 }
 
 watch(() => route.path, () => {

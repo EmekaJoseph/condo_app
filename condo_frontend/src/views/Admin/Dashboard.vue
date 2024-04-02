@@ -109,6 +109,9 @@
                                 <hr>
                                 <div class="col-12 ">
                                     <div class="col-md-4 float-md-end">
+                                        <div v-if="!authStore.emailVerified" class="small text-danger text-center">
+                                            verify email first!
+                                        </div>
                                         <button :disabled="!authStore.emailVerified" v-if="!form.isSaving" @click="saveForm"
                                             class="btn btn-theme w-100">Save</button>
                                         <button v-else class="btn btn-theme w-100" type="button" disabled>
@@ -125,6 +128,7 @@
             </div>
         </div>
     </div>
+    <deceasedLinkModal :link="''" />
 </template>
 
 <script lang="ts" setup>
@@ -135,11 +139,12 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useDropzone } from "vue3-dropzone";
 import api from '@/stores/Helpers/axios'
-
 import { useAuthStore } from '@/stores/authStore';
+import { useAppVariables } from '@/stores/appVariables';
+import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
 
 const authStore = useAuthStore()
-
+const appVar = useAppVariables()
 
 const form = reactive({
     deceased: '',

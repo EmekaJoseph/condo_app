@@ -20,6 +20,7 @@
   --theme-btn-color-hover: #530981;
 }
 
+
 body {
   min-height: 100vh !important;
   color: var(--color-text);

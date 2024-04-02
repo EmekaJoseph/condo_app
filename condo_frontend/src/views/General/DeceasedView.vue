@@ -92,7 +92,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 mt-5">
+                    <div class="col-12" style="margin-top: 130px;">
                         <div class="card bg-light">
                             <div class="card-body">
                                 <div class="card-text">

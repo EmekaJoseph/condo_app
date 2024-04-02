@@ -93,10 +93,9 @@ async function search() {
 }
 
 function gotToDeceasedPage(item: any) {
-    const name = item.deceased.split(' ').join('-')
     closeModal_search.value.click()
     router.push({
-        path: `/condo/${item.id}/${name}`,
+        path: appVar.deceasedLink(item),
     })
 }
 

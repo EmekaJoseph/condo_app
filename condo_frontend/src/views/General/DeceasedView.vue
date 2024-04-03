@@ -28,7 +28,7 @@
                                 <button @click="switchTab('gal')" class="nav-link" id="gallery-tab" data-bs-toggle="tab"
                                     data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
                                     aria-selected="false">
-                                    <i class="bi bi-vignette"></i> Gallery
+                                    <i class="bi bi-camera"></i> Gallery
                                 </button>
                             </li>
                         </ul>
@@ -63,7 +63,8 @@
                                         </p>
                                         <p>
                                             <i class="bi bi-1-circle-fill"></i>
-                                            Fill out the personal details of your lost one and add a short description with
+                                            Fill out the personal details of your lost one and add a short description
+                                            with
                                             preffered background music.
                                         </p>
                                         <p>
@@ -124,7 +125,7 @@
     </div>
     <PageFooter />
 </template>
-  
+
 <script setup lang="ts">
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
@@ -190,7 +191,7 @@ const switchTab = (str: string) => {
 }
 
 </script>
-  
+
 <style scoped>
 /* .nav-tabs .nav-item.show .nav-link, */
 .nav-tabs .nav-link.active {
@@ -214,4 +215,3 @@ const switchTab = (str: string) => {
     }
 }
 </style>
-  

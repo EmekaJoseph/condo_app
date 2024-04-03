@@ -8,13 +8,13 @@
                 | {{ route.name }}
             </div>
             <div class="dropdown open d-none d-md-block">
-                <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <i class="bi bi-person-circle fs-5"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
                     <div class="text-center small text-muted">
-                        {{ authStore.profileData.email ?? '' }}
+                        {{ authStore.profileData?.email ?? '' }}
                     </div>
                     <div class="dropdown-divider"></div>
                     <span class="dropdown-item cursor-pointer" @click="logout">
@@ -29,7 +29,9 @@
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header bg-light">
-            <h5 class="offcanvas-title text-muted " id="offcanvasExampleLabel"></h5>
+            <h5 class="offcanvas-title text-muted " id="offcanvasExampleLabel">
+                {{ authStore.profileData?.email ?? '' }}
+            </h5>
             <button ref="offCanvasToggler" type="button" class="btn-close" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
@@ -50,7 +52,6 @@
                 <div class="list-group-item mt-5 cursor-pointer" @click="logout">
                     <i class="bi bi-box-arrow-left"></i> Logout
                 </div>
-
             </ul>
 
         </div>
@@ -88,7 +89,7 @@ watch(() => route.path, () => {
 </script>
 
 
-<style  scoped>
+<style scoped>
 /* @media (max-width: 797px) { */
 .offcanvas {
     width: 300px;

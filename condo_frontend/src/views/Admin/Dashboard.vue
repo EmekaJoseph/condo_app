@@ -25,15 +25,15 @@
                                     <div class=" col-md-6">
                                         <label class="form-label">Death Date:</label>
                                         <VueDatePicker :format="useFxn.dateDisplay" hide-input-icon :clearable="false"
-                                            :min-date="form.birth_date" :max-date="new Date()" :enable-time-picker="false"
-                                            auto-apply v-model="form.death_date">
+                                            :min-date="form.birth_date" :max-date="new Date()"
+                                            :enable-time-picker="false" auto-apply v-model="form.death_date">
                                         </VueDatePicker>
                                     </div>
 
                                     <div class="col-12" style="margin-bottom: 100px; height:200px">
                                         <label class="form-label">Biography:</label>
-                                        <QuillEditor v-model:content="form.biography" contentType="html" toolbar="minimal"
-                                            placeholder="enter here.." />
+                                        <QuillEditor v-model:content="form.biography" contentType="html"
+                                            toolbar="minimal" placeholder="enter here.." />
                                     </div>
 
 
@@ -47,13 +47,22 @@
                                     <div class="card-body">
                                         <div v-for="(item, index) in form.survivedBys" :key="index"
                                             class="col-12 bg-light mb-2 p-2">
+
                                             <div class="row g-3">
+                                                <div class="col-12">
+                                                    <button @click="form.survivedBys.splice(index, 1)"
+                                                        v-if="form.survivedBys.length > 1"
+                                                        class="float-end btn btn-sm m-0 p-0 btn-link text-danger">
+                                                        <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                </div>
                                                 <div class="col-md-6">
                                                     <input v-model="item.survived_by" type="text"
                                                         class="form-control form-control-sm" placeholder="enter name..">
                                                 </div>
-                                                <div class="col-9 col-md-4">
-                                                    <select v-model="item.relationship" class="form-select form-select-sm">
+                                                <div class="col-md-6">
+                                                    <select v-model="item.relationship"
+                                                        class="form-select form-select-sm">
                                                         <option disabled selected>Relationship</option>
                                                         <option value="brother">Brother</option>
                                                         <option value="sister">Sister</option>
@@ -63,18 +72,11 @@
                                                     </select>
 
                                                 </div>
-                                                <div class="col-3 col-md-2">
-                                                    <button @click="form.survivedBys.splice(index, 1)"
-                                                        v-if="form.survivedBys.length > 1"
-                                                        class="btn-sm btn btn-outline-danger bg-danger-subtle border-0 w-100">
-                                                        <i class="bi bi-x-lg"></i>
-                                                    </button>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <button @click="addNewSurvivedByField" style="font-size: 11px;"
-                                                class="btn btn-outline-secondary float-end ">
+                                                class="btn btn-light border- text-success bg-success-subtle w-100 ">
                                                 Add new line
                                                 <i class="bi bi-plus-circle-dotted"></i>
                                             </button>
@@ -87,7 +89,8 @@
                                 <div class="row justify-content-center g-3">
                                     <label class="form-label">Display Photo:</label>
                                     <div class="col-md-3 order-2 order-md-1 d-flex justify-content-center">
-                                        <div class="image-circle" :style="{ backgroundImage: `url(${form.photo_path})` }">
+                                        <div class="image-circle"
+                                            :style="{ backgroundImage: `url(${form.photo_path})` }">
                                         </div>
                                         <!-- <div class="image-circle"></div> -->
 
@@ -112,8 +115,8 @@
                                         <div v-if="!authStore.emailVerified" class="small text-danger text-center">
                                             verify email first!
                                         </div>
-                                        <button :disabled="!authStore.emailVerified" v-if="!form.isSaving" @click="saveForm"
-                                            class="btn btn-theme w-100">Save</button>
+                                        <button :disabled="!authStore.emailVerified" v-if="!form.isSaving"
+                                            @click="saveForm" class="btn btn-theme w-100">Save</button>
                                         <button v-else class="btn btn-theme w-100" type="button" disabled>
                                             <span class="spinner-border spinner-border-sm" role="status"
                                                 aria-hidden="true"></span>

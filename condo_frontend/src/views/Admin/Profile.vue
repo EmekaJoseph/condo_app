@@ -7,17 +7,13 @@
                     <div class="card-header border-0 fw-bold">Uploads History
                         <span class="float-end small fw-bold">
                             <span class="fw-lighter">showing page</span> {{ paginate.currentPage }}/{{
-                                paginate.totalPages
-                            }}
+                    paginate.totalPages
+                }}
                         </span>
                     </div>
-                    <div v-if="!list.length" class="card-body">
-                        <div class="text-center">No data history</div>
-                    </div>
-                    <div v-else class="card-body">
-
-                        <div class="row g-3">
-                            <div class="col-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
                                 <div class="col-md-6 col-lg-4 float-lg-end ">
                                     <div class="input-group bg-white">
                                         <input @input="onInputFunction()" v-model="searchString" type="text" name="name"
@@ -29,49 +25,53 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>NAME</th>
-                                                <th>BIRTH DATE</th>
-                                                <th>DEATH DATE</th>
-                                                <th>DATE UPLOADED</th>
-                                                <th>POSTED BY</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(record, index) in list" :key="record.id">
-                                                <th>{{ (index + 1) }}</th>
-                                                <td>{{ record.deceased }}</td>
-                                                <td>{{ useFxn.dateDisplay(record.birth_date) }}</td>
-                                                <td>{{ useFxn.dateDisplay(record.death_date) }}</td>
-                                                <td>{{ useFxn.dateDisplay(record.created_at) }}</td>
-                                                <td>{{ record.admin.email }}</td>
-                                                <td>
-                                                    <button class="btn btn-outline-dark btn-sm border-0">
-                                                        <i class="bi bi-pencil"></i>
-                                                    </button>
-                                                    <button @click="deleteRecord(record.id)"
-                                                        class="btn btn-outline-danger btn-sm border-0">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        </div>
+                        <div v-if="!list.length" class="text-center">No data history</div>
+                        <div v-else>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>S/N</th>
+                                                    <th>NAME</th>
+                                                    <th>BIRTH DATE</th>
+                                                    <th>DEATH DATE</th>
+                                                    <th>DATE UPLOADED</th>
+                                                    <th>POSTED BY</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(record, index) in list" :key="record.id">
+                                                    <th>{{ (index + 1) }}</th>
+                                                    <td>{{ record.deceased }}</td>
+                                                    <td>{{ useFxn.dateDisplay(record.birth_date) }}</td>
+                                                    <td>{{ useFxn.dateDisplay(record.death_date) }}</td>
+                                                    <td>{{ useFxn.dateDisplay(record.created_at) }}</td>
+                                                    <td>{{ record.admin.email }}</td>
+                                                    <td>
+                                                        <button class="btn btn-outline-dark btn-sm border-0">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                        <button @click="deleteRecord(record.id)"
+                                                            class="btn btn-outline-danger btn-sm border-0">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- pagination -->
-                        <div class="mt-5" v-if="list.length">
-                            <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
-                                :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
+                            <!-- pagination -->
+                            <div class="mt-5" v-if="list.length">
+                                <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
+                                    :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
+                            </div>
                         </div>
                     </div>
                 </div>

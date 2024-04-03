@@ -75,9 +75,10 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button @click="addNewSurvivedByField" style="font-size: 11px;"
-                                                class="btn btn-light border- text-success bg-success-subtle w-100 ">
-                                                Add new line
+                                            <button @click="addNewSurvivedByField"
+                                                style="font-size: 11px;border-style: dotted;"
+                                                class="btn btn-light border-warning  text-dark w-100 ">
+                                                click here to new line
                                                 <i class="bi bi-plus-circle-dotted"></i>
                                             </button>
                                         </div>

@@ -1,39 +1,39 @@
 <template>
-    <div class="col-12">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li @click="moveToPage(-1)" class="page-item">
-                    <div class="page-link">
-                        <i class="bi bi-chevron-left"></i>
-                    </div>
-                </li>
-                <li v-if="pagesToShow[0] > 1" @click="changePage(1)" class="page-item">
-                    <span class="page-link">1</span>
-                </li>
-                <li v-if="pagesToShow[0] > 2" class="page-item">
-                    <span @click="moveToPage(-5)" class="page-link">....</span>
-                </li>
-                <li v-for="page in pagesToShow" :key="page" :class="{ 'page-item': true, 'active': page === currentPage }"
-                    @click="changePage(page)">
-                    <span class="page-link">{{ page }}</span>
-                </li>
+    <!-- <div class="col-12"> -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-cente">
+            <li @click="moveToPage(-1)" class="page-item">
+                <div class="page-link">
+                    <i class="bi bi-chevron-left"></i>
+                </div>
+            </li>
+            <li v-if="pagesToShow[0] > 1" @click="changePage(1)" class="page-item">
+                <span class="page-link">1</span>
+            </li>
+            <li v-if="pagesToShow[0] > 2" class="page-item">
+                <span @click="moveToPage(-5)" class="page-link">....</span>
+            </li>
+            <li v-for="page in pagesToShow" :key="page" :class="{ 'page-item': true, 'active': page === currentPage }"
+                @click="changePage(page)">
+                <span class="page-link">{{ page }}</span>
+            </li>
 
-                <li v-if="pagesToShow[pagesToShow.length - 1] < totalPages - 1" class="page-item">
-                    <span @click="moveToPage(5)" class="page-link">...</span>
-                </li>
+            <li v-if="pagesToShow[pagesToShow.length - 1] < totalPages - 1" class="page-item">
+                <span @click="moveToPage(5)" class="page-link">...</span>
+            </li>
 
-                <li v-if="pagesToShow[pagesToShow.length - 1] !== totalPages" @click="changePage(totalPages)"
-                    class="page-item">
-                    <span class="page-link">{{ totalPages }}</span>
-                </li>
-                <li @click="moveToPage(1)" class="page-item">
-                    <div class="page-link">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
+            <li v-if="pagesToShow[pagesToShow.length - 1] !== totalPages" @click="changePage(totalPages)"
+                class="page-item">
+                <span class="page-link">{{ totalPages }}</span>
+            </li>
+            <li @click="moveToPage(1)" class="page-item">
+                <div class="page-link">
+                    <i class="bi bi-chevron-right"></i>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- </div> -->
 </template>
 
 <script setup lang="ts">
@@ -89,8 +89,9 @@ const moveToPage = (moveTo: number) => {
     color: #000 !important;
     font-weight: bold;
     border-radius: 7px;
-    padding-inline: 15px;
-    margin-inline: 1px;
+    /* padding-inline: 15px; */
+    /* margin-inline: 1px; */
+    font-size: 13px;
     cursor: pointer;
     background-color: transparent;
 }

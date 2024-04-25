@@ -32,10 +32,15 @@
                     <div class="col-md-12">
                         <PageLoadingComponent v-if="isLoading" />
                         <div class="card min-vh-100">
-                            <div class="card-header border-0 fw-bold">
-                                <span v-if="list.length" class="float-en fw-bold">
-                                    <span class="fw-lighter">Showing page</span>
-                                    {{ paginate.currentPage }}/{{ paginate.totalPages }}
+                            <div class="card-header border-0 small">
+                                <span v-if="list.length">
+                                    Showing
+                                    <span class="fw-bold">{{ paginate.currentPage }}/{{ paginate.totalPages }}</span>
+                                    pages
+                                </span>
+                                <span class="float-lg-end mt-5 m-lg-0">
+                                    <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
+                                        :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
                                 </span>
                             </div>
                             <div class="card-body">
@@ -95,11 +100,11 @@
                                     </div>
 
                                     <!-- pagination -->
-                                    <div class="mt-5" v-if="list.length">
+                                    <!-- <div class="mt-5" v-if="list.length">
                                         <customPagination :currentPage="paginate.currentPage"
                                             :perPage="paginate.perPage" :totalRecords="paginate.totalRecords"
                                             @moveToNext="paginateToNext" />
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

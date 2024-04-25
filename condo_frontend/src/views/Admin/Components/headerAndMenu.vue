@@ -10,15 +10,11 @@
             <div class="dropdown open d-none d-md-block">
                 <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-person-circle fs-5"></i>
+                    <i class="bi bi-person"></i> {{ authStore.profileData?.email ?? '' }}
                 </span>
                 <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
-                    <div class="text-center small text-muted">
-                        {{ authStore.profileData?.email ?? '' }}
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-item cursor-pointer" @click="logout">
-                        <i class="bi bi-box-arrow-left"></i> Logout
+                    <span class="dropdown-item cursor-pointer text-danger bg-transparent" @click="logout">
+                        <i class="bi bi-power"></i> Logout
                     </span>
                 </div>
             </div>
@@ -39,13 +35,13 @@
             <ul class="list-group list-group-flush mt-5">
                 <li class="list-group-item">
                     <router-link to="/dashboard">
-                        <i class="bi bi-window-desktop me-2"></i> Dashboard
+                        <i class="bi bi-columns-gap me-2"></i> Dashboard
                     </router-link>
                 </li>
 
                 <li class="list-group-item">
                     <router-link to="/profile">
-                        <i class="bi bi-person me-2"></i> My Profile
+                        <i class="bi bi-person me-2"></i> Profile
                     </router-link>
                 </li>
 

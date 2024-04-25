@@ -26,7 +26,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <button v-if="!form.isLoading" type="submit" class="btn btn-theme w-100 btn-lg">Login
+                                    <button v-if="!form.isLoading" type="submit"
+                                        class="btn btn-theme w-100 btn-lg">Login
                                         <i class="bi bi-chevron-right"></i>
                                     </button>
                                     <button v-else class="btn btn-theme w-100 btn-lg" type="button" disabled>
@@ -53,13 +54,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router';
 import { useAppVariables } from '@/stores/appVariables';
 import { useAuthStore } from '@/stores/authStore';
 import useFxn from '@/stores/Helpers/useFunctions';
 import api from '@/stores/Helpers/axios'
-
 
 const appVar = useAppVariables()
 const authStore = useAuthStore()
@@ -73,7 +73,7 @@ const form = reactive({
 })
 
 const showErrorMsg = (text: string) => {
-    const div = `<div class='animate__animated animate__bounceIn text-danger text-center'>${text} </div>`
+    const div = `<div class='animate__animated animate__fadeIn text-danger text-center'>${text} </div>`
     form.invalidText = div
 }
 
@@ -109,5 +109,3 @@ async function submitForm() {
 }
 
 </script>
-
-<style  scoped></style>

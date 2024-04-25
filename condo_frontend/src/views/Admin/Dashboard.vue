@@ -35,10 +35,6 @@
                                         <QuillEditor v-model:content="form.biography" contentType="html"
                                             toolbar="minimal" placeholder="enter here.." />
                                     </div>
-
-
-
-
                                 </div>
                             </div>
                             <div class="col-lg-6 px-lg-4">
@@ -46,14 +42,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div v-for="(item, index) in form.survivedBys" :key="index"
-                                            class="col-12 bg-light mb-2 p-2">
+                                            class="col-12 bg-ligh mb-2 p-2 shadow-sm">
 
                                             <div class="row g-3">
                                                 <div class="col-12">
+                                                    Name {{ index + 1 }}:
                                                     <button @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
-                                                        class="float-end btn btn-sm m-0 p-0 btn-link text-danger">
-                                                        <i class="bi bi-x-lg"></i>
+                                                        class="float-end btn btn-sm m-0 p-0 btn-link text-danger border-0">
+                                                        <i class="bi bi-x"></i>
                                                     </button>
                                                 </div>
                                                 <div class="col-md-6">
@@ -77,7 +74,7 @@
                                         <div class="col-12">
                                             <button @click="addNewSurvivedByField"
                                                 style="font-size: 11px;border-style: dotted;"
-                                                class="btn btn-light border-warning  text-dark w-100 ">
+                                                class="btn btn-light border-dark fw-bold text-dark w-100 ">
                                                 click here to new line
                                                 <i class="bi bi-plus-circle-dotted"></i>
                                             </button>
@@ -198,17 +195,17 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
 
 function saveForm() {
     if (!form.deceased) {
-        useFxn.toast('Name of Deceased required')
+        useFxn.toast('Name of Deceased required', 'warning')
         return;
     }
 
     if (!form.biography) {
-        useFxn.toast('Biography required')
+        useFxn.toast('Biography required', 'warning')
         return;
     }
 
     if (!form.display_photo) {
-        useFxn.toast('Please add a photo')
+        useFxn.toast('Please add a photo', 'warning')
         return;
     }
 
@@ -222,7 +219,6 @@ function saveForm() {
     newForm.append('death_date', new Date(form.death_date).toISOString())
     if (filledSurvivedBys.length)
         newForm.append('survivedBys', JSON.stringify(filledSurvivedBys))
-
 
     sendformToAPI(newForm)
 }

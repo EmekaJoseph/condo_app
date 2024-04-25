@@ -41,7 +41,7 @@ const $instanceForm = axios.create({
 
 // create interceptor for renewing token ##########################################3
 const setAuthorizationAndAddProgress = (config: any) => {
-    const token = Cookies.get('_tokn');
+    const token = Cookies.get('condonote_tokn');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }

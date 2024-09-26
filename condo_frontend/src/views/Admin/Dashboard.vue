@@ -2,11 +2,12 @@
     <div class="container mt-5 animate__animated animate__fadeIn">
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header border-0 fw-bold">Post a memorial</div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <div class="col-lg-6 px-lg-4">
+                <h5 class="card-heade border-0 fw-bold mb-3">Post a memorial</h5>
+
+                <div class="row g-3">
+                    <div class="col-lg-6 ">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
                                 <div class="row g-3">
                                     <div class="col-12">
                                         <label class="form-label">Deceased name:</label>
@@ -37,16 +38,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 px-lg-4">
-                                <label class="form-label mb-3">Survived by:</label>
-                                <div class="card">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <div class="form-label mb-3">Survived by:
+                                    <div class="float-end">
+                                        <button @click="addNewSurvivedByField" style="border-style: dotted;"
+                                            class="btn btn-light btn-sm border-dark   text-dark  ">
+                                            click here to new line
+                                            <i class="bi bi-plus-circle-dotted"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card border-0" style="max-height: 300px; overflow-y: auto;">
                                     <div class="card-body">
                                         <div v-for="(item, index) in form.survivedBys" :key="index"
-                                            class="col-12 bg-ligh mb-2 p-2 shadow-sm">
+                                            class="col-12 bg-light-subtle mb-2 px-2 py-3 card">
 
                                             <div class="row g-3">
                                                 <div class="col-12">
-                                                    Name {{ index + 1 }}:
+                                                    <!-- Name {{ index + 1 }}: -->
                                                     <button @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
                                                         class="float-end btn btn-sm m-0 p-0 btn-link text-danger border-0">
@@ -71,14 +84,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <!-- <div class="col-12">
                                             <button @click="addNewSurvivedByField"
                                                 style="font-size: 11px;border-style: dotted;"
                                                 class="btn btn-light border-dark fw-bold text-dark w-100 ">
                                                 click here to new line
                                                 <i class="bi bi-plus-circle-dotted"></i>
                                             </button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 

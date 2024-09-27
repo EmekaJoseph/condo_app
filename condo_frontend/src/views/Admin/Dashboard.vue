@@ -47,22 +47,22 @@
                                     <div class="float-end">
                                         <button @click="addNewSurvivedByField" style="border-style: dotted;"
                                             class="btn btn-light btn-sm border-dark   text-dark  ">
-                                            click here to new line
+                                            add new line
                                             <i class="bi bi-plus-circle-dotted"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <div class="card border-0" style="max-height: 300px; overflow-y: auto;">
-                                    <div class="card-body">
+                                <div class="card border-0 p-0" style="max-height: 300px; overflow-y: auto;">
+                                    <div class="card-body p-0">
                                         <div v-for="(item, index) in form.survivedBys" :key="index"
-                                            class="col-12 bg-light-subtle mb-2 px-2 py-3 card">
+                                            class="col-12 bg-light-subtle mb-2 px-2 pb-3 card">
 
                                             <div class="row g-3">
-                                                <div class="col-12">
+                                                <div class="col-12 ">
                                                     <!-- Name {{ index + 1 }}: -->
                                                     <button @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
-                                                        class="float-end btn btn-sm m-0 p-0 btn-link text-danger border-0">
+                                                        class="float-end btn m-0 p-0 btn-link text-danger border-0">
                                                         <i class="bi bi-x"></i>
                                                     </button>
                                                 </div>

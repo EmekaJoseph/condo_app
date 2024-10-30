@@ -186,7 +186,7 @@ async function getCondolences() {
 const switchTab = (str: string) => {
     if (str == 'condo') condoIsClicked.value = false
     if (!audioIsPlaying.value) {
-        // playAudio()
+        playAudio()
     }
 }
 

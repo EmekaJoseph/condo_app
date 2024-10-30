@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 require('dotenv').config();
 import cors from 'cors';
+import path from 'path';
 
 const publicRoutes = require('./routes/publicRoutes');
 
@@ -17,6 +18,9 @@ const corsOptions = {
 };
 
 api.use(cors(corsOptions));
+
+// Serve static files from the 'public' directory
+api.use(express.static(path.join(__dirname, 'public')));
 
 // middlewares
 api.use(express.json());

@@ -4,6 +4,7 @@
   "description": "REST",
   "main": "base.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "node-server": "nodemon base.ts"
   },

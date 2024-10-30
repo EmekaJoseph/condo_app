@@ -33,7 +33,7 @@ DeceasedModel.addHook('beforeCreate', async (data: any) => {
 
 // Associations
 DeceasedModel.hasMany(GalleryModel, { foreignKey: 'deceased_id', as: 'gallery' });
-DeceasedModel.hasMany(SurvivedByModel, { foreignKey: 'deceased_id', as: 'survivedBys' });
+DeceasedModel.hasMany(SurvivedByModel, { foreignKey: 'deceased_id', as: 'survived_bys' });
 SurvivedByModel.belongsTo(DeceasedModel, { foreignKey: 'deceased_id', as: 'deceased' });
 
 export default DeceasedModel;

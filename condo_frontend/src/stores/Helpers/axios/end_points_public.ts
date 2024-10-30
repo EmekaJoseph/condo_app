@@ -2,22 +2,22 @@ import { $instance, $instanceUnderground } from './instances'
 
 export default {
     recents() {
-        return $instance.get(`deceased/recents`)
+        return $instance.get(`public/recents`)
     },
 
     search(str: string) {
-        return $instanceUnderground.get(`deceased/search/${str}`)
+        return $instanceUnderground.get(`public/search/${str}`)
     },
 
     details(id: any) {
-        return $instance.get(`deceased/details/${id}`)
+        return $instance.get(`public/deceased/${id}`)
     },
 
     condolences(id: any) {
-        return $instanceUnderground.get(`condolences/${id}`)
+        return $instanceUnderground.get(`public/condolences/${id}`)
     },
 
     postCondolence(obj: any) {
-        return $instance.post(`condolence`, JSON.stringify(obj))
+        return $instance.post(`public/condolences`, JSON.stringify(obj))
     },
 }

@@ -1,13 +1,22 @@
 const express = require('express');
 const morgan = require('morgan');
 require('dotenv').config();
+import cors from 'cors';
 
 const publicRoutes = require('./routes/publicRoutes');
-// const authRoutes = require('./routes/authRoutes');
-// const protectedRoutes = require('./routes/protectedRoutes');
 
 // rest object
 const api = express();
+
+
+// CORS
+const corsOptions = {
+    origin: '*', // Allow  this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
+    credentials: true, // Allow cookies to be sent
+};
+
+api.use(cors(corsOptions));
 
 // middlewares
 api.use(express.json());
@@ -16,9 +25,6 @@ api.use(morgan('dev'));
 
 // routes
 api.use('/api/public', publicRoutes);
-// api.use('/api/auth', authRoutes);
-// api.use('/api/protected', protectedRoutes);
-
 
 // port
 const PORT = process.env.PORT || 8081;

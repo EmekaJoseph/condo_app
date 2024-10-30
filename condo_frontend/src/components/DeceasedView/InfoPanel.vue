@@ -35,13 +35,12 @@
                 </div>
             </div>
         </div>
-        <div v-if="details.survived_bys.length" class="col-12">
+        <div v-if="details?.survived_bys?.length" class="col-12">
             <div class="card shadow-sm">
                 <div class="card-header fw-bold border-0">
                     Survied By
                 </div>
                 <div class="card-body">
-                    <!-- Some borders are removed -->
                     <ul class="list-group list-group-flush">
                         <li v-for="surv in details.survived_bys" class="list-group-item px-0">
                             {{ surv.survived_by }} {{ surv.relationship ? '(' + surv.relationship + ')' : '' }}

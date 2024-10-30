@@ -31,7 +31,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(DeceasedController::class)->group(function () {
     Route::prefix('public')->group(function () {
         Route::get('/search/{string}', 'search');
-        Route::get('/details/{id}', 'details');
+        Route::get('/deceased/{id}', 'details');
         Route::get('/recents', 'recents');
     });
 });

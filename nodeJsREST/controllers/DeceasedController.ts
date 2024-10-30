@@ -31,7 +31,7 @@ const DeceasedController = {
         const { id } = req.params;
         try {
             const query = await DeceasedModel.findByPk(id, {
-                include: [{ association: 'gallery' }, { association: 'survivedBys' }]
+                include: [{ association: 'gallery' }, { association: 'survived_bys' }]
             });
 
             if (!query) {

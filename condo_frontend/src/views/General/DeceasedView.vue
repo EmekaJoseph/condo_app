@@ -24,7 +24,7 @@
                                     <i class="bi bi-journal-text"></i> Condolences
                                 </button>
                             </li>
-                            <li v-if="details.gallery.length" class="nav-item" role="presentation">
+                            <li v-if="details?.gallery?.length" class="nav-item" role="presentation">
                                 <button @click="switchTab('gal')" class="nav-link" id="gallery-tab" data-bs-toggle="tab"
                                     data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
                                     aria-selected="false">
@@ -184,7 +184,7 @@ async function getCondolences() {
 }
 
 const switchTab = (str: string) => {
-    condoIsClicked.value = str == 'condo' ?? false
+    if (str == 'condo') condoIsClicked.value = false
     if (!audioIsPlaying.value) {
         // playAudio()
     }

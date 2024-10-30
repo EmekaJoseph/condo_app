@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(DeceasedController::class)->group(function () {
-    Route::prefix('deceased')->group(function () {
+    Route::prefix('public')->group(function () {
         Route::get('/search/{string}', 'search');
         Route::get('/details/{id}', 'details');
         Route::get('/recents', 'recents');
@@ -37,8 +37,8 @@ Route::controller(DeceasedController::class)->group(function () {
 });
 
 Route::controller(CondolenceController::class)->group(function () {
-    Route::get('/condolences/{deceased_id}', 'getCondolences');
-    Route::post('/condolence', 'postCondolence');
+    Route::get('public/condolences/{deceased_id}', 'getCondolences');
+    Route::post('public/condolences', 'postCondolence');
 });
 
 
@@ -65,6 +65,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/condolence/remove', [CondolenceController::class, 'removeCondolence']);
 
 
-    Route::prefix('account')->group(function () {
-    });
+    Route::prefix('account')->group(function () {});
 });

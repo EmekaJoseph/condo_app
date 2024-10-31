@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import DATABASE from '../config/database';
-import generateUniqueId from '../useFxn/generateUniqueId';
+import generateUniqueStringsId from '../useFxn/generateUniqueStringsId';
 import DeceasedModel from './DeceasedModel';
 
 const Table = {
@@ -18,8 +18,12 @@ const Table = {
 const GalleryModel = DATABASE.define('GalleryModel', Table.columns, Table.options);
 
 GalleryModel.addHook('beforeCreate', async (data: any) => {
-    data.id = await generateUniqueId(GalleryModel);
+    data.id = await generateUniqueStringsId(GalleryModel);
     data.created_at = new Date();
+    data.updated_at = new Date();
+});
+
+GalleryModel.addHook('beforeUpdate', async (data: any) => {
     data.updated_at = new Date();
 });
 

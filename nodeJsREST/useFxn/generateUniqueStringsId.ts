@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-const generateUniqueId = async (model: any) => {
+const generateUniqueStringsId = async (model: any) => {
     let uniqueId;
     const length = 18;
 
@@ -12,4 +12,4 @@ const generateUniqueId = async (model: any) => {
     return uniqueId;
 };
 
-export default generateUniqueId
+export default generateUniqueStringsId

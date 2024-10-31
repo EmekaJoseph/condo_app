@@ -4,7 +4,8 @@ require('dotenv').config();
 import cors from 'cors';
 import path from 'path';
 
-const publicRoutes = require('./routes/publicRoutes');
+const routes = require('./routes');
+// const authRoutes = require('./routes/authRoutes');
 
 // rest object
 const api = express();
@@ -28,7 +29,7 @@ api.use(express.urlencoded({ extended: true }));
 api.use(morgan('dev'));
 
 // routes
-api.use('/api/public', publicRoutes);
+api.use('/api', routes);
 
 // port
 const PORT = process.env.PORT || 8081;

@@ -179,15 +179,12 @@ async function getCondolences() {
     try {
         let { data } = await api.condolences(route.params.id)
         condolences.value = data
-    } catch (error) {
-    }
+    } catch (error) { }
 }
 
 const switchTab = (str: string) => {
-    if (str == 'condo') condoIsClicked.value = false
-    if (!audioIsPlaying.value) {
-        playAudio()
-    }
+    condoIsClicked.value = (str == 'condo')
+    if (!audioIsPlaying.value) playAudio()
 }
 
 </script>
@@ -207,6 +204,10 @@ const switchTab = (str: string) => {
     background-color: transparent !important;
     /* padding-inline: 50px; */
     /* font-size: 20px; */
+}
+
+.tab-content {
+    min-height: 30vh
 }
 
 @media (max-width: 767px) {

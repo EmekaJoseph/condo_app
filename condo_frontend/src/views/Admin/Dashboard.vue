@@ -74,11 +74,10 @@
                                                     <select v-model="item.relationship"
                                                         class="form-select form-select-sm">
                                                         <option disabled selected>Relationship</option>
-                                                        <option value="brother">Brother</option>
-                                                        <option value="sister">Sister</option>
-                                                        <option value="friend">Friend</option>
-                                                        <option value="son">Son</option>
-                                                        <option value="daughter">Daughter</option>
+                                                        <option v-for="reltn in relationships" :value="reltn.value">
+                                                            {{ reltn.name }}
+                                                        </option>
+
                                                     </select>
 
                                                 </div>
@@ -171,6 +170,17 @@ const form = reactive({
     isSaving: false
     // life_history: ''
 })
+
+const relationships = [
+    { name: 'Friend', value: 'friend' },
+    { name: 'Brother', value: 'brother' },
+    { name: 'Sister', value: 'sister' },
+    { name: 'Son', value: 'son' },
+    { name: 'Daughter', value: 'daughter' },
+    { name: 'Father', value: 'father' },
+    { name: 'Mother', value: 'mother' },
+    { name: 'Relation', value: 'relation' },
+]
 
 watch(() => form.birth_date, () => {
     if (new Date(form.birth_date) > new Date(form.death_date)) {

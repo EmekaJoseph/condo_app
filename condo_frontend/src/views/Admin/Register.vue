@@ -2,10 +2,10 @@
     <div class="bg-theme">
         <div class="container">
             <div class="everything-center overflow-hidden">
-                <div class="col-12 col-md-4 animate__animated animate__flipInY">
+                <div class="col-12 col-md-4 animate__animated animate__slideInUp animate__faster">
                     <div class="card shadow-sm">
-                        <h5 class="card-header text-center border-0 p-3">
-                            <i class="bi bi-person-fill-check"></i> CREATE NEW ACCOUNT
+                        <h5 class="card-header text-center border-0 p-3 fw-bold">
+                            CREATE NEW ACCOUNT
                         </h5>
                         <div class="card-body ">
                             <div class="row g-2">
@@ -43,15 +43,16 @@
                                         <i class="bi bi-chevron-right"></i>
                                     </button>
                                 </div>
-                                <h6 class="text-center mt-4 hover-tiltX">
-                                    <router-link class=" color-theme" to="/login" replace>I already have an
-                                        account yet </router-link>
+                                <h6 class="text-center mt-4">
+                                    Already have an account? <router-link class=" color-theme hover-tiltY" to="/login"
+                                        replace>Login.
+                                    </router-link>
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <div class="text-center mt-4">
-                        <router-link class="text-white " to="/">Go to Home page</router-link>
+                        <router-link class="text-white " to="/">Home page</router-link>
                     </div>
                 </div>
             </div>
@@ -60,7 +61,29 @@
 </template>
 
 <script lang="ts" setup>
+import { reactive } from 'vue';
 
+const form = reactive({
+    email: '',
+    password: '',
+    isLoading: false,
+    invalidText: '',
+    passWordType: 'password'
+})
+
+function togglePasswordType() {
+    form.passWordType = form.passWordType == 'password' ? 'text' : 'password'
+}
 </script>
 
-<style lang="css" scoped></style>
+<style scoped>
+.toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}
+</style>

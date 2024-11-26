@@ -58,21 +58,6 @@ export default {
         })
     },
 
-    copyCondoLink: (link: string,) => {
-        return Swal.fire({
-            text: `Share this link with others so they can post their condolences.`,
-            title: `${link}`,
-            icon: 'success',
-            // iconColor: '#60148f',
-            showCancelButton: true,
-            confirmButtonText: `Copy to clipboard`,
-            cancelButtonText: 'close',
-            confirmButtonColor: '#60148f',
-            reverseButtons: true,
-            width: '400px',
-        })
-    },
-
     confirmDelete: (text: string, btnText: string) => {
         return Swal.fire({
             // title: `${title}`,
@@ -141,5 +126,9 @@ export default {
         const hostURL = import.meta.env.VITE_API_URL;
         const folder = `${hostURL}/${folder_name}`
         return `${folder}/${picture ?? 'default_photo.png'}`
+    },
+
+    genrateCondoLink: (deceased: any) => {
+        return `${window.location.host}/condo/${deceased.id}/${encodeURIComponent(deceased.deceased)}`;
     }
 }

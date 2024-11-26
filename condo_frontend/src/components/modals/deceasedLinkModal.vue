@@ -14,22 +14,20 @@
                     </div>
                     <div class="modal-body rounded-0">
                         <div class="col-12">
-                            <div class="alert px-0 alert-light small text-muted border-0" role="alert">
-                                Copy this public link and send to others.
+                            <div class="alert px-0 alert-light small text-muted border-0 text-center" role="alert">
+                                Share this link with others so they can post their condolences.
                             </div>
 
                         </div>
                         <div class="col-12">
-                            <div class="input-group">
-                                <input disabled :value="link" type="text" name="name" id="name" class="form-control"
-                                    placeholder="placeholder" aria-describedby="suffixId" />
-                                <span v-if="!copied" @click="copy(link)" class="input-group-text cursor-pointer"
-                                    id="suffixId">
-                                    <i class="bi bi-copy me-1"></i> copy
-                                </span>
-                                <span v-else class="input-group-text cursor-pointer">
-                                    copied
-                                </span>
+                            <textarea :value="link" disabled name="" id="" class="form-control text-center"></textarea>
+                            <div class="mt-3">
+                                <button v-if="!copied" @click="copy(link)" class="btn btn-light w-100" id="suffixId">
+                                    <i class="bi bi-copy me-1"></i> copy link
+                                </button>
+                                <button v-else class="btn btn-light bg-success-subtle w-100">
+                                    <i class="bi bi-check text-success"></i> copied to clipboard
+                                </button>
                             </div>
                         </div>
 
@@ -75,7 +73,7 @@ onBeforeRouteLeave(() => {
 });
 </script>
 
-<style  scoped>
+<style scoped>
 .results-card {
     height: 300px;
     overflow-y: auto;

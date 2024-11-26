@@ -141,11 +141,11 @@
             </div>
         </div>
     </div>
-    <deceasedLinkModal :link="''" />
+    <deceasedLinkModal :link="linkToCopy" />
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import useFxn from '@/stores/Helpers/useFunctions';
 // @ts-ignore
 import { QuillEditor } from '@vueup/vue-quill'
@@ -156,7 +156,6 @@ import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
 import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
 import { useClipboard } from '@vueuse/core';
-import { useRoute } from 'vue-router';
 
 const authStore = useAuthStore()
 const appVar = useAppVariables()
@@ -277,15 +276,10 @@ async function sendformToAPI(newForm: FormData) {
 
 }
 
-const { copy, copied } = useClipboard()
+const linkToCopy = ref<string>('')
 function promptToCopy(deceased: any) {
-    const link = `${window.location.host}/condo/${deceased.id}/${deceased.deceased || ''}`;
-    useFxn.copyCondoLink(link).then((response) => {
-        if (response.isConfirmed) {
-            copy(link)
-            useFxn.toast('Link copied to clipboard')
-        }
-    })
+    linkToCopy.value = useFxn.genrateCondoLink(deceased);
+    appVar.copyLinkModal = !appVar.copyLinkModal
 }
 
 </script>

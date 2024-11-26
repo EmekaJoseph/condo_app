@@ -13,7 +13,7 @@
                         <router-link class="nav-link" to="/">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/login">Account</router-link>
+                        <router-link class="nav-link" to="/login">Login</router-link>
                     </li>
                 </ul>
                 <div @click="appVar.toggleSearchModal" class="cursor-pointer d-none d-md-block">

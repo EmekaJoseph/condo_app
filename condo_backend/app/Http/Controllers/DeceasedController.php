@@ -20,30 +20,33 @@ class DeceasedController extends Controller
     {
         $validatedData = $request->validated();
         $adminId = Auth::id();
-        $displayPhoto = null;
 
-        if (Deceased::where('deceased', $request->deceased)->where('admin_id', Auth::id())->exists()) {
+        // Check if the deceased already exists for the current admin
+        if (Deceased::where('deceased', $request->deceased)->where('admin_id', $adminId)->exists()) {
             return response()->json('exists', 202);
         }
 
-        if ($request->hasFile("display_photo")) {
-            $image = $request->file("display_photo");
-            $displayPhoto = HelperUploadImage($this->dp_folder_name, $image, 130, 130, 'dp-');
-        }
+        // Handle display photo upload
+        $displayPhoto = $request->hasFile("display_photo")
+            ? HelperUploadImage($this->dp_folder_name, $request->file("display_photo"), 130, 130, 'dp-')
+            : null;
 
-        $birth_date = Carbon::parse($request->birth_date);
-        $death_date = Carbon::parse($request->death_date);
+        // Parse dates
+        $birthDate = Carbon::parse($request->birth_date);
+        $deathDate = Carbon::parse($request->death_date);
 
         $deceased = Deceased::create(array_merge($validatedData, [
             "admin_id" => $adminId,
             "display_photo" => $displayPhoto,
-            "birth_date" => $birth_date,
-            "death_date" => $death_date,
+            "birth_date" => $birthDate,
+            "death_date" => $deathDate,
             // 'age' => $birth_date->diffInYears($death_date)
         ]));
 
+        // Increment deceased uploads for admin
         Admin::find($adminId)->increment("deceased_uploads");
 
+        // Save survived by data
         $this->saveSurvivedBys($deceased->id, $request);
 
         return response()->json($deceased, 201);
@@ -51,21 +54,19 @@ class DeceasedController extends Controller
 
     public function uploadsList(Request $request)
     {
-        if (Auth::user()->level != 1)
-            $uploads = Deceased::with(['admin'])->where('admin_id', Auth::id())->sortByDesc('created_date')
-                ->when($request->searchString, function ($query) use ($request) {
-                    $query->where('deceased', 'LIKE', "%{$request->searchString}%");
-                })
+        $query = Deceased::with(['admin']);
 
-                ->paginate(15);
-        else
-            $uploads = Deceased::with(['admin'])
-                ->when($request->searchString, function ($query) use ($request) {
-                    $query->where('deceased', 'LIKE', "%{$request->searchString}%");
-                })
-                ->paginate(15);
+        if (Auth::user()->level != 1) {
+            $query->where('admin_id', Auth::id());
+        }
+
+        $uploads = $query->when($request->searchString, function ($query) use ($request) {
+            $query->where('deceased', 'LIKE', "%{$request->searchString}%");
+        })->orderByDesc('created_at')->paginate(15);
+
         return response()->json($uploads, 201);
     }
+
 
     public function update(DeceasedRequest $request, $id): JsonResponse
     {

@@ -166,7 +166,7 @@ function playAudio() {
 async function getDetails() {
     try {
         isLoading.value = true
-        let { data } = await api.details(route.params.id)
+        const { data } = await api.details(route.params.id)
         details.value = data
         isLoading.value = false
 
@@ -177,7 +177,7 @@ async function getDetails() {
 
 async function getCondolences() {
     try {
-        let { data } = await api.condolences(route.params.id)
+        const { data } = await api.condolences(route.params.id)
         condolences.value = data
     } catch (error) { }
 }
@@ -186,6 +186,10 @@ const switchTab = (str: string) => {
     condoIsClicked.value = (str == 'condo')
     if (!audioIsPlaying.value) playAudio()
 }
+
+setInterval(() => {
+    getCondolences()
+}, 10000)
 
 </script>
 

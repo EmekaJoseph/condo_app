@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('deceased_id');
             $table->string('condo_name')->default('anonymous');
             $table->string('relationship')->nullable();
+            $table->string('ip_address')->nullable();
             $table->text('condolence');
             $table->string('email')->nullable();
             $table->timestamps();

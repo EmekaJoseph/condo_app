@@ -33,11 +33,21 @@ class CondolenceController extends Controller
             "condolence" => $request->condolence,
             "condo_name" => $request->input("condo_name"),
             "relationship" => $request->input("relationship"),
+            "ip_address" => request()->ip()
         ];
 
-        Condolence::firstOrCreate($data);
+        $searchAttributes = [
+            "ip_address" => request()->ip(),
+            "condo_name" => $request->input("condo_name"),
+            "condolence" => $request->condolence,
+        ];
 
-        return response()->json($data, 201);
+        $condolence = Condolence::firstOrCreate($searchAttributes, $data);
+        if ($condolence->wasRecentlyCreated) {
+            return response()->json('Created', 201);
+        } else {
+            return response()->json('Already Posted', 203);
+        }
     }
 
     public function removeCondolence($condolence_id)

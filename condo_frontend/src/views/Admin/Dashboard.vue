@@ -47,7 +47,7 @@
                                     <div class="float-end">
                                         <button @click="addNewSurvivedByField" style="border-style: dotted;"
                                             class="btn btn-light btn-sm border-dark   text-dark  ">
-                                            add new line
+                                            new line
                                             <i class="bi bi-plus-circle-dotted"></i>
                                         </button>
                                     </div>
@@ -99,24 +99,24 @@
                                 <div class="row justify-content-center g-3">
                                     <label class="form-label">Display Photo:</label>
                                     <div class="col-md-3 order-2 order-md-1 d-flex justify-content-center">
-                                        <div class="image-circle"
+                                        <div v-bind="getRootProps()" class="image-circle"
                                             :style="{ backgroundImage: `url(${form.photo_path})` }">
+                                            <input v-bind="getInputProps()" />
                                         </div>
                                         <!-- <div class="image-circle"></div> -->
 
                                     </div>
-                                    <div class="col-md-8 order-1 order-md-2">
+                                    <!-- <div class="col-md-8 order-1 order-md-2">
                                         <div class="dropzone" v-bind="getRootProps()">
                                             <div class="text-center small">
                                                 <div><i class="bi bi-image color-theme"></i></div>
                                                 <div><span class="color-theme">Click to replace</span> or drag and
                                                     drop
                                                 </div>
-                                                <!-- <div class="fw-light">SVG, PNG, JPG or GIF (max. 400 x 400px)</div> -->
                                             </div>
                                             <input v-bind="getInputProps()" />
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <hr>
@@ -155,6 +155,8 @@ import api from '@/stores/Helpers/axios'
 import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
 import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
+import { useClipboard } from '@vueuse/core';
+import { useRoute } from 'vue-router';
 
 const authStore = useAuthStore()
 const appVar = useAppVariables()
@@ -256,6 +258,7 @@ async function sendformToAPI(newForm: FormData) {
         }
 
         useFxn.toast('Uploaded Successfully', 'success')
+        promptToCopy(resp.data)
         form.deceased = ''
         form.biography = ''
         form.survivedBys = [{ survived_by: '', relationship: 'friend' }]
@@ -272,6 +275,17 @@ async function sendformToAPI(newForm: FormData) {
 
     }
 
+}
+
+const { copy, copied } = useClipboard()
+function promptToCopy(deceased: any) {
+    const link = `${window.location.host}/condo/${deceased.id}/${deceased.deceased || ''}`;
+    useFxn.copyCondoLink(link).then((response) => {
+        if (response.isConfirmed) {
+            copy(link)
+            useFxn.toast('Link copied to clipboard')
+        }
+    })
 }
 
 </script>

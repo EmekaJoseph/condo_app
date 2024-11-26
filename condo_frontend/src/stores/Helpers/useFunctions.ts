@@ -58,6 +58,21 @@ export default {
         })
     },
 
+    copyCondoLink: (link: string,) => {
+        return Swal.fire({
+            text: `Share this link with others so they can post their condolences.`,
+            title: `${link}`,
+            icon: 'success',
+            // iconColor: '#60148f',
+            showCancelButton: true,
+            confirmButtonText: `Copy to clipboard`,
+            cancelButtonText: 'close',
+            confirmButtonColor: '#60148f',
+            reverseButtons: true,
+            width: '400px',
+        })
+    },
+
     confirmDelete: (text: string, btnText: string) => {
         return Swal.fire({
             // title: `${title}`,

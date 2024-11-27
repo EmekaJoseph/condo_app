@@ -46,7 +46,7 @@
 
                                 </div>
                                 <h6 class="text-center mt-4 hover-tiltX">
-                                    <router-link class=" color-theme" to="/register" replace>I dont have an
+                                    <router-link class=" theme-color" to="/register" replace>I dont have an
                                         account yet </router-link>
                                 </h6>
                             </form>

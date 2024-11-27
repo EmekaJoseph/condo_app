@@ -44,7 +44,7 @@ async function getProfileDetails() {
         authStore.profileData = data
         isLoading.value = false
     } catch (error) {
-
+        authStore.logout()
     }
 }
 </script>

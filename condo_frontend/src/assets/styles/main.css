@@ -23,7 +23,7 @@ button:focus,
     cursor: pointer;
 }
 
-.color-theme {
+.theme-color {
     color: var(--theme-color) !important;
 }
 

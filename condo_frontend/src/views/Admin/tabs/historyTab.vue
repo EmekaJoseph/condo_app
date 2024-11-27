@@ -3,7 +3,7 @@
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
                 <PageLoadingComponent v-if="isLoading" />
-                <div v-elses class="card min-vh-100 border-0">
+                <div v-else class="card min-vh-100 border-0">
                     <div v-show="list.length" class="card-header bg-white border-0 small">
                         <div class="d-lg-flex justify-content-center  justify-content-lg-between">
                             <div class="me-3 text-muted text-center" v-if="list.length">
@@ -32,18 +32,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="!list.length" class="text-center">No data history</div>
+                        <div v-if="!list.length" class="text-center my-5">No data to show</div>
                         <div v-else>
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <div class="table-responsive ">
-                                        <table class="table table-sm table-striped">
+                                    <div class="table-responsive table-mobile-responsiv ">
+                                        <table class="table table-sm table-striped text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th>S/N</th>
                                                     <th>NAME</th>
-                                                    <th>BIRTH DATE</th>
-                                                    <th>DEATH DATE</th>
+                                                    <th>DATES</th>
                                                     <th>UPLOADED</th>
                                                     <th>POSTED BY</th>
                                                     <th>CONDOLENCES</th>
@@ -55,25 +54,21 @@
                                                     <th>{{ (index + 1) }}</th>
                                                     <td>
                                                         <button @click="appVar.showDeceasedCopyModal(record)"
-                                                            class="btn btn-link fw-bold btn-sm border-0">
+                                                            class="btn btn-link fw-bold btn-s border-0 p-0 theme-color">
                                                             {{ record.deceased }}
                                                         </button>
+
                                                     </td>
-                                                    <!-- <td>{{ record.deceased }}</td> -->
-                                                    <td>{{ useFxn.dateDisplay(record.birth_date) }}</td>
-                                                    <td>{{ useFxn.dateDisplay(record.death_date) }}</td>
+                                                    <td>({{ useFxn.dateDisplay(record.birth_date) }} - {{
+                                                        useFxn.dateDisplay(record.death_date) }})</td>
                                                     <td>{{ useFxn.dateDisplay(record.created_at) }}</td>
                                                     <td>{{ record.admin.email }}</td>
                                                     <td>{{ record.condolences }}</td>
                                                     <td>
-                                                        <!-- <button @click="appVar.showDeceasedCopyModal(record)"
-                                                            class="btn btn-outline-info btn-sm border-0">
-                                                            <i class="bi bi-link-45deg"></i>
-                                                        </button> -->
-                                                        <button :disabled="record.condolences"
+                                                        <!-- <button :disabled="record.condolences"
                                                             class="btn btn-outline-dark btn-sm border-0">
                                                             <i class="bi bi-pencil"></i>
-                                                        </button>
+                                                        </button> -->
                                                         <button @click="deleteRecord(record.id)"
                                                             class="btn btn-outline-danger btn-sm border-0">
                                                             <i class="bi bi-trash"></i>
@@ -111,7 +106,6 @@ import { useAppVariables } from '@/stores/appVariables';
 
 const list = ref<any>([])
 const isLoading = ref(true)
-
 
 const appVar = useAppVariables()
 
@@ -164,6 +158,6 @@ const onInputFunction = useFxn.debounce(loadHistory, 300);
 
 </script>
 
-<!-- <style lang="css" scoped>
+<style lang="css" scoped>
 @import '@/assets/styles/table-mobile-responsive.css';
-</style> -->
+</style>

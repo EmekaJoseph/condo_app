@@ -1,21 +1,22 @@
 <template>
-    <nav class="navbar  navbar-light bg-light shadow-sm">
+    <nav class="navbar  sticky-top navbar-light bg-light shadow-sm">
         <div class="container">
             <!-- <div class="fs-5 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample">
                 <i class="bi bi-list"></i> &nbsp;
 
             </div> -->
-            <div>
-                <span class="color-theme fw-bolder">{{ appVar.appName }}</span>
+            <div class="py-2">
+                <span class="theme-color fw-bolder">{{ appVar.appName }}</span>
                 | {{ route.name }}
             </div>
-            <div class="dropdown open d-none d-md-block">
+            <div class="dropdown open d-non d-md-block">
                 <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-person"></i> {{ authStore.profileData?.email ?? '' }}
+                    <i class="bi bi-person-circle text-muted"></i>
                 </span>
                 <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
+                    <span class="dropdown-item disabled">{{ authStore.profileData?.email ?? '' }}</span>
                     <span class="dropdown-item cursor-pointer text-danger bg-transparent" @click="logout">
                         <i class="bi bi-power"></i> Logout
                     </span>

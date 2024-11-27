@@ -40,7 +40,8 @@
               </div>
             </div>
             <div class="col-12 small text-right mt-4">
-              <router-link class=" float-end btn-link color-theme text-decoration-none fw-bolder hover-tiltX" to="/login">
+              <router-link class=" float-end btn-link theme-color text-decoration-none fw-bolder hover-tiltX"
+                to="/login">
                 Create a memorial page <i class="bi bi-chevron-right"></i>
               </router-link>
             </div>
@@ -67,7 +68,7 @@
                     alt="image"> </div>
                   <!-- :style="{ backgroundImage: `url(${form.photo_path})` }" -->
                   <div class="card-body">
-                    <div class="card-title color-theme  fw-bolder text-truncate">{{ slide.deceased }} </div>
+                    <div class="card-title theme-color  fw-bolder text-truncate">{{ slide.deceased }} </div>
                     <p class="card-text">
                       ({{ new Date(slide.birth_date).getFullYear() }} -
                       {{ new Date(slide.death_date).getFullYear() }})
@@ -88,7 +89,7 @@
 
       <section class="pt-5 d-md-none">
         <div class="container">
-          <div @click="appVar.toggleSearchModal()" class="text-center color-theme fs-4 cursor-pointer hover-tiltX">
+          <div @click="appVar.toggleSearchModal()" class="text-center theme-color fs-4 cursor-pointer hover-tiltX">
             Click here to search <i class="bi bi-search"></i>
           </div>
         </div>

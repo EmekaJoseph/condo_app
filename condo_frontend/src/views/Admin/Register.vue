@@ -44,7 +44,7 @@
                                     </button>
                                 </div>
                                 <h6 class="text-center mt-4">
-                                    Already have an account? <router-link class=" color-theme hover-tiltY" to="/login"
+                                    Already have an account? <router-link class=" theme-color hover-tiltY" to="/login"
                                         replace>Login.
                                     </router-link>
                                 </h6>

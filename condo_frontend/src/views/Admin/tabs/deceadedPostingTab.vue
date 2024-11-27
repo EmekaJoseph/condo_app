@@ -45,10 +45,10 @@
                             <div class="card-body">
                                 <div class="form-label mb-3">Survived by:
                                     <div class="float-end">
-                                        <button @click="addNewSurvivedByField" style="border-style: dotted;"
-                                            class="btn btn-light btn-sm border-dark   text-dark  ">
-                                            new line
-                                            <i class="bi bi-plus-circle-dotted"></i>
+                                        <button @click="addNewSurvivedByField"
+                                            class="btn btn-outline-dark border-0 bg-success-subtle btn-sm p-0 px-3 ">
+                                            add
+                                            <i class="bi bi-plus-lg"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -83,12 +83,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-12">
+                                        <!-- <div class="col-12 m-0">
                                             <button @click="addNewSurvivedByField"
-                                                style="font-size: 11px;border-style: dotted;"
-                                                class="btn btn-light border-dark fw-bold text-dark w-100 ">
-                                                click here to new line
-                                                <i class="bi bi-plus-circle-dotted"></i>
+                                                class="btn btn-outline-success bg-success-subtle p-0 float-end px-3 ">
+                                                <i class="bi bi-plus-lg"></i>
                                             </button>
                                         </div> -->
                                     </div>
@@ -109,8 +107,8 @@
                                     <!-- <div class="col-md-8 order-1 order-md-2">
                                         <div class="dropzone" v-bind="getRootProps()">
                                             <div class="text-center small">
-                                                <div><i class="bi bi-image color-theme"></i></div>
-                                                <div><span class="color-theme">Click to replace</span> or drag and
+                                                <div><i class="bi bi-image theme-color"></i></div>
+                                                <div><span class="theme-color">Click to replace</span> or drag and
                                                     drop
                                                 </div>
                                             </div>

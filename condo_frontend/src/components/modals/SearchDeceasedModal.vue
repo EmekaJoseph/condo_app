@@ -31,7 +31,7 @@
                                             <li v-for="(item, index) in form.searchResults"
                                                 @click="goToDeceasedPage(item)"
                                                 class="list-group-item ps-0 text-capitalize cursor-pointer">
-                                                <span class="fw-bold color-theme me-2">{{ item.deceased }}</span>
+                                                <span class="fw-bold theme-color me-2">{{ item.deceased }}</span>
                                                 ({{ new Date(item.birth_date).getFullYear() }} -
                                                 {{ new Date(item.death_date).getFullYear() }})
                                             </li>

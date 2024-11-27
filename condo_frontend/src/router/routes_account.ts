@@ -24,11 +24,6 @@ export default [
                 alias: '/account',
                 component: () => import('../views/Admin/Dashboard.vue'),
             },
-            {
-                path: '/profile',
-                name: 'Profile',
-                component: () => import('../views/Admin/Profile.vue'),
-            },
         ]
     }
 ]

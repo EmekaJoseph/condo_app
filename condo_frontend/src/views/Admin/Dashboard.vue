@@ -35,16 +35,17 @@ const tabToShow = ref<Tagtypes>('history')
 
 const deceadedPostingTab = defineAsyncComponent(() => import('./tabs/deceadedPostingTab.vue'));
 const historyTab = defineAsyncComponent(() => import('./tabs/historyTab.vue'));
+// const settingsTab = defineAsyncComponent(() => import('./tabs/settingsTab.vue'));
 
 const tabs: { name: string, value: Tagtypes, component: AsyncComponent }[] = [
     { name: 'History', value: 'history', component: historyTab },
     { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab },
-    // { name: 'Settings', value: 'settings', component: deceadedPostingTab },
+    // { name: 'Settings', value: 'settings', component: settingsTab },
 ]
 
 </script>
 
-<style>
+<style scoped>
 .nav-link,
 .nav-item .active {
     border: none !important;
@@ -52,8 +53,14 @@ const tabs: { name: string, value: Tagtypes, component: AsyncComponent }[] = [
     color: inherit;
 }
 
+.nav-item {
+    color: var(--bs-gray-600)
+}
+
 .nav-item .active {
     border-bottom: 1px solid var(--theme-color) !important;
     color: var(--theme-color) !important;
+    background: transparent !important;
+    font-weight: bolder;
 }
 </style>

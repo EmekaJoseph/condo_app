@@ -1,8 +1,7 @@
-import HomeView from '../views/General/HomeView.vue'
 import { useAuthStore } from '@/stores/authStore'
+import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
 
-// @ts-ignore
-const authGuard = (to, from, next) => {
+const authGuard = (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     const authStore = useAuthStore();
     if (!authStore.isLoggedIn) {
         next({ name: `Login` });

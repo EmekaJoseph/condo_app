@@ -56,10 +56,11 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <p class="card-text">
-                                        <h5>Lost a loved one?</h5>
-                                        Share memories, photos and videos and create a beautiful and lasting tribute to
-                                        celebrate
-                                        the life of your lost loved ones.
+                                            <span class="fs-5 fw-bold">Lost a loved one?</span> <br>
+                                            Share memories, photos and videos and create a beautiful and lasting tribute
+                                            to
+                                            celebrate
+                                            the life of your lost loved ones.
                                         </p>
                                         <p>
                                             <i class="bi bi-1-circle-fill"></i>

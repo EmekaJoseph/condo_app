@@ -12,6 +12,7 @@ export const useAppVariables = defineStore('appVariables', () => {
   const adminMenu: Ref<boolean> = ref(false)
   const currentDeceasedId = ref<any>('')
   const currentImageToShow = ref<any>('')
+  const deceasedLinkUrl = ref<any>('')
   const { y: y_axis } = useWindowScroll()
   const { width: screen_width, height } = useWindowSize()
 
@@ -21,9 +22,9 @@ export const useAppVariables = defineStore('appVariables', () => {
   const toggleImageModal = () => imageModal.value = !imageModal.value
   const toggleAdminMenu = () => adminMenu.value = !adminMenu.value
 
-  function deceasedLink(item: any) {
-    const name = item.deceased.split(' ').join('-')
-    return `/condo/${item.id}/${name}`
+  function showDeceasedCopyModal(deceased: any) {
+    deceasedLinkUrl.value = `${window.location.host}/condo/${deceased.id}/${deceased.deceased.replace(/\s+/g, '-')}`;
+    toggleCopyLinkModal()
   }
 
   return {
@@ -42,6 +43,7 @@ export const useAppVariables = defineStore('appVariables', () => {
     toggleImageModal,
     toggleAdminMenu,
     toggleCopyLinkModal,
-    deceasedLink,
+    deceasedLinkUrl,
+    showDeceasedCopyModal
   }
 })

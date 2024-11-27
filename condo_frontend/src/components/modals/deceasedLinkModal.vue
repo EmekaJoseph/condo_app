@@ -1,10 +1,10 @@
 <template>
     <div>
         <!-- Modal trigger button -->
-        <button ref="openModal_link" class="btn d-none" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <button ref="openModal_link" class="btn d-none" data-bs-toggle="modal" data-bs-target="#linkModal">
         </button>
 
-        <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="linkModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -20,9 +20,11 @@
 
                         </div>
                         <div class="col-12">
-                            <textarea :value="link" disabled name="" id="" class="form-control text-center"></textarea>
+                            <textarea :value="appVar.deceasedLinkUrl" disabled name="" id=""
+                                class="form-control text-center"></textarea>
                             <div class="mt-3">
-                                <button v-if="!copied" @click="copy(link)" class="btn btn-light w-100" id="suffixId">
+                                <button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
+                                    class="btn btn-light bg-primary-subtle w-100" id="suffixId">
                                     <i class="bi bi-copy me-1"></i> copy link
                                 </button>
                                 <button v-else class="btn btn-light bg-success-subtle w-100">
@@ -56,12 +58,6 @@ const closeModal_link = ref<any>(null)
 
 const { copy, copied } = useClipboard()
 
-const prop = defineProps({
-    link: {
-        required: true,
-        type: String
-    }
-})
 
 
 watch(() => appVar.copyLinkModal, () => {

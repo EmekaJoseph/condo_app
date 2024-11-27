@@ -1,9 +1,12 @@
 <template>
     <nav class="navbar  navbar-light bg-light shadow-sm">
         <div class="container">
-            <div class="fs-5 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            <!-- <div class="fs-5 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample">
                 <i class="bi bi-list"></i> &nbsp;
+
+            </div> -->
+            <div>
                 <span class="color-theme fw-bolder">{{ appVar.appName }}</span>
                 | {{ route.name }}
             </div>
@@ -23,7 +26,7 @@
     </nav>
 
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <!-- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header bg-light">
             <h5 class="offcanvas-title text-muted " id="offcanvasExampleLabel">
                 {{ authStore.profileData?.email ?? '' }}
@@ -51,7 +54,7 @@
             </ul>
 
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script lang="ts" setup>

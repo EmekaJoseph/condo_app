@@ -28,7 +28,8 @@
                                 <div class="card-body  results-card">
                                     <div v-if="!form.isSearching">
                                         <ul v-if="form.searchResults.length" class="list-group list-group-flush">
-                                            <li v-for="(item, index) in form.searchResults" @click="gotToDeceasedPage(item)"
+                                            <li v-for="(item, index) in form.searchResults"
+                                                @click="goToDeceasedPage(item)"
                                                 class="list-group-item ps-0 text-capitalize cursor-pointer">
                                                 <span class="fw-bold color-theme me-2">{{ item.deceased }}</span>
                                                 ({{ new Date(item.birth_date).getFullYear() }} -
@@ -92,11 +93,10 @@ async function search() {
     }
 }
 
-function gotToDeceasedPage(item: any) {
-    closeModal_search.value.click()
-    router.push({
-        path: appVar.deceasedLink(item),
-    })
+function goToDeceasedPage(item: { id: number; deceased: string }) {
+    closeModal_search.value.click();
+    const name = item.deceased.replace(/\s+/g, '-');
+    router.push(`/condo/${item.id}/${name}`);
 }
 
 
@@ -109,7 +109,7 @@ onBeforeRouteLeave(() => {
 });
 </script>
 
-<style  scoped>
+<style scoped>
 .results-card {
     height: 300px;
     overflow-y: auto;

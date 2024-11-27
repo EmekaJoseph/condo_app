@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id')->unique();
             $table->string('admin_id');
             $table->string('deceased');
+            $table->integer('condolences')->default(0);
             $table->dateTime('birth_date')->nullable();
             $table->dateTime('death_date')->nullable();
             $table->integer('age')->virtualAs("YEAR(death_date) - YEAR(birth_date)")->nullable();

@@ -127,8 +127,4 @@ export default {
         const folder = `${hostURL}/${folder_name}`
         return `${folder}/${picture ?? 'default_photo.png'}`
     },
-
-    genrateCondoLink: (deceased: any) => {
-        return `${window.location.host}/condo/${deceased.id}/${encodeURIComponent(deceased.deceased)}`;
-    }
 }

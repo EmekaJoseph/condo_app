@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condolence;
+use App\Models\Deceased;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -36,14 +37,16 @@ class CondolenceController extends Controller
             "ip_address" => request()->ip()
         ];
 
-        $searchAttributes = [
+        $duplicateAttributes = [
             "ip_address" => request()->ip(),
             "condo_name" => $request->input("condo_name"),
             "condolence" => $request->condolence,
         ];
 
-        $condolence = Condolence::firstOrCreate($searchAttributes, $data);
+        $condolence = Condolence::firstOrCreate($duplicateAttributes, $data);
+
         if ($condolence->wasRecentlyCreated) {
+            Deceased::find($request->deceased_id)->increment("condolences");
             return response()->json('Created', 201);
         } else {
             return response()->json('Already Posted', 203);

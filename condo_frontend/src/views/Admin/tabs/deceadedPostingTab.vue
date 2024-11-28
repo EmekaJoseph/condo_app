@@ -44,27 +44,27 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-body">
                                 <div class="form-label mb-3">Survived by:
-                                    <div class="float-end">
+                                    <!-- <div class="float-end">
                                         <button @click="addNewSurvivedByField"
                                             class="btn btn-outline-dark border-0 bg-success-subtle btn-sm p-0 px-3 ">
-                                            add
+                                            add new
                                             <i class="bi bi-plus-lg"></i>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="card border-0 p-0" style="max-height: 300px; overflow-y: auto;">
+                                <div class="card border-0 p-0" style="max-height: 500px; overflow-y: auto;">
                                     <div class="card-body p-0">
                                         <div v-for="(item, index) in form.survivedBys" :key="index"
                                             class="col-12 bg-light-subtle mb-2 px-2 pb-3 card">
 
                                             <div class="row g-3">
-                                                <div class="col-12 ">
+                                                <div class="col-12 mb-0 ">
                                                     <!-- Name {{ index + 1 }}: -->
-                                                    <button @click="form.survivedBys.splice(index, 1)"
+                                                    <span @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
-                                                        class="float-end btn m-0 p-0 btn-link text-danger border-0">
-                                                        <i class="bi bi-x"></i>
-                                                    </button>
+                                                        class="float-end  text-danger border-0 cursor-pointer">
+                                                        <i class="bi bi-trash3 xsmall"></i>
+                                                    </span>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input v-model="item.survived_by" type="text"
@@ -83,13 +83,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-12 m-0">
-                                            <button @click="addNewSurvivedByField"
-                                                class="btn btn-outline-success bg-success-subtle p-0 float-end px-3 ">
-                                                <i class="bi bi-plus-lg"></i>
-                                            </button>
-                                        </div> -->
+
                                     </div>
+                                </div>
+                                <div class="col-12 m-0 d-flex justify-content-end">
+                                    <button @click="addNewSurvivedByField"
+                                        class="btn btn-outline-dark border-0 bg-success-subtle btn-sm fw-bolder p-0 px-3 ">
+                                        ..add one
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
                                 </div>
 
                                 <hr>

@@ -51,9 +51,9 @@
                     </div>
                     <div class="col-md-4">
                         <hr class="d-lg-none">
-                        <div class="row g-3">
+                        <div class="row g-3 mt-5 mt-lg-0">
                             <div class="col-12">
-                                <div class="card">
+                                <div class="card bg-secondary-subtle">
                                     <div class="card-body">
                                         <p class="card-text">
                                             <span class="fs-5 fw-bold">Lost a loved one?</span> <br>
@@ -98,7 +98,7 @@
                         <div class="card bg-light">
                             <div class="card-body">
                                 <div class="card-text">
-                                    As we mourn the physical departure, we also celebrate the enduring spirit that
+                                    🌹 As we mourn the physical departure, we also celebrate the enduring spirit that
                                     transcends
                                     the boundaries of time. For in every cherished memory, every shared laugh, and every
                                     lesson
@@ -185,7 +185,7 @@ async function getCondolences() {
 
 const switchTab = (str: string) => {
     condoIsClicked.value = (str == 'condo')
-    if (!audioIsPlaying.value) playAudio()
+    // if (!audioIsPlaying.value) playAudio()
 }
 
 setInterval(() => {

@@ -16,7 +16,7 @@
             <div class="tab-content">
                 <div v-for="tab in tabs" :key="tab.value" :class="['tab-pane', { active: tabToShow === tab.value }]"
                     role="tabpanel" :id="`tab-${tab.value}`">
-                    <component v-if="tabToShow === tab.value" :is="tab.component" />
+                    <component @done="tabToShow = 'history'" v-if="tabToShow === tab.value" :is="tab.component" />
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ const usersTab = defineAsyncComponent(() => import('./tabContents/usersTab.vue')
 
 const tabs: { name: string, value: Tagtypes, component: AsyncComponent, adminAccess: string[] }[] = [
     { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab, adminAccess: ['1', '2'] },
-    { name: 'History', value: 'history', component: historyTab, adminAccess: ['1', '2'] },
+    { name: 'My Uploads', value: 'history', component: historyTab, adminAccess: ['1', '2'] },
     { name: 'Users', value: 'users', component: usersTab, adminAccess: ['1'] },
     // { name: 'Settings', value: 'settings', component: settingsTab },
 ]

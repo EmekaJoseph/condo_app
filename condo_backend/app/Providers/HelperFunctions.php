@@ -36,9 +36,8 @@ if (!function_exists('HelperFileUpload')) {
 if (!function_exists('HelperUploadImage')) {
     function HelperUploadImage($folder, $file, $width = 100, $height = 100, $name = '')
     {
-
-        if (!File::exists(public_path($folder))) {
-            File::makeDirectory(public_path($folder));
+        if (!File::exists($folder)) {
+            File::makeDirectory($folder, 0755, true);
         }
 
         $filename = $file->getClientOriginalName();

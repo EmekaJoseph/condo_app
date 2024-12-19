@@ -5,16 +5,16 @@
                 <PageLoadingComponent v-if="isLoading" />
                 <div v-else class="card min-vh-100 border-0">
                     <div v-show="list.length" class="card-header bg-white border-0 small">
-                        <div class="d-lg-flex justify-content-center  justify-content-lg-between">
-                            <div class="me-3 text-muted text-center" v-if="list.length">
+                        <div class="d-lg-flex justify-content-start">
+                            <div class="me-3 text-muted" v-if="list.length">
                                 Showing
                                 <span class="fw-bold">{{ paginate.currentPage }}/{{ paginate.totalPages }}</span>
                                 pages
                             </div>
-                            <div class="mt-3 mt-lg-0 d-flex justify-content-center">
+                            <!-- <div class="mt-3 mt-lg-0 d-flex justify-content-center">
                                 <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
                                     :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -88,11 +88,10 @@
                             </div>
 
                             <!-- pagination -->
-                            <!-- <div class="mt-5" v-if="list.length">
-                                        <customPagination :currentPage="paginate.currentPage"
-                                            :perPage="paginate.perPage" :totalRecords="paginate.totalRecords"
-                                            @moveToNext="paginateToNext" />
-                                    </div> -->
+                            <div class="mt-3 mt-lg-0 d-flex justify-content-center">
+                                <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
+                                    :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
+                            </div>
                         </div>
                     </div>
                 </div>

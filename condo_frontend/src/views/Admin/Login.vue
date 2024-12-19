@@ -37,7 +37,7 @@
                                         <i class="bi bi-chevron-right"></i>
                                     </button>
                                     <button v-else class="btn btn-theme w-100 btn-lg" type="button" disabled>
-                                        <span class="spinner-border spinner-border-sm" role="status"
+                                        <span class="spinner-border spinner-border-s" role="status"
                                             aria-hidden="true"></span>
                                     </button>
 

@@ -15,8 +15,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label">Your Name (optional)</label>
-                            <input v-model="form.condo_name" type="text" class="form-control" name="" id=""
-                                aria-describedby="helpId" placeholder="" />
+                            <input v-model="form.condo_name" type="text" class="form-control" placeholder="" />
                         </div>
 
                         <div class="mb-3">

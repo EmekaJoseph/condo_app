@@ -158,6 +158,8 @@ import { useAppVariables } from '@/stores/appVariables';
 const authStore = useAuthStore()
 const appVar = useAppVariables()
 
+const emits = defineEmits(['done'])
+
 let formEmptyState = {
     deceased: '',
     biography: '',
@@ -262,6 +264,7 @@ async function sendformToAPI(newForm: FormData) {
 
         useFxn.toast('Uploaded Successfully', 'success')
         appVar.showDeceasedCopyModal(resp.data)
+        emits('done')
         Object.assign(form, formEmptyState);
 
     } catch (error) {

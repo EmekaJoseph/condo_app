@@ -22,21 +22,21 @@
                         <div class="col-12">
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <textarea :value="appVar.deceasedLinkUrl" disabled name="" id=""
-                                        class="form-control text-center"></textarea>
+                                    <textarea rows="3" :value="appVar.deceasedLinkUrl" disabled
+                                        class="form-control text-center bg-warning-subtle border-0"></textarea>
                                 </div>
-                                <div class="col-4"><button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
+                                <div class="col-lg-4"><button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
                                         class="btn btn-light bg-primary-subtle w-100" id="suffixId">
-                                        <i class="bi bi-copy me-1"></i> copy link
+                                        copy link <i class="bi bi-copy me-1"></i>
                                     </button>
                                     <button v-else class="btn btn-light bg-success-subtle w-100">
-                                        <i class="bi bi-check text-success"></i> copied
+                                        copied <i class="bi bi-check text-success"></i>
                                     </button>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-lg-8">
                                     <a class="btn btn-dark w-100" :href="'https://' + appVar.deceasedLinkUrl"
                                         target="_blank">
-                                        Visit Link
+                                        Go to memoral page <i class="bi bi-chevron-right"></i>
                                     </a>
                                 </div>
                             </div>

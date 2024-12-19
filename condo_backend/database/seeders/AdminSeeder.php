@@ -17,8 +17,8 @@ class AdminSeeder extends Seeder
         Admin::create([
             'id' => uniqid(),
             'email' => 'admin@demo.com',
-            'firstname' => 'Joseph',
-            'lastname' => 'Emeka',
+            'name' => 'Joseph',
+            // 'lastname' => 'Emeka',
             'password' => Hash::make('password'),
             'phone' => '08139590011',
             'level' => 1

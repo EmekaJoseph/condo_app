@@ -48,34 +48,24 @@
                                                 <tr>
                                                     <th>S/N</th>
                                                     <th>NAME</th>
-                                                    <th>DATES</th>
-                                                    <th>UPLOADED</th>
-                                                    <th>POSTED BY</th>
-                                                    <th>CONDOLENCES</th>
+                                                    <th>EMAIL</th>
+                                                    <th>JOINED</th>
+                                                    <th class="text-center">UPLOADS</th>
+                                                    <th>LEVEL</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr v-for="(record, index) in list" :key="record.id">
                                                     <th>{{ (index + 1) }}</th>
-                                                    <td>
-                                                        <button @click="appVar.showDeceasedCopyModal(record)"
-                                                            class="btn btn-link fw-bold btn-s border-0 p-0 theme-color">
-                                                            {{ record.deceased }}
-                                                        </button>
-
-                                                    </td>
-                                                    <td>({{ useFxn.dateDisplay(record.birth_date) }} - {{
-                                                        useFxn.dateDisplay(record.death_date) }})</td>
+                                                    <td> {{ record.name }} </td>
+                                                    <td> {{ record.email }} </td>
                                                     <td>{{ useFxn.dateDisplay(record.created_at) }}</td>
-                                                    <td>{{ record.admin?.email }}</td>
-                                                    <td>{{ record.condolences }}</td>
+                                                    <td class="text-center">{{ record.deceased_uploads }}</td>
+                                                    <td>Level {{ record.level }}</td>
                                                     <td>
-                                                        <!-- <button :disabled="record.condolences"
-                                                            class="btn btn-outline-dark btn-sm border-0">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </button> -->
-                                                        <button @click="deleteRecord(record.id)"
+                                                        <button :disabled="record.id == authStore.profileData?.id"
+                                                            @click="deleteRecord(record.id)"
                                                             class="btn btn-outline-danger btn-sm border-0">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
@@ -109,9 +99,13 @@ import useFxn from '@/stores/Helpers/useFunctions';
 import api from '@/stores/Helpers/axios'
 import customPagination from '@/components/customPagination.vue'
 import { useAppVariables } from '@/stores/appVariables';
+import { useAuthStore } from '@/stores/authStore';
 
 const list = ref<any>([])
 const isLoading = ref(true)
+const authStore = useAuthStore()
+
+
 
 const appVar = useAppVariables()
 
@@ -125,16 +119,16 @@ const paginate = reactive({
 
 function paginateToNext(page: any) {
     window.scrollTo(0, 0)
-    loadHistory(page)
+    loadAdmins(page)
 }
 
 onMounted(() => {
-    loadHistory()
+    loadAdmins()
 })
 
-async function loadHistory(page = 1) {
+async function loadAdmins(page = 1) {
     // isLoading.value = true;
-    const resp = await api.userUploads(searchString.value, page)
+    const resp = await api.userAdmins(searchString.value, page)
     list.value = resp.data.data
     paginate.currentPage = resp.data.current_page;
     paginate.totalPages = resp.data.last_page;
@@ -144,13 +138,13 @@ async function loadHistory(page = 1) {
 }
 
 function deleteRecord(id: string | number) {
-    useFxn.confirmDelete('The Entire Record will be deleted?', 'Yes. Delete')
+    useFxn.confirmDelete('This user will be deleted?', 'Yes. Delete')
         .then(async (answer) => {
             if (answer.value === true) {
                 try {
-                    await api.userDeleteDeceased(id)
+                    await api.userDeleteAdmin(id)
                     useFxn.toast('Record deleted', 'success')
-                    loadHistory()
+                    loadAdmins()
                 } catch (error) {
 
                 }
@@ -160,7 +154,7 @@ function deleteRecord(id: string | number) {
 
 // searching
 const searchString = ref('')
-const onInputFunction = useFxn.debounce(loadHistory, 300);
+const onInputFunction = useFxn.debounce(loadAdmins, 300);
 
 </script>
 

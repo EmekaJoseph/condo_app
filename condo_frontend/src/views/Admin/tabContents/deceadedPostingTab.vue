@@ -122,11 +122,11 @@
                                 <hr>
                                 <div class="col-12 ">
                                     <div class="col-md-4 float-md-end">
-                                        <div v-if="!authStore.emailVerified" class="small text-danger text-center">
+                                        <!-- <div v-if="!authStore.emailVerified" class="small text-danger text-center">
                                             verify email first!
-                                        </div>
-                                        <button :disabled="!authStore.emailVerified" v-if="!form.isSaving"
-                                            @click="saveForm" class="btn btn-theme w-100">Save</button>
+                                        </div> -->
+                                        <button v-if="!form.isSaving" @click="saveForm"
+                                            class="btn btn-theme w-100">Save</button>
                                         <button v-else class="btn btn-theme w-100" type="button" disabled>
                                             <span class="spinner-border spinner-border-sm" role="status"
                                                 aria-hidden="true"></span>
@@ -172,7 +172,7 @@ let formEmptyState = {
 
 const form = reactive(formEmptyState)
 
-const relationships = [
+const relationships: { name: string, value: string }[] = [
     { name: 'Friend', value: 'friend' },
     { name: 'Brother', value: 'brother' },
     { name: 'Sister', value: 'sister' },

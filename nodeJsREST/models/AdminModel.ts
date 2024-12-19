@@ -11,8 +11,8 @@ const userTable = {
     columns: {
         email: DataTypes.STRING,
         password: DataTypes.STRING,
-        firstname: DataTypes.STRING,
-        lastname: DataTypes.STRING,
+        name: DataTypes.STRING,
+        // lastname: DataTypes.STRING,
         phone: DataTypes.STRING,
         code: DataTypes.STRING,
         status: DataTypes.STRING,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminsListController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CondolenceController;
 use App\Http\Controllers\DeceasedController;
@@ -21,11 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 // OPEN ROUTES ##############################################################
 
-Route::controller(AuthController::class)->group(function () {
-    Route::prefix('account')->group(function () {
-        Route::post('/register', 'register');
-        Route::post('/login', 'login');
-    });
+Route::prefix('account')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
 Route::controller(DeceasedController::class)->group(function () {
@@ -63,6 +62,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::delete('/condolence/remove', [CondolenceController::class, 'removeCondolence']);
+
+    Route::get('/admins/list', [AdminsListController::class, 'adminsList']);
+    Route::delete('/admins/delete/{id}', [AdminsListController::class, 'deleteAdmin']);
 
 
     Route::prefix('account')->group(function () {});

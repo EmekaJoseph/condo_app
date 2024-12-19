@@ -2,7 +2,7 @@ import { $instance, $instanceForm } from './instances'
 
 export default {
     userRegister(data: any) {
-        return $instance.post(`account/signup`, JSON.stringify(data))
+        return $instance.post(`account/register`, JSON.stringify(data))
     },
 
     userLogin(data: any) {
@@ -32,11 +32,19 @@ export default {
     },
 
     userDeleteDeceased(id: any) {
-        return $instanceForm.delete(`admin/deceased/deleteRecord/${id}`)
+        return $instance.delete(`admin/deceased/deleteRecord/${id}`)
     },
 
     userUploads(searchString = '', page = 1) {
         return $instance.get(`/admin/deceased/uploads?searchString=${searchString}&page=${page}`)
+    },
+
+    userAdmins(searchString = '', page = 1) {
+        return $instance.get(`/admins/list?searchString=${searchString}&page=${page}`)
+    },
+
+    userDeleteAdmin(id: any) {
+        return $instance.delete(`/admins/delete/${id}`)
     },
 
 }

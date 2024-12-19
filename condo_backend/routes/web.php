@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/sitemap.xml', function () {
+    return view('sitemap');
+});
+
+Route::fallback(function () {
+    return view('index');
 });

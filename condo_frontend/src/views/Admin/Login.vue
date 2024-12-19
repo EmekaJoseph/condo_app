@@ -25,11 +25,8 @@
                                             <input v-model="form.password" id="pass1" :type="form.passWordType"
                                                 class="form-control form-control-float" placeholder="" />
                                             <label for="pass1">Password:</label>
-                                            <span @click="togglePasswordType">
-                                                <i v-if="form.passWordType == 'password'"
-                                                    class="bi bi-eye toggle-icon"></i>
-                                                <i v-else class="bi bi-eye-slash toggle-icon"></i>
-                                            </span>
+                                            <i @click="togglePasswordType" class="bi toggle-icon"
+                                                :class="form.passWordType == 'password' ? 'bi-eye-slash' : 'bi-eye'"></i>
                                         </div>
                                     </div>
 
@@ -48,6 +45,7 @@
                                 <h6 class="text-center mt-4 hover-tiltX">
                                     <router-link class=" theme-color" to="/register" replace>I dont have an
                                         account yet </router-link>
+
                                 </h6>
                             </form>
                         </div>
@@ -126,6 +124,27 @@ async function submitForm() {
 </script>
 
 <style scoped>
+.bg-theme {
+    position: relative;
+    background: url('@/assets/images/hero.jpg');
+    background-size: cover;
+    background-position: center center;
+    z-index: 0;
+}
+
+.bg-theme::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.566);
+    /* Adjust opacity and color */
+    z-index: -1;
+    /* Keep it behind content */
+}
+
 .toggle-icon {
     position: absolute;
     right: 10px;

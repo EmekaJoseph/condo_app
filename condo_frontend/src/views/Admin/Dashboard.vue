@@ -4,7 +4,8 @@
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li v-for="tab in tabs" :key="tab.value" class="nav-item" role="presentation">
-                    <button @click="tabToShow = tab.value" :class="['nav-link', { active: tabToShow === tab.value }]"
+                    <button v-if="tab.adminAccess.includes(authStore.profileData.level.toString())"
+                        @click="tabToShow = tab.value" :class="['nav-link', { active: tabToShow === tab.value }]"
                         type="button" role="tab" :aria-selected="tabToShow === tab.value"
                         :aria-controls="`tab-${tab.value}`">
                         {{ tab.name }}
@@ -27,19 +28,23 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, ref } from 'vue';
 import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
+import { useAuthStore } from '@/stores/authStore';
 
-type Tagtypes = 'history' | 'new_post' | 'settings'
+type Tagtypes = 'history' | 'new_post' | 'settings' | 'users'
 type AsyncComponent = ReturnType<typeof defineAsyncComponent>;
 
 const tabToShow = ref<Tagtypes>('new_post')
+const authStore = useAuthStore()
 
 const deceadedPostingTab = defineAsyncComponent(() => import('./tabContents/deceadedPostingTab.vue'));
 const historyTab = defineAsyncComponent(() => import('./tabContents/historyTab.vue'));
+const usersTab = defineAsyncComponent(() => import('./tabContents/usersTab.vue'));
 // const settingsTab = defineAsyncComponent(() => import('./tabContents/settingsTab.vue'));
 
-const tabs: { name: string, value: Tagtypes, component: AsyncComponent }[] = [
-    { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab },
-    { name: 'History', value: 'history', component: historyTab },
+const tabs: { name: string, value: Tagtypes, component: AsyncComponent, adminAccess: string[] }[] = [
+    { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab, adminAccess: ['1', '2'] },
+    { name: 'History', value: 'history', component: historyTab, adminAccess: ['1', '2'] },
+    { name: 'Users', value: 'users', component: usersTab, adminAccess: ['1'] },
     // { name: 'Settings', value: 'settings', component: settingsTab },
 ]
 

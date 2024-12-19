@@ -20,17 +20,28 @@
 
                         </div>
                         <div class="col-12">
-                            <textarea :value="appVar.deceasedLinkUrl" disabled name="" id=""
-                                class="form-control text-center"></textarea>
-                            <div class="mt-3">
-                                <button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
-                                    class="btn btn-light bg-primary-subtle w-100" id="suffixId">
-                                    <i class="bi bi-copy me-1"></i> copy link
-                                </button>
-                                <button v-else class="btn btn-light bg-success-subtle w-100">
-                                    <i class="bi bi-check text-success"></i> copied to clipboard
-                                </button>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <textarea :value="appVar.deceasedLinkUrl" disabled name="" id=""
+                                        class="form-control text-center"></textarea>
+                                </div>
+                                <div class="col-4"><button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
+                                        class="btn btn-light bg-primary-subtle w-100" id="suffixId">
+                                        <i class="bi bi-copy me-1"></i> copy link
+                                    </button>
+                                    <button v-else class="btn btn-light bg-success-subtle w-100">
+                                        <i class="bi bi-check text-success"></i> copied
+                                    </button>
+                                </div>
+                                <div class="col-8">
+                                    <a class="btn btn-dark w-100" :href="'https://' + appVar.deceasedLinkUrl"
+                                        target="_blank">
+                                        Visit Link
+                                    </a>
+                                </div>
                             </div>
+
+
                         </div>
 
 

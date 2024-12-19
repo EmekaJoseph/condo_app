@@ -10,13 +10,13 @@
                         <i class="bi bi-check-circle-fill"></i>
                     </div>
                 </div> -->
-                <div v-if="!authStore.emailVerified" class="alert alert-warning border-0 bg-transparent fw-bold">
+                <!-- <div v-if="!authStore.emailVerified" class="alert alert-warning border-0 bg-transparent fw-bold">
                     <div class="float-end">
                         <i class="bi bi-exclamation-circle-fill"></i>
                         {{ authStore.profileData.email }}
                         <button class="btn btn-warning btn-sm px-4 rounded-5">verify</button>
                     </div>
-                </div>
+                </div> -->
             </div>
             <router-view></router-view>
         </div>

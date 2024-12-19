@@ -5,8 +5,8 @@
       <div class="everything-center overlay-light">
         <div class="container">
           <VueWriter class="title-condo text-center my-0 py-0" :array="title.condo" :iterations='1' />
-          <VueWriter class="text-secondary text-center my-0 py-0 title-text" :array="title.text" :start="2000"
-            :typeSpeed="50" />
+          <VueWriter class="text-secondary text-center text-danger-emphasis my-0 py-0 title-text" :array="title.text"
+            :start="2000" :typeSpeed="50" />
         </div>
       </div>
     </div>
@@ -14,35 +14,19 @@
       <section class="fs-4">
         <div class="container py-5">
           <div class="row justify-content-center g-3">
-            <div class="col-md-6 col-lg-4">
+            <div class="fw-bold small">Simple Steps:</div>
+            <div v-for="(card, index) in steps" :key="index" class="col-md-6 col-lg-4">
               <div class="card h-100 hover-tiltY">
                 <div class="card-body">
-                  <i class="bi bi-1-circle-fill fs-4"></i> <br>
-                  Fill out the personal details of your lost one and add a short description with
-                  preffered background music.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 hover-tiltY">
-                <div class="card-body">
-                  <i class="bi bi-2-circle-fill fs-4"></i> <br>
-                  Select a nice photo and generate a unique web address for your page.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 hover-tiltY">
-                <div class="card-body">
-                  <i class="bi bi-3-circle-fill fs-4"></i> <br>
-                  Invite people to share memories and condolence messages.
+                  <i :class="card.icon" class="fs-4"></i> <br>
+                  {{ card.description }}
                 </div>
               </div>
             </div>
             <div class="col-12 small text-right mt-4">
               <router-link class=" float-end btn-link theme-color text-decoration-none fw-bolder hover-tiltX"
                 to="/login">
-                Create a memorial page <i class="bi bi-chevron-right"></i>
+                Create a memorial page now <i class="bi bi-chevron-right"></i>
               </router-link>
             </div>
           </div>
@@ -139,6 +123,22 @@ function gotToDeceasedPage(slide: any) {
     path: `/condo/${slide.id}/${name}`,
   })
 }
+
+
+const steps = [
+  {
+    icon: 'bi bi-1-circle-fill',
+    description: 'Fill out the personal details of your lost one and add a short description with preferred background music.',
+  },
+  {
+    icon: 'bi bi-2-circle-fill',
+    description: 'Select a nice photo and generate a unique web address for your page.',
+  },
+  {
+    icon: 'bi bi-3-circle-fill',
+    description: 'Invite people to share memories and condolence messages.',
+  },
+];
 
 </script>
 

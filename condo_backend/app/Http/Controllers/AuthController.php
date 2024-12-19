@@ -14,21 +14,21 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
-            // 'firstname' => 'required|string',
-            // 'lastname' => 'required|string',
+            'name' => 'nullable|string',
+
         ]);
 
         // Check if email already exists
-        if (Admin::where('email', $request->email)->exists()) {
-            return response()->json(['message' => 'Email already exists.'], 422);
+        $emailExists = Admin::where('email', $request->email)
+            ->whereNotNull('email_verified_at')->exists();
+        if ($emailExists) {
+            return response()->json(['message' => 'This email already exists.'], 422);
         }
 
         // Create user if email doesn't exist
         $admin = Admin::create([
             'email' => $request->email,
-            // 'firstname' => $request->firstname,
-            // 'lastname' => $request->lastname,
-            // 'phone' => $request->input('phone', null),
+            'name' => $request->name,
             'password' => Hash::make($request->input('password')),
         ]);
 
@@ -37,12 +37,11 @@ class AuthController extends Controller
 
         $data = [
             'token' =>  $token->plainTextToken,
-            'level' => $request->user()->level
+            'level' => '2'
         ];
 
         return response()->json($data, 201);
     }
-
 
 
     public function login(Request $request)

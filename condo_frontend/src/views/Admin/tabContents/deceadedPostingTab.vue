@@ -16,7 +16,7 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="form-label">Birth Date:</label>
+                                        <label class="form-label">Born:</label>
                                         <VueDatePicker :format="useFxn.dateDisplay" hide-input-icon :clearable="false"
                                             :max-date="new Date()" :enable-time-picker="false" auto-apply
                                             v-model="form.birth_date">
@@ -24,7 +24,7 @@
                                     </div>
 
                                     <div class=" col-md-6">
-                                        <label class="form-label">Death Date:</label>
+                                        <label class="form-label">Died:</label>
                                         <VueDatePicker :format="useFxn.dateDisplay" hide-input-icon :clearable="false"
                                             :min-date="form.birth_date" :max-date="new Date()"
                                             :enable-time-picker="false" auto-apply v-model="form.death_date">
@@ -63,7 +63,7 @@
                                                     <span @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
                                                         class="float-end  text-danger border-0 cursor-pointer">
-                                                        <i class="bi bi-trash3 xsmall"></i>
+                                                        <i class="bi bi-x xsmall"></i>
                                                     </span>
                                                 </div>
                                                 <div class="col-md-6">
@@ -75,7 +75,7 @@
                                                         class="form-select form-select-sm">
                                                         <option disabled selected>Relationship</option>
                                                         <option v-for="reltn in relationships" :value="reltn.value">
-                                                            {{ reltn.name }}
+                                                            Relationship: {{ reltn.name }}
                                                         </option>
 
                                                     </select>
@@ -88,8 +88,8 @@
                                 </div>
                                 <div class="col-12 m-0 d-flex justify-content-end">
                                     <button @click="addNewSurvivedByField"
-                                        class="btn btn-outline-dark border-0 bg-success-subtle btn-sm fw-bolder p-0 px-3 ">
-                                        ..add one
+                                        class="btn btn-outline-dark border-0 bg-success-subtle btn-sm  p-0 px-3 ">
+                                        Add
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>
@@ -219,17 +219,17 @@ const { getRootProps, getInputProps, ...rest } = useDropzone({
 
 function saveForm() {
     if (!form.deceased) {
-        useFxn.toast('Name of Deceased required', 'warning')
+        useFxn.toast('Name of Deceased is empty!', 'warning')
         return;
     }
 
     if (!form.biography) {
-        useFxn.toast('Biography required', 'warning')
+        useFxn.toast('Please enter a short biography', 'warning')
         return;
     }
 
     if (!form.display_photo) {
-        useFxn.toast('Please add a photo', 'warning')
+        useFxn.toast('You need to add a photo!', 'warning')
         return;
     }
 
@@ -244,7 +244,11 @@ function saveForm() {
     if (filledSurvivedBys.length)
         newForm.append('survivedBys', JSON.stringify(filledSurvivedBys))
 
-    sendformToAPI(newForm)
+    useFxn.confirm("Please Confirm the details before proceeding", "Yes Proceed", "warning").then((confirm) => {
+        if (confirm.value == true) {
+            sendformToAPI(newForm)
+        }
+    })
 }
 
 async function sendformToAPI(newForm: FormData) {
@@ -265,9 +269,7 @@ async function sendformToAPI(newForm: FormData) {
     }
     finally {
         form.isSaving = false
-
     }
-
 }
 
 

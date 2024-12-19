@@ -10,8 +10,8 @@
                     <h5 class="text-uppercase">condonote.</h5>
 
                     <p>
-                        Share memories, photos and videos and create a beautiful and lasting tribute to celebrate the life
-                        of your lost loved ones.
+                        Share cherished memories and create a beautiful, lasting tribute to celebrate the life of your
+                        loved ones who have passed.
                         <span class="fst-italic">
                             A memorial page made completely free of charge.
                         </span>
@@ -24,14 +24,14 @@
                     <h5 class="text-uppercase">Built with love ❤️</h5>
 
                     <p>
-                        Crafted with compassionate love for humanity, a labor of love aimed at
-                        bringing value to lives.
-                        I'd greatly appreciate your support in any form. Your input means a lot and helps me make this
-                        project even better.
+                        Crafted with compassion and love for humanity, this online condolence register is a labor of
+                        love aimed at offering comfort and connection in times of loss. Your support, in any form, is
+                        deeply appreciated. Your feedback and input mean the world to us and can help make this platform
+                        even more meaningful for those who use it.
                         <br>
 
                         <a class=" text-success text-decoration-none mt-5" href="https://wa.me/08139590011"> <i
-                                class="bi bi-whatsapp"></i> 08139590011 - proffictech</a>
+                                class="bi bi-whatsapp"></i> Send a message</a>
                     </p>
                 </div>
                 <!--Grid column-->
@@ -48,4 +48,3 @@
         <!-- Copyright -->
     </footer>
 </template>
-

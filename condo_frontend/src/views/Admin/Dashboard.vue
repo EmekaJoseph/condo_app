@@ -31,15 +31,15 @@ import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
 type Tagtypes = 'history' | 'new_post' | 'settings'
 type AsyncComponent = ReturnType<typeof defineAsyncComponent>;
 
-const tabToShow = ref<Tagtypes>('history')
+const tabToShow = ref<Tagtypes>('new_post')
 
-const deceadedPostingTab = defineAsyncComponent(() => import('./tabs/deceadedPostingTab.vue'));
-const historyTab = defineAsyncComponent(() => import('./tabs/historyTab.vue'));
-// const settingsTab = defineAsyncComponent(() => import('./tabs/settingsTab.vue'));
+const deceadedPostingTab = defineAsyncComponent(() => import('./tabContents/deceadedPostingTab.vue'));
+const historyTab = defineAsyncComponent(() => import('./tabContents/historyTab.vue'));
+// const settingsTab = defineAsyncComponent(() => import('./tabContents/settingsTab.vue'));
 
 const tabs: { name: string, value: Tagtypes, component: AsyncComponent }[] = [
-    { name: 'History', value: 'history', component: historyTab },
     { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab },
+    { name: 'History', value: 'history', component: historyTab },
     // { name: 'Settings', value: 'settings', component: settingsTab },
 ]
 

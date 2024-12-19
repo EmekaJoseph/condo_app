@@ -43,11 +43,12 @@ export default {
         })
     },
 
-    confirm: (text: string, btnText: string) => {
+    confirm: (text: string, btnText: string, icon = 'question') => {
+        // @ts-ignore
         return Swal.fire({
             // title: `${title}`,
             text: `${text}`,
-            icon: 'question',
+            icon: `${icon}`,
             iconColor: '#60148f',
             showCancelButton: true,
             confirmButtonText: `${btnText}`,

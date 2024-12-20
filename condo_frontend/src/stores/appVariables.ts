@@ -23,7 +23,7 @@ export const useAppVariables = defineStore('appVariables', () => {
   const toggleAdminMenu = () => adminMenu.value = !adminMenu.value
 
   function showDeceasedCopyModal(deceased: any) {
-    deceasedLinkUrl.value = `${window.location.host}/condo/${deceased.id}/${deceased.deceased.replace(/\s+/g, '-')}`;
+    deceasedLinkUrl.value = `https://${window.location.host}/condo/${deceased.id}/${deceased.deceased.replace(/\s+/g, '-')}`;
     toggleCopyLinkModal()
   }
 

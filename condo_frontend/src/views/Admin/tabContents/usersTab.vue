@@ -1,5 +1,5 @@
 <template>
-    <div class="containe mt-3 animate__animated animate__fadeIn">
+    <div class="containe mt-3">
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
                 <PageLoadingComponent v-if="isLoading" />

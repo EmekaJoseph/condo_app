@@ -10,18 +10,19 @@
                     <div class="col-md-8">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
+
                             <li class="nav-item" role="presentation">
-                                <button @click="switchTab('info')" class="nav-link active" id="info-tab"
-                                    data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab"
-                                    aria-controls="info" aria-selected="true">
-                                    <i class="bi bi-info-circle"></i> Info
+                                <button @click="switchTab('condo')" class="nav-link active" id="condo-tab"
+                                    data-bs-toggle="tab" data-bs-target="#condo" type="button" role="tab"
+                                    aria-controls="condo" aria-selected="false">
+                                    <i class="bi bi-journal-text"></i> Condolences
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button @click="switchTab('condo')" class="nav-link" id="condo-tab" data-bs-toggle="tab"
-                                    data-bs-target="#condo" type="button" role="tab" aria-controls="condo"
-                                    aria-selected="false">
-                                    <i class="bi bi-journal-text"></i> Condolences
+                                <button @click="switchTab('info')" class="nav-link " id="info-tab" data-bs-toggle="tab"
+                                    data-bs-target="#info" type="button" role="tab" aria-controls="info"
+                                    aria-selected="true">
+                                    <i class="bi bi-info-circle"></i> Details
                                 </button>
                             </li>
                             <li v-if="details?.gallery?.length" class="nav-item" role="presentation">
@@ -35,11 +36,11 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content pt-4">
-                            <div class="tab-pane active" id="info" role="tabpanel" aria-labelledby="info-tab">
+                            <div class="tab-pane " id="info" role="tabpanel" aria-labelledby="info-tab">
                                 <InfoPanel :details="details" />
                             </div>
 
-                            <div class="tab-pane" id="condo" role="tabpanel" aria-labelledby="condo-tab">
+                            <div class="tab-pane active" id="condo" role="tabpanel" aria-labelledby="condo-tab">
                                 <CondolencesPanel :condolences="condolences" />
                             </div>
 
@@ -199,7 +200,7 @@ setInterval(() => {
 .nav-tabs .nav-link.active {
     color: var(--theme-color);
     border-bottom: 2px solid var(--theme-color) !important;
-    font-size: 13px;
+    /* font-size: 13px; */
 
 }
 
@@ -212,12 +213,12 @@ setInterval(() => {
 }
 
 .tab-content {
-    min-height: 30vh
+    min-height: 50vh
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
     .nav-link {
         font-size: 14px;
     }
-}
+} */
 </style>

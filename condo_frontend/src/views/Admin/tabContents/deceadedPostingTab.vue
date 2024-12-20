@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5 animate__animated animate__fadeIn">
+    <div class="container mt-5">
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
                 <!-- <h5 class="card-heade border-0 fw-bold mb-3">Post a memorial</h5> -->
@@ -17,16 +17,16 @@
 
                                     <div class="col-md-6">
                                         <label class="form-label">Born:</label>
-                                        <VueDatePicker :format="useFxn.dateDisplay" hide-input-icon :clearable="false"
-                                            :max-date="new Date()" :enable-time-picker="false" auto-apply
-                                            v-model="form.birth_date">
+                                        <VueDatePicker teleport-center :format="useFxn.dateDisplay" hide-input-icon
+                                            :clearable="false" :max-date="new Date()" :enable-time-picker="false"
+                                            auto-apply v-model="form.birth_date">
                                         </VueDatePicker>
                                     </div>
 
                                     <div class=" col-md-6">
                                         <label class="form-label">Died:</label>
-                                        <VueDatePicker :format="useFxn.dateDisplay" hide-input-icon :clearable="false"
-                                            :min-date="form.birth_date" :max-date="new Date()"
+                                        <VueDatePicker teleport-center :format="useFxn.dateDisplay" hide-input-icon
+                                            :clearable="false" :min-date="form.birth_date" :max-date="new Date()"
                                             :enable-time-picker="false" auto-apply v-model="form.death_date">
                                         </VueDatePicker>
                                     </div>
@@ -63,16 +63,15 @@
                                                     <span @click="form.survivedBys.splice(index, 1)"
                                                         v-if="form.survivedBys.length > 1"
                                                         class="float-end  text-danger border-0 cursor-pointer">
-                                                        <i class="bi bi-x xsmall"></i>
+                                                        <i class="bi bi-x-lg"></i>
                                                     </span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input v-model="item.survived_by" type="text"
-                                                        class="form-control form-control-sm" placeholder="enter name..">
+                                                    <input v-model="item.survived_by" type="text" class="form-control"
+                                                        placeholder="enter name..">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select v-model="item.relationship"
-                                                        class="form-select form-select-sm">
+                                                    <select v-model="item.relationship" class="form-select">
                                                         <option disabled selected>Relationship</option>
                                                         <option v-for="reltn in relationships" :value="reltn.value">
                                                             Relationship: {{ reltn.name }}
@@ -89,15 +88,14 @@
                                 <div class="col-12 m-0 d-flex justify-content-end">
                                     <button @click="addNewSurvivedByField"
                                         class="btn btn-outline-dark border-0 bg-success-subtle btn-sm  p-0 px-3 ">
-                                        Add
-                                        <i class="bi bi-plus-lg"></i>
+                                        Add <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>
 
                                 <hr>
 
                                 <div class="row justify-content-center g-3">
-                                    <label class="form-label">Display Photo:</label>
+                                    <label class="form-label">Display Photo (click to change):</label>
                                     <div class="col-md-3 order-2 order-md-1 d-flex justify-content-center">
                                         <div v-bind="getRootProps()" class="image-circle"
                                             :style="{ backgroundImage: `url(${form.photo_path})` }">
@@ -145,17 +143,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, watch } from 'vue';
+import { reactive, watch } from 'vue';
 import useFxn from '@/stores/Helpers/useFunctions';
 // @ts-ignore
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useDropzone } from "vue3-dropzone";
 import api from '@/stores/Helpers/axios'
-import { useAuthStore } from '@/stores/authStore';
+// import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
 
-const authStore = useAuthStore()
+// const authStore = useAuthStore()
 const appVar = useAppVariables()
 
 const emits = defineEmits(['done'])

@@ -1,12 +1,14 @@
 <template>
     <nav class="navbar navbar-expand-sm navbar-light fixed-top" :class="customClass">
         <div class="container">
-            <router-link class="navbar-brand" to="/" style="font-weight: 700;">Condonote. </router-link>
-            <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse"
+            <router-link class="navbar-brand" to="/" style="font-weight: 700;">
+                <img src="/og-image.png" width="30" alt="">
+            </router-link>
+            <!-- <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">

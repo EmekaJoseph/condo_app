@@ -34,8 +34,7 @@
                                     </button>
                                 </div>
                                 <div class="col-lg-8">
-                                    <a class="btn btn-dark w-100" :href="'https://' + appVar.deceasedLinkUrl"
-                                        target="_blank">
+                                    <a class="btn btn-dark w-100" :href="appVar.deceasedLinkUrl" target="_blank">
                                         Go to memoral page <i class="bi bi-chevron-right"></i>
                                     </a>
                                 </div>

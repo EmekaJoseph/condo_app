@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5 animate__animated animate__fadeIn">
+    <div class="container mt-5">
 
     </div>
 
@@ -9,14 +9,14 @@
 import { reactive, ref, watch } from 'vue';
 import useFxn from '@/stores/Helpers/useFunctions';
 // @ts-ignore
-import { QuillEditor } from '@vueup/vue-quill'
+// import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useDropzone } from "vue3-dropzone";
 import api from '@/stores/Helpers/axios'
 import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
 
-const authStore = useAuthStore()
+// const authStore = useAuthStore()
 const appVar = useAppVariables()
 
 let formEmptyState = {

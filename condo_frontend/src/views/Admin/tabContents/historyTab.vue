@@ -1,5 +1,5 @@
 <template>
-    <div class="containe mt-3 animate__animated animate__fadeIn">
+    <div class="containe mt-3">
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
                 <PageLoadingComponent v-if="isLoading" />
@@ -88,7 +88,7 @@
                             </div>
 
                             <!-- pagination -->
-                            <div class="mt-3 mt-lg-0 d-flex justify-content-center">
+                            <div class="mt-4 d-flex justify-content-center">
                                 <customPagination :currentPage="paginate.currentPage" :perPage="paginate.perPage"
                                     :totalRecords="paginate.totalRecords" @moveToNext="paginateToNext" />
                             </div>

@@ -26,27 +26,32 @@
 </template>
 
 <script lang="ts" setup>
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, ref, onMounted } from 'vue';
 import deceasedLinkModal from '@/components/modals/deceasedLinkModal.vue';
 import { useAuthStore } from '@/stores/authStore';
+import deceadedPostingTab from './tabContents/deceadedPostingTab.vue';
 
-type Tagtypes = 'history' | 'new_post' | 'settings' | 'users'
+type Tabtypes = 'history' | 'new_post' | 'settings' | 'users'
 type AsyncComponent = ReturnType<typeof defineAsyncComponent>;
 
-const tabToShow = ref<Tagtypes>('new_post')
+const tabToShow = ref<Tabtypes>('new_post')
 const authStore = useAuthStore()
 
-const deceadedPostingTab = defineAsyncComponent(() => import('./tabContents/deceadedPostingTab.vue'));
+// const deceadedPostingTab = defineAsyncComponent(() => import('./tabContents/deceadedPostingTab.vue'));
 const historyTab = defineAsyncComponent(() => import('./tabContents/historyTab.vue'));
 const usersTab = defineAsyncComponent(() => import('./tabContents/usersTab.vue'));
 // const settingsTab = defineAsyncComponent(() => import('./tabContents/settingsTab.vue'));
 
-const tabs: { name: string, value: Tagtypes, component: AsyncComponent, adminAccess: string[] }[] = [
+const tabs: { name: string, value: Tabtypes, component: AsyncComponent, adminAccess: string[] }[] = [
     { name: 'Post Memorial', value: 'new_post', component: deceadedPostingTab, adminAccess: ['1', '2'] },
-    { name: 'My Uploads', value: 'history', component: historyTab, adminAccess: ['1', '2'] },
+    { name: 'Uploads History', value: 'history', component: historyTab, adminAccess: ['1', '2'] },
     { name: 'Users', value: 'users', component: usersTab, adminAccess: ['1'] },
     // { name: 'Settings', value: 'settings', component: settingsTab },
 ]
+
+onMounted(() => {
+    tabToShow.value = 'new_post'
+})
 
 </script>
 

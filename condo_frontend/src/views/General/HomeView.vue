@@ -113,7 +113,7 @@ const title = {
   condo: ['condonote.'],
   text: [
     'Online Condolence Register for those we miss.',
-    'Share memories, photos and videos and create a beautiful and lasting tribute to celebrate the life of your lost loved ones.'
+    'Share cherished memories and create a beautiful, lasting tribute to celebrate the life of your loved ones who have passed.'
   ]
 }
 
@@ -183,12 +183,12 @@ const steps = [
 
 @media (max-width: 767px) {
   .title-condo span.typed {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
-  .title-text span.typed {
+  /* .title-text span.typed {
     font-size: small;
-  }
+  } */
 
 }
 

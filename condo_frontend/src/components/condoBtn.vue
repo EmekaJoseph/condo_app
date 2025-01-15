@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed-bottom-btn">
+    <div class="fixed-bottom-btn animate__animated animate__heartBeat animate__delay-3s">
         <div @click="appVar.toggleCondoModal()" class="justify-content-end floatPanel">
             <div class="card btnCard shadow">
                 <div><i class="bi bi-pencil"></i></div>

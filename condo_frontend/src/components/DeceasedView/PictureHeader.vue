@@ -55,7 +55,8 @@ const slideLeftClass = computed(() => {
 <style scoped>
 .cover-photo {
     height: 150px;
-    background: url('@/assets/images/hero.jpg');
+    /* background: url('@/assets/images/hero.jpg'); */
+    background: url('@/assets/images/candles.gif');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

@@ -37,7 +37,6 @@ type AsyncComponent = ReturnType<typeof defineAsyncComponent>;
 const tabToShow = ref<Tabtypes>('new_post')
 const authStore = useAuthStore()
 
-// const deceadedPostingTab = defineAsyncComponent(() => import('./tabContents/deceadedPostingTab.vue'));
 const historyTab = defineAsyncComponent(() => import('./tabContents/historyTab.vue'));
 const usersTab = defineAsyncComponent(() => import('./tabContents/usersTab.vue'));
 // const settingsTab = defineAsyncComponent(() => import('./tabContents/settingsTab.vue'));

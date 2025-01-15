@@ -65,13 +65,15 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue';
 import { useAppVariables } from '@/stores/appVariables';
-import { onBeforeRouteLeave } from 'vue-router';
+import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import api from "@/stores/Helpers/axios"
 import useFxn from '@/stores/Helpers/useFunctions';
 
 const appVar = useAppVariables()
 const openModal_condo = ref<any>(null)
 const closeModal_condo = ref<any>(null)
+
+const router = useRouter()
 
 const emit = defineEmits(['hasPosted'])
 
@@ -132,7 +134,8 @@ function postCondolence() {
                         form.condolence = ''
                     }
                 } catch (error) {
-                    // 
+                    useFxn.toast('Sorry, this link is Expired!', 'warning')
+                    router.push({ path: '/' })
                 }
                 finally {
                     form.isSaving = false

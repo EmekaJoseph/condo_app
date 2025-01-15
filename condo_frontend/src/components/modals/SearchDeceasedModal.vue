@@ -6,7 +6,7 @@
 
         <div class="modal fade" id="searchModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-heade p-3  bg-theme border-0">
                         <h5 class="modal-title text-white fw-bold text-center">{{ appVar.appName }}.</h5>

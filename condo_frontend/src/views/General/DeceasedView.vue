@@ -22,7 +22,7 @@
                                 <button @click="switchTab('info')" class="nav-link " id="info-tab" data-bs-toggle="tab"
                                     data-bs-target="#info" type="button" role="tab" aria-controls="info"
                                     aria-selected="true">
-                                    <i class="bi bi-info-circle"></i> Details
+                                    <i class="bi bi-info-circle"></i> Information
                                 </button>
                             </li>
                             <li v-if="details?.gallery?.length" class="nav-item" role="presentation">
@@ -131,7 +131,7 @@
 <script setup lang="ts">
 import api from "@/stores/Helpers/axios"
 import { ref, watchEffect } from 'vue';
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import PictureHeader from '@/components/DeceasedView/PictureHeader.vue'
 
 import InfoPanel from "@/components/DeceasedView/InfoPanel.vue";
@@ -141,6 +141,7 @@ import GalleryPanel from "@/components/DeceasedView/GalleryPanel.vue";
 import condoBtn from "@/components/condoBtn.vue";
 import condoModal from "@/components/modals/condoModal.vue";
 import { useAppVariables } from "@/stores/appVariables";
+import useFxn from "@/stores/Helpers/useFunctions";
 
 const route = useRoute()
 const appVar = useAppVariables()
@@ -148,7 +149,7 @@ const appVar = useAppVariables()
 const details = ref<any>(null)
 const condolences = ref<any>(null)
 const isLoading = ref(true)
-const condoIsClicked = ref(false)
+const condoIsClicked = ref(true)
 const audioIsPlaying = ref(false)
 
 watchEffect(async () => {
@@ -157,19 +158,60 @@ watchEffect(async () => {
     appVar.currentDeceasedId = route.params.id
 })
 
+// function playAudio() {
+//     const hostURL = import.meta.env.VITE_API_URL;
+//     const audioFileURL = `${hostURL}/background_hymns/abide-with-me.mp3`
+//     const audio = new Audio(audioFileURL);
+//     audio.play()
+//     audioIsPlaying.value = true
+// }
+
+
 function playAudio() {
     const hostURL = import.meta.env.VITE_API_URL;
-    const audioFileURL = `${hostURL}/background_hymns/nearer-my-god-to-thee.mp3`
-    const audio = new Audio(audioFileURL);
-    audio.play()
-    audioIsPlaying.value = true
+    const audioFiles = [
+        `${hostURL}/background_hymns/abide-with-me.mp3`,
+        `${hostURL}/background_hymns/pass-me-not.mp3`,
+        `${hostURL}/background_hymns/nearer-my-god.mp3`,
+    ];
+
+    let currentIndex = 0;
+    const audio = new Audio(audioFiles[currentIndex]);
+
+    audio.volume = 0.5; // Adjust between 0 (mute) and 1 (max)
+
+    // Function to play the next audio in the sequence
+    const playNextAudio = () => {
+        currentIndex++;
+        if (currentIndex < audioFiles.length) {
+            audio.src = audioFiles[currentIndex]; // Update the source to the next file
+            audio.play(); // Start playing the new file
+        } else {
+            audioIsPlaying.value = false; // Stop the playback when the playlist ends
+        }
+    };
+
+    // Attach the `ended` event to trigger when the current audio finishes
+    audio.addEventListener('ended', playNextAudio);
+
+    audio.play(); // Start playing the first audio
+    audioIsPlaying.value = true; // Indicate audio is playing
 }
 
+
+
+
+const router = useRouter()
 async function getDetails() {
     try {
         isLoading.value = true
         const { data } = await api.details(route.params.id)
         details.value = data
+        if (!details.value?.id) {
+            useFxn.toast('Sorry, this link is Expired!', 'warning')
+            return router.push({ path: '/' })
+        }
+
         isLoading.value = false
 
     } catch (error) {
@@ -186,7 +228,7 @@ async function getCondolences() {
 
 const switchTab = (str: string) => {
     condoIsClicked.value = (str == 'condo')
-    // if (!audioIsPlaying.value) playAudio()
+    if (!audioIsPlaying.value) playAudio()
 }
 
 setInterval(() => {

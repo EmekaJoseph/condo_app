@@ -15,13 +15,13 @@ export default [
     {
         path: '/account',
         beforeEnter: authGuard,
-        component: () => import('../views/Admin/AdminLayout.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '../views/Admin/AdminLayout.vue'),
         children: [
             {
                 path: '/dashboard',
                 name: 'Dashboard',
                 alias: '/account',
-                component: () => import('../views/Admin/Dashboard.vue'),
+                component: () => import(/* webpackChunkName: "admin" */ '../views/Admin/Dashboard.vue'),
             },
         ]
     }

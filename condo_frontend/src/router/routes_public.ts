@@ -23,26 +23,26 @@ export default [
     {
         path: '/condo/:id/:name',
         name: 'Deceased',
-        component: () => import('../views/General/DeceasedView.vue')
+        component: () => import(/* webpackChunkName: "public" */ '../views/General/DeceasedView.vue')
     },
 
     {
         path: '/login',
         name: 'Login',
-        component: () => import('../views/Admin/Login.vue'),
+        component: () => import(/* webpackChunkName: "auth" */  '../views/Admin/Login.vue'),
         beforeEnter: initGuard
     },
 
     {
         path: '/register',
         name: 'Register',
-        component: () => import('../views/Admin/Register.vue'),
+        component: () => import(/* webpackChunkName: "auth" */  '../views/Admin/Register.vue'),
         beforeEnter: initGuard
     },
 
     {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('../views/General/PageNotFound.vue')
+        component: () => import(/* webpackChunkName: "public" */ '../views/General/PageNotFound.vue')
     },
 ]

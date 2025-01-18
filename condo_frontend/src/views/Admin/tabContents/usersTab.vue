@@ -3,8 +3,8 @@
         <div class="row justify-content-center min-vh-100 g-3">
             <div class="col-md-12">
                 <PageLoadingComponent v-if="isLoading" />
-                <div v-else class="card min-vh-100 border-0">
-                    <div v-show="list.length" class="card-header bg-white border-0 small">
+                <div v-else class="card min-vh-100">
+                    <div v-show="list.length" class="card-header bg-transparent  border-0 small">
                         <div class="d-lg-flex justify-content-start">
                             <div class="me-3 text-muted" v-if="list.length">
                                 Showing

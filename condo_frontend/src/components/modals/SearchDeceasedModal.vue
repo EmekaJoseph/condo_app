@@ -30,8 +30,9 @@
                                         <ul v-if="form.searchResults.length" class="list-group list-group-flush">
                                             <li v-for="(item, index) in form.searchResults"
                                                 @click="goToDeceasedPage(item)"
-                                                class="list-group-item ps-0 text-capitalize cursor-pointer">
-                                                <span class="fw-bold theme-color me-2">{{ item.deceased }}</span>
+                                                class="list-group-item ps-0 text-capitalize cursor-pointer bg-transparent">
+                                                <span class="fw-bold text-warning-emphasis me-2">{{ item.deceased
+                                                    }}</span>
                                                 ({{ new Date(item.birth_date).getFullYear() }} -
                                                 {{ new Date(item.death_date).getFullYear() }})
                                             </li>

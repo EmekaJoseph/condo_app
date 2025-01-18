@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar  sticky-top navbar-light bg-light shadow-sm">
+    <nav class="navbar sticky-top navbar-light text-muted bg-secondary-subtle shadow-sm">
         <div class="container">
             <!-- <div class="fs-5 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample">
@@ -10,16 +10,21 @@
                 <span class="theme-color fw-bolder">{{ appVar.appName }}</span>
                 | {{ route.name }}
             </div>
-            <div class="dropdown open d-non d-md-block">
-                <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-person-circle text-muted"></i>
+            <div class="d-flex gap-4">
+                <span>
+                    <ThemeToggler />
                 </span>
-                <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
-                    <span class="dropdown-item disabled">{{ authStore.profileData?.email ?? '' }}</span>
-                    <span class="dropdown-item cursor-pointer text-danger bg-transparent" @click="logout">
-                        <i class="bi bi-power"></i> Logout
+                <div class="dropdown open d-non d-md-block">
+                    <span class=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-person-circle text-muted"></i>
                     </span>
+                    <div class="dropdown-menu dropdown-menu-end pt-0 rounded-top-0" aria-labelledby="triggerId">
+                        <span class="dropdown-item disabled">{{ authStore.profileData?.email ?? '' }}</span>
+                        <span class="dropdown-item cursor-pointer text-danger bg-transparent" @click="logout">
+                            <i class="bi bi-power"></i> Logout
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -64,6 +69,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useAppVariables } from '@/stores/appVariables';
 import { useRoute, useRouter } from 'vue-router';
 import api from '@/stores/Helpers/axios'
+import ThemeToggler from '@/components/themeToggler.vue';
 
 const offCanvasToggler = ref<any>(null)
 

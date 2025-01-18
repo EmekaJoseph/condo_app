@@ -95,5 +95,19 @@ textarea {
     border-radius: 0px;
 }
 
+.dp__input{
+    background: transparent !important;
+    color: unset !important;
+    border-color: var(--bs-border-color) !important;
+}
+
+.ql-snow{
+    border-color: var(--bs-border-color) !important;
+}
+
+
+.skeleton-box{
+    background-color: var(--bs-border-color) !important;
+}
 
 @media (min-width: 1024px) {}

@@ -15,9 +15,12 @@
                         <router-link class="nav-link" to="/">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/login">Login</router-link>
+                        <router-link class="nav-link text-dark" to="/login">Login</router-link>
                     </li>
                 </ul>
+                <span class="mx-4">
+                    <themeToggler />
+                </span>
                 <div @click="appVar.toggleSearchModal" class="cursor-pointer d-none d-md-block">
                     <i class="bi bi-search fs-5"></i>
                 </div>
@@ -31,7 +34,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useAppVariables } from '@/stores/appVariables';
-
+import themeToggler from '@/components/themeToggler.vue'
 
 const appVar = useAppVariables()
 
@@ -39,6 +42,7 @@ const customClass = computed(() => ({
     'animate__animated animate__slideInDown animate__faster': appVar.y_axis > 50,
     'bg-white shadow-sm': appVar.y_axis > 50,
 }))
+
 
 </script>
 

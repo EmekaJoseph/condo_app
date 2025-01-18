@@ -5,6 +5,7 @@ import { useWindowScroll, useWindowSize } from '@vueuse/core'
 export const useAppVariables = defineStore('appVariables', () => {
 
   const appName = ref<string>('Condonote')
+  const appTheme = ref<'dark' | 'light'>('light')
   const searchModal: Ref<boolean> = ref(false)
   const condoModal: Ref<boolean> = ref(false)
   const imageModal: Ref<boolean> = ref(false)
@@ -22,6 +23,10 @@ export const useAppVariables = defineStore('appVariables', () => {
   const toggleImageModal = () => imageModal.value = !imageModal.value
   const toggleAdminMenu = () => adminMenu.value = !adminMenu.value
 
+  function toggleTheme() {
+    appTheme.value = appTheme.value == 'dark' ? 'light' : 'dark';
+  }
+
   function showDeceasedCopyModal(deceased: any) {
     deceasedLinkUrl.value = `https://${window.location.host}/condo/${deceased.id}/${deceased.deceased.replace(/\s+/g, '-')}`;
     toggleCopyLinkModal()
@@ -38,6 +43,8 @@ export const useAppVariables = defineStore('appVariables', () => {
     screen_width,
     currentDeceasedId,
     currentImageToShow,
+    appTheme,
+    toggleTheme,
     toggleSearchModal,
     toggleCondoModal,
     toggleImageModal,

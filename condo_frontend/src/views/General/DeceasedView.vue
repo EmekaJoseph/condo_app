@@ -22,7 +22,7 @@
                                 <button @click="switchTab('info')" class="nav-link " id="info-tab" data-bs-toggle="tab"
                                     data-bs-target="#info" type="button" role="tab" aria-controls="info"
                                     aria-selected="true">
-                                    <i class="bi bi-info-circle"></i> Information
+                                    <i class="bi bi-info-circle"></i> Info
                                 </button>
                             </li>
                             <li v-if="details?.gallery?.length" class="nav-item" role="presentation">
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="col-12" style="margin-top: 130px;">
-                        <div class="card bg-light">
+                        <div class="card bg-secondary-subtle">
                             <div class="card-body">
                                 <div class="card-text">
                                     🌹 As we mourn the physical departure, we also celebrate the enduring spirit that

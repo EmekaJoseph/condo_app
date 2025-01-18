@@ -86,7 +86,7 @@ const moveToPage = (moveTo: number) => {
 <style scoped>
 .pagination .page-link {
     border: none !important;
-    color: #000 !important;
+    color: unset !important;
     font-weight: bold;
     border-radius: 7px;
     /* padding-inline: 15px; */

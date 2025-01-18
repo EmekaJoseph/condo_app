@@ -14,7 +14,8 @@
                     </div>
                     <div class="modal-body rounded-0">
                         <div class="col-12">
-                            <div class="alert px-0 alert-light small text-muted border-0 text-center" role="alert">
+                            <div class="alert px-0 alert-light bg-transparent small text-muted border-0 text-center"
+                                role="alert">
                                 Share this link with others so they can post their condolences.
                             </div>
 
@@ -25,16 +26,17 @@
                                     <textarea rows="3" :value="appVar.deceasedLinkUrl" disabled
                                         class="form-control text-center bg-warning-subtle border-0"></textarea>
                                 </div>
-                                <div class="col-lg-4"><button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
-                                        class="btn btn-light bg-primary-subtle w-100" id="suffixId">
+                                <div class="col-lg-4">
+                                    <button v-if="!copied" @click="copy(appVar.deceasedLinkUrl)"
+                                        class="btn btn-secondary w-100" id="suffixId">
                                         copy link <i class="bi bi-copy me-1"></i>
                                     </button>
-                                    <button v-else class="btn btn-light bg-success-subtle w-100">
-                                        copied <i class="bi bi-check text-success"></i>
+                                    <button v-else class="btn btn-success w-100">
+                                        copied <i class="bi bi-check"></i>
                                     </button>
                                 </div>
                                 <div class="col-lg-8">
-                                    <a class="btn btn-dark w-100" :href="appVar.deceasedLinkUrl" target="_blank">
+                                    <a class="btn btn-theme w-100" :href="appVar.deceasedLinkUrl" target="_blank">
                                         Go to memoral page <i class="bi bi-chevron-right"></i>
                                     </a>
                                 </div>

@@ -1,0 +1,2 @@
+############################dark-mode/light-mode toggle
+// document.documentElement.setAttribute('data-bs-theme', 'dark');

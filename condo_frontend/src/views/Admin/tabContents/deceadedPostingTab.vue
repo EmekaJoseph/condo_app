@@ -86,7 +86,8 @@
                                     </div>
                                 </div>
                                 <div class="col-12 m-0 d-flex justify-content-end">
-                                    <button @click="addNewSurvivedByField" class="btn btn-link theme-color btn-sm   ">
+                                    <button @click="addNewSurvivedByField"
+                                        class="btn btn-link text-success-emphasis btn-sm   ">
                                         <i class="bi bi-plus"></i>add new line
                                     </button>
                                 </div>

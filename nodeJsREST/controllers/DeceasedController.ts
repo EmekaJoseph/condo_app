@@ -54,7 +54,9 @@ const DeceasedController = {
                     deceased: {
                         [Op.like]: `%${string}%`
                     }
-                }
+                },
+                order: [['created_at', 'DESC']],
+                limit: 10,
             });
 
             return res.status(200).json(results);

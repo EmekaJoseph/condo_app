@@ -1,0 +1,113 @@
+@import './base.css';
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.vue-tel-input,
+.page-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    /* border-color: #dee2e6 !important; */
+}
+
+.everything-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.theme-color {
+    color: var(--theme-color) !important;
+}
+
+.btn-theme {
+    background-color: var(--theme-btn-color);
+    color: #fff !important;
+}
+
+.btn-theme:hover {
+    background-color: var(--theme-btn-color-hover);
+}
+
+
+.btn-theme-outline {
+    border-color: var(--theme-btn-color) !important;
+    color: var(--theme-btn-color);
+}
+
+.btn-theme-outline:hover {
+    background-color: var(--theme-btn-color);
+    color: #fff !important;
+}
+
+.btn-theme:disabled {
+    background-color: var(--theme-btn-color);
+}
+
+
+.bg-theme {
+    background-color: var(--theme-color);
+}
+
+.bg-theme-gradient {
+    background-image: linear-gradient(to right, var(--theme-color-lighter) 0%, var(--theme-color-light) 50%, var(--theme-color-lighter) 100%);
+
+}
+
+/* remove tiny mark at bottom left of textareas */
+textarea {
+    resize: none;
+}
+
+.modal-content {
+    border-bottom: 5px solid var(--theme-color);
+}
+
+
+.hover-tiltX {
+    transition: all ease-in-out 0.4s;
+}
+
+
+.hover-tiltX:hover {
+    transform: translateX(5px);
+}
+
+.hover-tiltY {
+    transition: all ease-in-out 0.4s;
+}
+
+
+.hover-tiltY:hover {
+    transform: translateY(-5px);
+}
+
+.form-control-float {
+    border-top: 0px;
+    border-inline: 0px;
+    border-radius: 0px;
+}
+
+.dp__input{
+    background: transparent !important;
+    color: unset !important;
+    border-color: var(--bs-border-color) !important;
+}
+
+.ql-snow{
+    border-color: var(--bs-border-color) !important;
+}
+
+
+.skeleton-box{
+    background-color: var(--bs-border-color) !important;
+}
+
+@media (min-width: 1024px) {}

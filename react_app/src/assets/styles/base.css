@@ -1,0 +1,41 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --light-background: rgba(33, 37, 41, 0.02);
+
+  --vt-c-black: #181818;
+  --vt-c-black-soft: #222222;
+  --vt-c-black-mute: #282828;
+
+  --color-text: #2c3e50;
+
+  /* --theme-color: #055160;  */
+  --theme-color: #60148f;
+  --theme-color-light: #60148f94;
+  --theme-color-lighter: #60148f4a;
+  --theme-btn-color: #5e0c92;
+  --theme-btn-color-hover: #530981;
+}
+
+[data-bs-theme="dark"] {
+  --theme-color: #8124ba;
+}
+
+
+body {
+  min-height: 100vh !important;
+  color: var(--color-text);
+  background: var(--light-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  /* line-height: 1.6; */
+  font-family: 'Dosis', 'Manrope', sans-serif;
+  /* font-size: 15px; */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
